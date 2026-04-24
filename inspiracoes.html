@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sites de Inspiração para Salões de Beleza | Cabeleireiros & Hair Design</title>
+    <meta name="description" content="Lista completa de sites de inspiração para salões de beleza, studios de cabelo, cabeleireiros e hair design em português. Descubra tendências e ideias para seu negócio.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para a página de inspirações */
+        body {
+            background: #EDEAF2;
+            color: #1A1718;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .header {
+            background: #111014;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #FEFEFE;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            color: rgba(255,255,255,.6);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #1A1718;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: #C0392B;
+            margin: 1rem auto;
+        }
+        
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .platform-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,.05);
+            transition: transform .3s ease, box-shadow .3s ease;
+            border: 1px solid rgba(26,23,24,.05);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,.1);
+        }
+        
+        .platform-header {
+            padding: 1.5rem;
+            background: #111014;
+            color: white;
+        }
+        
+        .platform-header h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform-header p {
+            color: rgba(255,255,255,.7);
+            font-size: 0.9rem;
+        }
+        
+        .platform-body {
+            padding: 1.5rem;
+        }
+        
+        .platform-body ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .platform-body li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .platform-body li:last-child {
+            border-bottom: none;
+        }
+        
+        .platform-body li::before {
+            content: '✓';
+            color: #C0392B;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .platform-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #C0392B;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .2s;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .platform-link:hover {
+            background: #A93226;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category-btn {
+            padding: 0.6rem 1.5rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: #C0392B;
+            color: white;
+            border-color: #C0392B;
+        }
+        
+        .popular-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,.05);
+        }
+        
+        .popular-section h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .popular-item {
+            text-align: center;
+        }
+        
+        .popular-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .popular-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .popular-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            background: #111014;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Sites de Inspiração para Salões de Beleza</h1>
+            <p>Descubra os melhores sites em português para encontrar inspirações para salões de beleza, studios de cabelo, cabeleireiros e hair design. Tendências, ideias e tendências para sua empresa.</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2 class="section-title">Plataformas de Inspiração</h2>
+        
+        <div class="categories">
+            <button class="category-btn active">Todos</button>
+            <button class="category-btn">Design</button>
+            <button class="category-btn">Salões</button>
+            <button class="category-btn">Cabeleireiros</button>
+            <button class="category-btn">Hair Design</button>
+        </div>
+        
+        <div class="platforms-grid">
+            <!-- Dribbble -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <h3>Dribbble</h3>
+                    <p>Comunidade líder para designers</p>
+                </div>
+                <div class="platform-body">
+                    <ul>
+                        <li>Mostra designs de UI/UX e web design</li>
+                        <li>Grande comunidade de designers profissionais</li>
+                        <li>Categorias populares: Web Design, Mobile Apps, Branding</li>
+                        <li>Excelente para encontrar tendências modernas</li>
+                    </ul>
+                    <a href="https://dribbble.com/" target="_blank" class="platform-link">Visitar Dribbble</a>
+                </div>
+            </div>
+            
+            <!-- Behance -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <h3>Behance</h3>
+                    <p>Plataforma Adobe para criativos</p>
+                </div>
+                <div class="platform-body">
+                    <ul>
+                        <li>Portfólios completos de profissionais criativos</li>
+                        <li>Foco em projetos profissionais</li>
+                        <li>Vasta base de trabalhos de design</li>
+                        <li>Excelente para inspiração de marca e identidade visual</li>
+                    </ul>
+                    <a href="https://www.behance.net/" target="_blank" class="platform-link">Visitar Behance</a>
+                </div>
+            </div>
+            
+            <!-- Awwwards -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <h3>Awwwards</h3>
+                    <p>Prêmios mundiais por websites</p>
+                </div>
+                <div class="platform-body">
+                    <ul>
+                        <li>Reconhece websites excepcionais</li>
+                        <li>Exemplos de design inovador</li>
+                        <li>Site do dia e prêmios</li>
+                        <li>Excelente para inspiração de layouts modernos</li>
+                    </ul>
+                    <a href="https://www.awwwards.com/" target="_blank" class="platform-link">Visitar Awwwards</a>
+                </div>
+            </div>
+            
+            <!-- Land Book -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <h3>Land Book</h3>
+                    <p>Showcase de landing pages</p>
+                </div>
+                <div class="platform-body">
+                    <ul>
+                        <li>Foco em landing pages incríveis</li>
+                        <li>Inspiração para sites de salões</li>
+                        <li>Design moderno e funcional</li>
+                        <li>Exemplos práticos de conversão</li>
+                    </ul>
+                    <a href="https://land-book.com/" target="_blank" class="platform-link">Visitar Land Book</a>
+                </div>
+            </div>
+            
+            <!-- Pinterest -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <h3>Pinterest</h3>
+                    <p>Descoberta visual em massa</p>
+                </div>
+                <div class="platform-body">
+                    <ul>
+                        <li>Colossal banco de dados de inspiração</li>
+                        <li>Fácil busca por temas e estilos</li>
+                        <li>Excelente para encontrar tendências</li>
+                        <li>Boas para criação de moodboards</li>
+                    </ul>
+                    <a href="https://www.pinterest.com/" target="_blank" class="platform-link">Visitar Pinterest</a>
+                </div>
+            </div>
+            
+            <!-- Designspiration -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <h3>Designspiration</h3>
+                    <p>Inspiração visual curada</p>
+                </div>
+                <div class="platform-body">
+                    <ul>
+                        <li>Conteúdo curado de designers</li>
+                        <li>Foco em descoberta visual</li>
+                        <li>Excelente para conceitos de design</li>
+                        <li>Boa para inspiração de layout</li>
+                    </ul>
+                    <a href="https://www.designspiration.com/" target="_blank" class="platform-link">Visitar Designspiration</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="popular-section">
+            <h2>Exemplos de Sites de Salões de Beleza</h2>
+            <div class="popular-grid">
+                <div class="popular-item">
+                    <img src="https://placehold.co/250x180/111014/FFFFFF?text=Salão+Beleza" alt="Salão de Beleza">
+                    <h3>Salão de Beleza</h3>
+                    <p>Design moderno e funcional</p>
+                </div>
+                <div class="popular-item">
+                    <img src="https://placehold.co/250x180/C0392B/FFFFFF?text=Studio+Cabelo" alt="Studio de Cabelo">
+                    <h3>Studio de Cabelo</h3>
+                    <p>Identidade visual forte</p>
+                </div>
+                <div class="popular-item">
+                    <img src="https://placehold.co/250x180/C9A96E/FFFFFF?text=Cabeleireiro" alt="Cabeleireiro">
+                    <h3>Cabeleireiro</h3>
+                    <p>Experiência do cliente</p>
+                </div>
+                <div class="popular-item">
+                    <img src="https://placehold.co/250x180/4A4548/FFFFFF?text=Hair+Design" alt="Hair Design">
+                    <h3>Hair Design</h3>
+                    <p>Design de marca</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Inspirações para Salões de Beleza • Todos os direitos reservados</p>
+            <p>Encontre inspirações para seu negócio de beleza</p>
+        </div>
+    </footer>
+</body>
+</html>
