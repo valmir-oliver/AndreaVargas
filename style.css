@@ -290,7 +290,14 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 
 /* ── FOOTER ── */
-.footer { padding: 15vh 3rem 5vh; display: flex; flex-direction: column; align-items: center; min-height: 90vh; background: #000; position: relative; }
+.footer { 
+  padding: 15vh 3rem 5vh; display: flex; flex-direction: column; align-items: center; 
+  min-height: 90vh; 
+  background: rgba(5, 5, 5, 0.8); /* Transparência no rodapé */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative; 
+}
 .footer-huge-text { 
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   font-family: var(--ff-display); font-size: 7vw; line-height: 1.1; 
@@ -400,17 +407,22 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .menu-toggle.active span:last-child { transform: translateY(-5px) rotate(-45deg); width: 30px; }
 
 .mobile-menu {
-  position: fixed; inset: 0; background: var(--bg);
+  position: fixed; inset: 0; 
+  background: rgba(10, 10, 10, 0.85); /* Transparência sofisticada */
+  backdrop-filter: blur(25px); /* Efeito de vidro */
+  -webkit-backdrop-filter: blur(25px); /* Suporte iPhone */
   z-index: 100000; display: flex; align-items: center; justify-content: center;
-  transform: translateY(-100%); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateY(-100%); transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .mobile-menu.active { transform: translateY(0); }
-.mobile-menu-links { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
+.mobile-menu-links { display: flex; flex-direction: column; align-items: center; gap: 3rem; }
 .mobile-link {
-  font-family: var(--ff-serif); font-size: 2rem; font-weight: 400;
-  color: var(--text); transition: color 0.3s ease;
+  font-family: var(--ff-serif); font-size: 1.8rem; font-weight: 400;
+  color: var(--text); transition: all 0.4s ease;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  opacity: 0.8;
 }
-.mobile-link:hover { color: var(--accent); }
+.mobile-link:hover { color: var(--accent); opacity: 1; transform: translateY(-3px); }
 
 /* ── PRELOADER MOBILE BREAK ── */
 .mobile-break { display: none; }
