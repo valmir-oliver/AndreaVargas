@@ -111,9 +111,9 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 .nav.scrolled {
   padding: 1.2rem 3rem;
-  background: rgba(15, 15, 15, 0.65);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .nav-brand {
@@ -210,6 +210,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .lightbox.active { opacity: 1; visibility: visible; }
 #lightbox-img {
   height: 85vh !important;
+  height: 85dvh !important; /* iPhone optimization */
   width: auto !important;
   aspect-ratio: 3/4 !important;
   display: block !important;
@@ -218,7 +219,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   border: 1px solid rgba(255,255,255,0.05);
   border-radius: 4px;
-  clip-path: inset(0px 0px 6% 0px); /* Remove a marca d'água do FaceApp na base */
+  clip-path: inset(0px 0px 6% 0px);
+  -webkit-clip-path: inset(0px 0px 6% 0px); /* Safari/iPhone support */
 }
 .lightbox.active #lightbox-img { transform: scale(1); }
 
@@ -395,3 +397,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   color: var(--text); transition: color 0.3s ease;
 }
 .mobile-link:hover { color: var(--accent); }
+
+/* ── PRELOADER MOBILE BREAK ── */
+.mobile-break { display: none; }
+@media (max-width: 768px) {
+  .mobile-break { display: block; }
+  .pl-av { text-align: center; line-height: 1.1; display: block; }
+}

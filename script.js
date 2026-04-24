@@ -30,23 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── 2. PRELOADER ANIMATION ──
   const plAv = document.querySelector('.pl-av');
   if (plAv) {
-    const chars = plAv.textContent.split('');
+    // Preservar o HTML original para manter o <br> no mobile
+    const originalHTML = plAv.innerHTML;
+    // Criar animação baseada no conteúdo, mas mantendo a estrutura
+    // Para simplificar e garantir a quebra de linha, vamos animar apenas a opacidade do bloco ou ajustar o split
+    const htmlSegments = originalHTML.split(/<br.*?>/i);
     plAv.innerHTML = '';
-    chars.forEach(char => {
-      if (char === ' ') {
-        plAv.appendChild(document.createTextNode('\u00A0'));
-      } else {
+    
+    htmlSegments.forEach((segment, idx) => {
+      const segmentSpan = document.createElement('span');
+      segmentSpan.className = 'pl-line';
+      segmentSpan.style.display = 'block';
+      
+      const chars = segment.trim().split('');
+      chars.forEach(char => {
         const span = document.createElement('span');
-        span.textContent = char;
-        span.style.display = 'inline-block'; // required for transforms
-        plAv.appendChild(span);
-      }
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.display = 'inline-block';
+        segmentSpan.appendChild(span);
+      });
+      
+      plAv.appendChild(segmentSpan);
     });
   }
 
   const tlPreloader = gsap.timeline();
   tlPreloader
-    .fromTo('.pl-av span', 
+    .fromTo('.pl-av .pl-line span', 
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 1.2, stagger: 0.05, ease: 'expo.out' }
     )
@@ -135,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryTrack = document.querySelector('.gallery-track');
   const galleryContainer = document.querySelector('.gallery-container');
   
-  if (galleryTrack && window.innerWidth > 768) {
+  if (galleryTrack && window.innerWidth > 1024) {
     let trackWidth = galleryTrack.offsetWidth;
     let amountToScroll = trackWidth - window.innerWidth + (window.innerWidth * 0.1);
 
