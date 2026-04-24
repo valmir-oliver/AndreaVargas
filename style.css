@@ -380,6 +380,9 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
     height: auto !important;
     aspect-ratio: 3/4 !important;
   }
+  
+  .menu-toggle { display: flex !important; } /* Mostrar o menu sanduíche */
+  .nav-links { display: none !important; } /* Esconder links normais */
 }
 
 /* ── MOBILE MENU STYLES ── */
@@ -414,4 +417,23 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 768px) {
   .mobile-break { display: block; }
   .pl-av { text-align: center; line-height: 1.1; display: block; font-size: 12vw !important; }
+}
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-mobile-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  padding: 1rem 2rem; background: var(--accent);
+  z-index: 9999; text-align: center;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  text-decoration: none;
+}
+.sticky-mobile-cta span {
+  font-family: var(--ff-body); font-weight: 600; font-size: 0.9rem;
+  color: #000; text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .sticky-mobile-cta { display: block; }
+  .footer { padding-bottom: 12vh !important; } /* Espaço extra para o botão fixo */
 }
