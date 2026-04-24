@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
@@ -46,8 +46,24 @@
         <a href="#services" class="magnetic-link">Especialidades</a>
       </div>
       <a href="https://wa.me/5512996023596" target="_blank" class="btn-book magnetic-link">Agendar Horário <div class="btn-book-bg"></div></a>
+      
+      <!-- MOBILE MENU TOGGLE -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- MOBILE OVERLAY MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="#portfolio" class="mobile-link">Portfólio</a>
+      <a href="#about" class="mobile-link">Sobre</a>
+      <a href="#services" class="mobile-link">Especialidades</a>
+      <a href="https://wa.me/5512996023596" target="_blank" class="mobile-link">Agendar via WhatsApp</a>
+    </div>
+  </div>
 
   <main id="smooth-wrapper">
     <div id="smooth-content">
@@ -446,6 +462,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
-  <script src="script.js"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

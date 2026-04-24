@@ -306,4 +306,35 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // ── 12. MOBILE MENU TOGGLE ──
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      
+      // Bloqueia o scroll da página quando o menu está aberto
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+        lenis.stop();
+      } else {
+        document.body.style.overflow = '';
+        lenis.start();
+      }
+    });
+
+    // Fecha o menu ao clicar em um link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+        lenis.start();
+      });
+    });
+  }
 });
