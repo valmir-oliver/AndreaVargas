@@ -347,4 +347,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // ── 13. STICKY CTA SCROLL LOGIC ──
+  const stickyCta = document.querySelector('.sticky-mobile-cta');
+  if (stickyCta) {
+    window.addEventListener('scroll', () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      
+      if (scrollPercent > 60) {
+        stickyCta.style.display = 'block';
+        setTimeout(() => stickyCta.classList.add('visible'), 10);
+      } else {
+        stickyCta.classList.remove('visible');
+        setTimeout(() => {
+          if (!stickyCta.classList.contains('visible')) {
+            stickyCta.style.display = 'none';
+          }
+        }, 600);
+      }
+    });
+  }
 });
