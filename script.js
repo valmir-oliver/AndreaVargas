@@ -141,18 +141,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: 'none'
   });
 
-  // ── 7. GALLERY HORIZONTAL SCROLL (Enabled for all devices) ──
+  // ── 7. GALLERY HORIZONTAL SCROLL (Pinning the entire section) ──
   const track = document.querySelector('.gallery-track');
-  const container = document.querySelector('.gallery-container');
+  const wrapper = document.querySelector('.gallery-wrapper');
   
-  if (track && container) {
+  if (track && wrapper) {
     const amountToScroll = track.scrollWidth - window.innerWidth;
     
     gsap.to(track, {
       x: () => -amountToScroll,
       ease: 'none',
       scrollTrigger: {
-        trigger: container,
+        trigger: wrapper,
         start: 'top top',
         end: () => `+=${amountToScroll}`,
         scrub: 1,
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         x: '20%',
         ease: 'none',
         scrollTrigger: {
-          trigger: container,
+          trigger: wrapper,
           start: 'top top',
           end: () => `+=${amountToScroll}`,
           scrub: true
