@@ -141,28 +141,24 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: 'none'
   });
 
-  // ── 5. HORIZONTAL SCROLL GALLERY ──
-  const galleryTrack = document.querySelector('.gallery-track');
-  const galleryContainer = document.querySelector('.gallery-container');
+  // ── 7. GALLERY HORIZONTAL SCROLL (Enabled for all devices) ──
+  const track = document.querySelector('.gallery-track');
+  const container = document.querySelector('.gallery-container');
   
-  if (galleryTrack && window.innerWidth > 1024) {
-    let trackWidth = galleryTrack.offsetWidth;
-    let amountToScroll = trackWidth - window.innerWidth + (window.innerWidth * 0.1);
-
-    gsap.to(galleryTrack, {
-      x: -amountToScroll,
-      ease: "none",
+  if (track && container) {
+    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+    
+    gsap.to(track, {
+      x: getScrollAmount,
+      ease: 'none',
       scrollTrigger: {
-        trigger: ".gallery-wrapper",
-        start: "top top",
-        end: () => `+=${amountToScroll}`,
-        pin: true,
+        trigger: container,
+        start: 'top top',
+        end: () => `+=${track.scrollWidth}`,
         scrub: 1,
+        pin: true,
         invalidateOnRefresh: true,
-        onEnter: () => gsap.to('.nav', { yPercent: -100, duration: 0.3, ease: 'power2.out' }),
-        onLeave: () => gsap.to('.nav', { yPercent: 0, duration: 0.3, ease: 'power2.out' }),
-        onEnterBack: () => gsap.to('.nav', { yPercent: -100, duration: 0.3, ease: 'power2.out' }),
-        onLeaveBack: () => gsap.to('.nav', { yPercent: 0, duration: 0.3, ease: 'power2.out' })
+        anticipatePin: 1
       }
     });
 
