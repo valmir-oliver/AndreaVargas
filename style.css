@@ -399,12 +399,12 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .menu-toggle span:nth-child(2) { width: 20px; }
 .menu-toggle span:last-child { width: 14px; }
 
-/* Transformação em SETA para CIMA */
+/* Transformação em X para FECHAR */
 .menu-toggle.active { align-items: center; }
-.menu-toggle.active span { background: var(--accent); width: 18px !important; }
-.menu-toggle.active span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 4px); }
-.menu-toggle.active span:nth-child(2) { transform: rotate(90deg) scaleX(1.5); }
-.menu-toggle.active span:nth-child(3) { transform: rotate(45deg) translate(6px, 4px); }
+.menu-toggle.active span { background: var(--accent); width: 30px !important; }
+.menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; transform: translateX(20px); }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 .mobile-menu {
   position: fixed; inset: 0; 
