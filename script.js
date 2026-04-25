@@ -146,15 +146,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector('.gallery-container');
   
   if (track && container) {
-    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+    const amountToScroll = track.scrollWidth - window.innerWidth;
     
     gsap.to(track, {
-      x: getScrollAmount,
+      x: () => -amountToScroll,
       ease: 'none',
       scrollTrigger: {
         trigger: container,
         start: 'top top',
-        end: () => `+=${track.scrollWidth}`,
+        end: () => `+=${amountToScroll}`,
         scrub: 1,
         pin: true,
         invalidateOnRefresh: true,
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         x: '20%',
         ease: 'none',
         scrollTrigger: {
-          trigger: '.gallery-wrapper',
+          trigger: container,
           start: 'top top',
           end: () => `+=${amountToScroll}`,
           scrub: true

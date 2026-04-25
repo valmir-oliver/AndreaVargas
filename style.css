@@ -341,13 +341,13 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .ht-indent { margin-left: 0; }
   .statement-text { font-size: 2.2rem; }
   
-  .gallery-container { padding: 5vh 0; width: 100vw; overflow: hidden; height: auto !important; }
+  .gallery-container { padding: 5vh 0; width: 100vw; overflow: hidden; position: relative; }
   .gallery-track { 
-    display: flex; gap: 6vw; padding: 0 15vw; width: max-content !important; 
-    overflow: visible !important;
+    display: flex; gap: 6vw; padding: 0 15vw; width: max-content; 
+    align-items: center;
   }
   .gallery-item { 
-    width: 70vw !important; 
+    width: 75vw !important; 
     flex-shrink: 0;
   }
   
