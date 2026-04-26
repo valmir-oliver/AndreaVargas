@@ -157,6 +157,12 @@
     </div>
 
     <div class="form-group">
+      <label>Oferta Especial (Hero Form)</label>
+      <input type="text" id="offer" placeholder="Ex: Consultoria de Hair Design Cortesia">
+      <p class="help-text">Muda o título e a oferta do formulário principal.</p>
+    </div>
+
+    <div class="form-group">
       <label>Link do Grupo WhatsApp (Opcional)</label>
       <input type="text" id="group" placeholder="Ex: https://chat.whatsapp.com/...">
     </div>
@@ -174,6 +180,7 @@
       const baseUrl = window.location.origin + window.location.pathname.replace('admin.html', '');
       const type = document.getElementById('type').value;
       const video = document.getElementById('video').value.trim();
+      const offer = document.getElementById('offer').value.trim();
       const group = document.getElementById('group').value.trim();
 
       let params = [];
@@ -184,6 +191,10 @@
       
       if (video) {
         params.push('v=' + video);
+      }
+
+      if (offer) {
+        params.push('o=' + encodeURIComponent(offer));
       }
       
       if (group) {

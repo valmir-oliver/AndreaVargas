@@ -347,14 +347,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── 13. HERO LEAD FORM LOGIC (Hair Design VIP) ──
   const leadForm = document.getElementById('lead-form');
   const heroCard = document.querySelector('.hero-form-card');
+  const urlParams = new URLSearchParams(window.location.search);
   
+  // Oferta Dinâmica via URL
+  const dynamicOffer = urlParams.get('o') || 'Consultoria de Hair Design Cortesia';
+  
+  // Atualiza textos da oferta se existirem no DOM
+  const offerTitle = document.querySelector('.hero-form-card h3');
+  const offerDesc = document.querySelector('.hero-form-card .form-subtitle');
+  if (offerTitle) offerTitle.innerText = dynamicOffer;
+  if (offerDesc) offerDesc.innerText = `Preencha abaixo para solicitar sua ${dynamicOffer.toLowerCase()}.`;
+
   if (leadForm && heroCard) {
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('lead-name').value;
       const whatsapp = document.getElementById('lead-whatsapp').value;
       
-      const message = `Olá Andrea! Meu nome é ${name}. Acabei de solicitar minha *Consultoria de Hair Design Cortesia* através do site. Gostaria de agendar meu horário!`;
+      const message = `Olá Andrea! Meu nome é ${name}. Acabei de solicitar minha *${dynamicOffer}* através do site. Gostaria de agendar meu horário!`;
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/5512996023596?text=${encodedMessage}`;
       
@@ -367,10 +377,10 @@ document.addEventListener("DOMContentLoaded", () => {
         heroCard.innerHTML = `
           <div class="hero-form-success" style="text-align: center; animation: fadeIn 0.8s ease forwards;">
             <div class="success-icon" style="color: var(--accent); font-size: 2.5rem; margin-bottom: 1.5rem;">✧</div>
-            <h3 style="font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; font-family: var(--ff-display);">Consultoria Reservada!</h3>
-            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 2rem; line-height: 1.6;">Parabéns, ${name}! Sua vaga para a consultoria de Hair Design foi pré-reservada.</p>
-            <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Agendar via WhatsApp</a>
-            <p class="form-disclaimer" style="margin-top: 1.5rem;">Clique acima para finalizar seu agendamento exclusivo.</p>
+            <h3 style="font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; font-family: var(--ff-display);">Solicitação Enviada!</h3>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 2rem; line-height: 1.6;">Parabéns, ${name}! Sua solicitação de <strong>${dynamicOffer}</strong> foi pré-registrada.</p>
+            <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Confirmar via WhatsApp</a>
+            <p class="form-disclaimer" style="margin-top: 1.5rem;">Clique acima para finalizar sua reserva exclusiva.</p>
           </div>
         `;
       }, 1000);
