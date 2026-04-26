@@ -344,29 +344,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 13. HERO LEAD FORM LOGIC ──
+  // ── 13. HERO LEAD FORM LOGIC (With Success State & Coupon) ──
   const leadForm = document.getElementById('lead-form');
-  if (leadForm) {
+  const heroCard = document.querySelector('.hero-form-card');
+  
+  if (leadForm && heroCard) {
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('lead-name').value;
       const whatsapp = document.getElementById('lead-whatsapp').value;
       
-      const message = `Olá Andrea! Meu nome é ${name}. Gostaria de solicitar uma vaga na sua agenda para uma consultoria exclusiva. Meu WhatsApp é: ${whatsapp}`;
+      const couponCode = "LUXURY45"; // Você pode alterar este código conforme sua campanha
+      const message = `Olá Andrea! Meu nome é ${name}. Acabei de resgatar meu cupom ${couponCode} no site e gostaria de agendar uma consultoria exclusiva!`;
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/5512996023596?text=${encodedMessage}`;
       
-      // Feedback visual antes do redirect
+      // Feedback visual e troca de estado
       const btn = leadForm.querySelector('button');
-      btn.textContent = "Solicitando...";
+      btn.textContent = "Gerando seu Cupom...";
       btn.style.opacity = "0.7";
       
       setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-        btn.textContent = "Solicitar Vaga na Agenda";
-        btn.style.opacity = "1";
-        leadForm.reset();
-      }, 800);
+        // Transição para o estado de sucesso
+        heroCard.innerHTML = `
+          <div class="hero-form-success" style="text-align: center; animation: fadeIn 0.8s ease forwards;">
+            <div class="success-icon" style="color: var(--accent); font-size: 2rem; margin-bottom: 1rem;">✕</div>
+            <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Benefício Resgatado!</h3>
+            <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 1.5rem;">Seu cupom exclusivo de 45% foi gerado com sucesso.</p>
+            <div class="coupon-display" style="border: 1px dashed var(--accent); padding: 1rem; font-family: var(--ff-display); font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; letter-spacing: 0.2em;">${couponCode}</div>
+            <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Ativar no WhatsApp</a>
+            <p class="form-disclaimer" style="margin-top: 1rem;">Clique acima para garantir sua vaga com o desconto aplicado.</p>
+          </div>
+        `;
+      }, 1000);
     });
   }
 
