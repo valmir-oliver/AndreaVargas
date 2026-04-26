@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 13. HERO LEAD FORM LOGIC (Consultoria VIP) ──
+  // ── 13. HERO LEAD FORM LOGIC (Hair Design VIP) ──
   const leadForm = document.getElementById('lead-form');
   const heroCard = document.querySelector('.hero-form-card');
   
@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = document.getElementById('lead-name').value;
       const whatsapp = document.getElementById('lead-whatsapp').value;
       
-      const message = `Olá Andrea! Meu nome é ${name}. Acabei de solicitar minha *Consultoria de Visagismo Cortesia* através do site. Gostaria de agendar meu horário!`;
+      const message = `Olá Andrea! Meu nome é ${name}. Acabei de solicitar minha *Consultoria de Hair Design Cortesia* através do site. Gostaria de agendar meu horário!`;
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/5512996023596?text=${encodedMessage}`;
       
@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="hero-form-success" style="text-align: center; animation: fadeIn 0.8s ease forwards;">
             <div class="success-icon" style="color: var(--accent); font-size: 2.5rem; margin-bottom: 1.5rem;">✧</div>
             <h3 style="font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; font-family: var(--ff-display);">Consultoria Reservada!</h3>
-            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 2rem; line-height: 1.6;">Parabéns, ${name}! Sua vaga para a consultoria de visagismo foi pré-reservada.</p>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 2rem; line-height: 1.6;">Parabéns, ${name}! Sua vaga para a consultoria de Hair Design foi pré-reservada.</p>
             <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Agendar via WhatsApp</a>
             <p class="form-disclaimer" style="margin-top: 1.5rem;">Clique acima para finalizar seu agendamento exclusivo.</p>
           </div>
