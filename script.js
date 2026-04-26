@@ -379,10 +379,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── 14. MENTORSHIP CTA REVEAL LOGIC (YouTube API) ──
   const mentorshipActions = document.querySelector('.mentorship-actions');
+  const urlParams = new URLSearchParams(window.location.search);
+  const isMentorshipFocus = urlParams.get('mentoria') === 'true';
+
+  if (isMentorshipFocus) {
+    document.body.classList.add('focus-mode');
+  }
   
   window.revealMentorshipCta = function() {
     if (mentorshipActions) {
       mentorshipActions.classList.add('reveal');
+      
+      // Se estiver em modo foco, libera o site agora
+      if (isMentorshipFocus) {
+        document.body.classList.remove('focus-mode');
+        // Refresh ScrollTrigger pois as seções voltaram a aparecer
+        ScrollTrigger.refresh();
+      }
     }
   }
 

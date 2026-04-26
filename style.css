@@ -485,6 +485,38 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 1.5rem;
   transition: color 0.6s ease;
 }
+/* ── FOCUS MODE (Para Tráfego Pago) ── */
+body.focus-mode .nav,
+body.focus-mode section:not(.mentorship-launch),
+body.focus-mode .footer,
+body.focus-mode .sticky-mobile-cta {
+  display: none !important;
+}
+
+body.focus-mode .mentorship-launch {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #000;
+}
+
+body.focus-mode .mentorship-container {
+  width: 100%;
+}
+
+body.focus-mode .mentorship-video-wrapper {
+  margin: 2rem auto;
+  border-color: rgba(201, 169, 110, 0.4);
+  box-shadow: 0 0 50px rgba(0,0,0,1);
+}
+
+@media (max-width: 768px) {
+  body.focus-mode .mentorship-launch {
+    padding: 1rem;
+  }
+}
 
 .footer-huge-text:hover span.footer-logo-main { color: var(--accent); }
 .footer-huge-text:hover .footer-logo-line { transform: scaleX(1); }
