@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 13. HERO LEAD FORM LOGIC (With Success State & Coupon) ──
+  // ── 13. HERO LEAD FORM LOGIC (Consultoria VIP) ──
   const leadForm = document.getElementById('lead-form');
   const heroCard = document.querySelector('.hero-form-card');
   
@@ -354,26 +354,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = document.getElementById('lead-name').value;
       const whatsapp = document.getElementById('lead-whatsapp').value;
       
-      const couponCode = "LUXURY45"; // Você pode alterar este código conforme sua campanha
-      const message = `Olá Andrea! Meu nome é ${name}. Acabei de resgatar meu cupom ${couponCode} no site e gostaria de agendar uma consultoria exclusiva!`;
+      const message = `Olá Andrea! Meu nome é ${name}. Acabei de solicitar minha *Consultoria de Visagismo Cortesia* através do site. Gostaria de agendar meu horário!`;
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/5512996023596?text=${encodedMessage}`;
       
-      // Feedback visual e troca de estado
+      // Feedback visual
       const btn = leadForm.querySelector('button');
-      btn.textContent = "Gerando seu Cupom...";
+      btn.textContent = "Reservando sua Vaga...";
       btn.style.opacity = "0.7";
       
       setTimeout(() => {
-        // Transição para o estado de sucesso
         heroCard.innerHTML = `
           <div class="hero-form-success" style="text-align: center; animation: fadeIn 0.8s ease forwards;">
-            <div class="success-icon" style="color: var(--accent); font-size: 2rem; margin-bottom: 1rem;">✕</div>
-            <h3 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">Benefício Resgatado!</h3>
-            <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 1.5rem;">Seu cupom exclusivo de 45% foi gerado com sucesso.</p>
-            <div class="coupon-display" style="border: 1px dashed var(--accent); padding: 1rem; font-family: var(--ff-display); font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; letter-spacing: 0.2em;">${couponCode}</div>
-            <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Ativar no WhatsApp</a>
-            <p class="form-disclaimer" style="margin-top: 1rem;">Clique acima para garantir sua vaga com o desconto aplicado.</p>
+            <div class="success-icon" style="color: var(--accent); font-size: 2.5rem; margin-bottom: 1.5rem;">✧</div>
+            <h3 style="font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; font-family: var(--ff-display);">Consultoria Reservada!</h3>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 2rem; line-height: 1.6;">Parabéns, ${name}! Sua vaga para a consultoria de visagismo foi pré-reservada.</p>
+            <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Agendar via WhatsApp</a>
+            <p class="form-disclaimer" style="margin-top: 1.5rem;">Clique acima para finalizar seu agendamento exclusivo.</p>
           </div>
         `;
       }, 1000);
