@@ -377,10 +377,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 14. MENTORSHIP CTA REVEAL LOGIC (YouTube API) ──
+  // ── 14. MENTORSHIP CTA REVEAL LOGIC (YouTube API & Dynamic Control) ──
   const mentorshipActions = document.querySelector('.mentorship-actions');
+  const btnVip = document.querySelector('.btn-vip');
   const urlParams = new URLSearchParams(window.location.search);
+  
   const isMentorshipFocus = urlParams.get('mentoria') === 'true';
+  const dynamicVideoId = urlParams.get('v') || 'dQw4w9WgXcQ'; // ID padrão caso não venha no link
+  const dynamicGroupLink = urlParams.get('g'); // Link do grupo opcional via URL
+
+  // Se vier um link de grupo na URL, atualiza o botão
+  if (dynamicGroupLink && btnVip) {
+    btnVip.href = dynamicGroupLink.startsWith('http') ? dynamicGroupLink : `https://chat.whatsapp.com/${dynamicGroupLink}`;
+  }
 
   if (isMentorshipFocus) {
     document.body.classList.add('focus-mode');
@@ -389,11 +398,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.revealMentorshipCta = function() {
     if (mentorshipActions) {
       mentorshipActions.classList.add('reveal');
-      
-      // Se estiver em modo foco, libera o site agora
       if (isMentorshipFocus) {
         document.body.classList.remove('focus-mode');
-        // Refresh ScrollTrigger pois as seções voltaram a aparecer
         ScrollTrigger.refresh();
       }
     }
@@ -409,9 +415,9 @@ document.addEventListener("DOMContentLoaded", () => {
     new YT.Player('mentorship-video', {
       height: '100%',
       width: '100%',
-      videoId: 'dQw4w9WgXcQ', // SUBSTITUA PELO ID DO SEU VÍDEO (ex: tudo após o v=)
+      videoId: dynamicVideoId, 
       playerVars: {
-        'autoplay': 0,
+        'autoplay': isMentorshipFocus ? 1 : 0,
         'modestbranding': 1,
         'rel': 0
       },
@@ -422,7 +428,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function onPlayerStateChange(event) {
-    // Se o vídeo terminar (State 0 = YT.PlayerState.ENDED)
     if (event.data === 0) {
       revealMentorshipCta();
     }
