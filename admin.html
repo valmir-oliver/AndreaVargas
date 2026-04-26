@@ -128,6 +128,48 @@
       line-height: 1.4;
     }
 
+    /* GUIA DE AJUDA */
+    .help-toggle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      background: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    .help-toggle:hover { background: var(--accent); color: var(--bg); }
+
+    .help-panel {
+      display: none;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.4s ease;
+    }
+    .help-panel.active { display: block; }
+    .help-panel h3 { font-size: 1rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase; }
+    .help-item { margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.4; }
+    .help-item strong { display: block; color: var(--accent); margin-bottom: 0.2rem; font-size: 0.75rem; text-transform: uppercase; }
+    .help-item span { opacity: 0.7; }
+    .btn-close-help {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
     @media (max-width: 480px) {
       .admin-card {
         padding: 1.5rem;
@@ -139,8 +181,37 @@
 <body>
 
   <div class="admin-card">
-    <h1>Gerador de Links</h1>
-    <p class="subtitle">Crie links personalizados para suas campanhas de tráfego pago.</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+      <h1>Campanhas</h1>
+      <button class="help-toggle" onclick="toggleHelp()">?</button>
+    </div>
+    <p class="subtitle">Crie links para suas campanhas de tráfego.</p>
+
+    <div id="help-panel" class="help-panel">
+      <h3>Como usar este painel:</h3>
+      
+      <div class="help-item">
+        <strong>1. Tipo de Página</strong>
+        <span>"Site Normal" é para seu portfólio. "Mentoria VIP" trava o site até o cliente ver o vídeo todo.</span>
+      </div>
+      
+      <div class="help-item">
+        <strong>2. ID do Vídeo (YouTube)</strong>
+        <span>Vá no YouTube, copie o código final do link (depois do v=). Ex: youtube.com/watch?v=<b>dQw4w9WgXcQ</b></span>
+      </div>
+
+      <div class="help-item">
+        <strong>3. Oferta Especial</strong>
+        <span>Muda o texto do site. Ex: "Sua Consultoria Grátis" ou "Cupom de 10% Off".</span>
+      </div>
+
+      <div class="help-item">
+        <strong>4. Grupo WhatsApp</strong>
+        <span>Cole o link do seu grupo. Ele aparecerá como botão após o vídeo de Mentoria.</span>
+      </div>
+
+      <button class="btn-close-help" onclick="toggleHelp()">Fechar Guia</button>
+    </div>
 
     <div class="form-group">
       <label>Tipo de Campanha</label>
@@ -214,6 +285,10 @@
       navigator.clipboard.writeText(text).then(() => {
         alert('Link copiado para a área de transferência!');
       });
+    }
+
+    function toggleHelp() {
+      document.getElementById('help-panel').classList.toggle('active');
     }
 
     // Inicializa
