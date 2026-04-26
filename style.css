@@ -354,6 +354,90 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .exp-content h3 { font-family: var(--ff-serif); font-size: 2.5rem; font-weight: 400; margin-bottom: 1rem; }
 .exp-content p { font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,0.5); }
 
+/* ── MENTORSHIP LAUNCH ── */
+.mentorship-launch {
+  padding: 120px 3rem;
+  background: #0d0d0d;
+  position: relative;
+  overflow: hidden;
+}
+.mentorship-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.mentorship-content {
+  text-align: center;
+}
+.mentorship-description {
+  max-width: 700px;
+  margin: 2rem auto;
+  font-size: 1.1rem;
+  opacity: 0.7;
+  line-height: 1.8;
+}
+.mentorship-video-wrapper {
+  margin: 4rem auto;
+  max-width: 900px;
+  aspect-ratio: 16/9;
+  background: #151515;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+.mentorship-video-wrapper:hover { transform: scale(1.01); }
+.video-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  color: rgba(255,255,255,0.4);
+}
+.play-button {
+  width: 80px; height: 80px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  margin-bottom: 1.5rem;
+  transition: all 0.4s ease;
+}
+.play-button span { font-size: 1.5rem; color: var(--accent); }
+.mentorship-video-wrapper:hover .play-button { background: var(--accent); }
+.mentorship-video-wrapper:hover .play-button span { color: var(--bg); }
+
+.mentorship-actions {
+  margin-top: 3rem;
+}
+.btn-vip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--ff-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.4s ease;
+}
+.btn-vip:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+.whatsapp-icon { margin-right: 15px; color: #25d366; }
+.vip-note {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .mentorship-launch { padding: 80px 1.5rem; }
+  .btn-vip { width: 100%; justify-content: center; padding: 1.2rem; font-size: 0.8rem; }
+}
+
 /* ── MASTERCLASS ── */
 .masterclass-section { padding: 15vh 3rem; background-color: #050505; }
 .masterclass-content .section-title { margin-bottom: 3.5rem; }
