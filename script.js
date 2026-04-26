@@ -377,18 +377,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 14. MENTORSHIP CTA REVEAL LOGIC ──
+  // ── 14. MENTORSHIP CTA REVEAL LOGIC (YouTube API) ──
   const mentorshipActions = document.querySelector('.mentorship-actions');
   
-  function revealMentorshipCta() {
+  window.revealMentorshipCta = function() {
     if (mentorshipActions) {
       mentorshipActions.classList.add('reveal');
     }
   }
 
-  // Para teste/demonstração: Revela após 20 segundos
-  // Em produção, isso será disparado pelo fim do vídeo
-  setTimeout(revealMentorshipCta, 20000); 
+  // Carrega a API do YouTube
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  window.onYouTubeIframeAPIReady = function() {
+    new YT.Player('mentorship-video', {
+      height: '100%',
+      width: '100%',
+      videoId: 'dQw4w9WgXcQ', // SUBSTITUA PELO ID DO SEU VÍDEO (ex: tudo após o v=)
+      playerVars: {
+        'autoplay': 0,
+        'modestbranding': 1,
+        'rel': 0
+      },
+      events: {
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerStateChange(event) {
+    // Se o vídeo terminar (State 0 = YT.PlayerState.ENDED)
+    if (event.data === 0) {
+      revealMentorshipCta();
+    }
+  }
 
   // ── 15. STICKY CTA SCROLL LOGIC ──
   const stickyCta = document.querySelector('.sticky-mobile-cta');
