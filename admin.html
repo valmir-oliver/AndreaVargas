@@ -202,11 +202,16 @@
 
       <div class="help-item">
         <strong>3. Oferta Especial</strong>
-        <span>Muda o texto do site. Ex: "Sua Consultoria Grátis" ou "Cupom de 10% Off".</span>
+        <span>Muda o título principal do site. Ex: "Cupom VIP de 40% OFF".</span>
       </div>
 
       <div class="help-item">
-        <strong>4. Grupo WhatsApp</strong>
+        <strong>4. Texto do Botão</strong>
+        <span>Personalize o texto do botão de ação. Ex: "Garantir meu Cupom".</span>
+      </div>
+
+      <div class="help-item">
+        <strong>5. Grupo WhatsApp</strong>
         <span>Cole o link do seu grupo. Ele aparecerá como botão após o vídeo de Mentoria.</span>
       </div>
 
@@ -228,9 +233,15 @@
     </div>
 
     <div class="form-group">
-      <label>Oferta Especial (Hero Form)</label>
+      <label>Oferta Especial (Título)</label>
       <input type="text" id="offer" placeholder="Ex: Consultoria de Hair Design Cortesia">
-      <p class="help-text">Muda o título e a oferta do formulário principal.</p>
+      <p class="help-text">Muda o título principal do formulário.</p>
+    </div>
+
+    <div class="form-group">
+      <label>Texto do Botão (CTA)</label>
+      <input type="text" id="btn_text" placeholder="Ex: Resgatar meu Cupom VIP">
+      <p class="help-text">Muda o texto dentro do botão de ação.</p>
     </div>
 
     <div class="form-group">
@@ -252,6 +263,7 @@
       const type = document.getElementById('type').value;
       const video = document.getElementById('video').value.trim();
       const offer = document.getElementById('offer').value.trim();
+      const btn_text = document.getElementById('btn_text').value.trim();
       const group = document.getElementById('group').value.trim();
 
       let params = [];
@@ -266,6 +278,10 @@
 
       if (offer) {
         params.push('o=' + encodeURIComponent(offer));
+      }
+
+      if (btn_text) {
+        params.push('b=' + encodeURIComponent(btn_text));
       }
       
       if (group) {

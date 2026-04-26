@@ -351,12 +351,16 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Oferta Dinâmica via URL
   const dynamicOffer = urlParams.get('o') || 'Consultoria de Hair Design Cortesia';
+  const dynamicBtn = urlParams.get('b') || 'Resgatar Consultoria Cortesia';
   
   // Atualiza textos da oferta se existirem no DOM
   const offerTitle = document.querySelector('.hero-form-card h3');
   const offerDesc = document.querySelector('.hero-form-card .form-subtitle');
+  const offerBtn = document.querySelector('.hero-form-btn');
+  
   if (offerTitle) offerTitle.innerText = dynamicOffer;
   if (offerDesc) offerDesc.innerText = `Preencha abaixo para solicitar sua ${dynamicOffer.toLowerCase()}.`;
+  if (offerBtn) offerBtn.innerText = dynamicBtn;
 
   if (leadForm && heroCard) {
     leadForm.addEventListener('submit', (e) => {
