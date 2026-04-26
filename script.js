@@ -390,7 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── 14. MENTORSHIP CTA REVEAL LOGIC (YouTube API & Dynamic Control) ──
   const mentorshipActions = document.querySelector('.mentorship-actions');
   const btnVip = document.querySelector('.btn-vip');
-  const urlParams = new URLSearchParams(window.location.search);
   
   const isMentorshipFocus = urlParams.get('mentoria') === 'true';
   const dynamicVideoId = urlParams.get('v') || 'dQw4w9WgXcQ'; // ID padrão caso não venha no link
