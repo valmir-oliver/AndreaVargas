@@ -377,7 +377,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 14. STICKY CTA SCROLL LOGIC ──
+  // ── 14. MENTORSHIP CTA REVEAL LOGIC ──
+  const mentorshipActions = document.querySelector('.mentorship-actions');
+  
+  function revealMentorshipCta() {
+    if (mentorshipActions) {
+      mentorshipActions.classList.add('reveal');
+    }
+  }
+
+  // Para teste/demonstração: Revela após 20 segundos
+  // Em produção, isso será disparado pelo fim do vídeo
+  setTimeout(revealMentorshipCta, 20000); 
+
+  // ── 15. STICKY CTA SCROLL LOGIC ──
   const stickyCta = document.querySelector('.sticky-mobile-cta');
   if (stickyCta) {
     window.addEventListener('scroll', () => {
