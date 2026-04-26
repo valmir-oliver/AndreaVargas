@@ -344,7 +344,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── 13. STICKY CTA SCROLL LOGIC ──
+  // ── 13. HERO LEAD FORM LOGIC ──
+  const leadForm = document.getElementById('lead-form');
+  if (leadForm) {
+    leadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('lead-name').value;
+      const whatsapp = document.getElementById('lead-whatsapp').value;
+      
+      const message = `Olá Andrea! Meu nome é ${name}. Gostaria de solicitar uma vaga na sua agenda para uma consultoria exclusiva. Meu WhatsApp é: ${whatsapp}`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/5512996023596?text=${encodedMessage}`;
+      
+      // Feedback visual antes do redirect
+      const btn = leadForm.querySelector('button');
+      btn.textContent = "Solicitando...";
+      btn.style.opacity = "0.7";
+      
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+        btn.textContent = "Solicitar Vaga na Agenda";
+        btn.style.opacity = "1";
+        leadForm.reset();
+      }, 800);
+    });
+  }
+
+  // ── 14. STICKY CTA SCROLL LOGIC ──
   const stickyCta = document.querySelector('.sticky-mobile-cta');
   if (stickyCta) {
     window.addEventListener('scroll', () => {
