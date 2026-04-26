@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Campanhas | Andrea Vargas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #151515;
+      --accent: #C9A96E;
+      --text: #ffffff;
+      --ff-serif: 'Cinzel', serif;
+      --ff-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      background-color: var(--bg); 
+      color: var(--text); 
+      font-family: var(--ff-sans);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .admin-card {
+      background: var(--card);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      padding: 3rem;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    h1 { 
+      font-family: var(--ff-serif); 
+      color: var(--accent); 
+      font-size: 1.8rem; 
+      margin-bottom: 0.5rem; 
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .subtitle { 
+      font-size: 0.9rem; 
+      opacity: 0.5; 
+      margin-bottom: 2.5rem; 
+      font-weight: 300;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    label { 
+      display: block; 
+      font-size: 0.75rem; 
+      text-transform: uppercase; 
+      letter-spacing: 0.1em; 
+      margin-bottom: 0.8rem; 
+      color: var(--accent);
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem;
+      color: white;
+      font-family: var(--ff-sans);
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    input:focus { border-color: var(--accent); }
+    
+    .result-area {
+      margin-top: 3rem;
+      background: #000;
+      padding: 1.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(201, 169, 110, 0.1);
+      position: relative;
+    }
+    .result-url {
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      color: var(--accent);
+      padding-right: 40px;
+    }
+    .copy-btn {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .copy-btn:hover { color: white; }
+
+    .btn-generate {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    .btn-generate:hover { background: #e0bc7a; transform: translateY(-2px); }
+
+    .help-text {
+      font-size: 0.7rem;
+      opacity: 0.4;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-card">
+    <h1>Gerador de Links</h1>
+    <p class="subtitle">Crie links personalizados para suas campanhas de tráfego pago.</p>
+
+    <div class="form-group">
+      <label>Tipo de Campanha</label>
+      <select id="type">
+        <option value="normal">Site Normal (Portfólio)</option>
+        <option value="mentoria">Mentoria VIP (Modo Sala de Cinema)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>ID do Vídeo do YouTube (Opcional)</label>
+      <input type="text" id="video" placeholder="Ex: dQw4w9WgXcQ">
+      <p class="help-text">Pegue o código após o "v=" no link do YouTube.</p>
+    </div>
+
+    <div class="form-group">
+      <label>Link do Grupo WhatsApp (Opcional)</label>
+      <input type="text" id="group" placeholder="Ex: https://chat.whatsapp.com/...">
+    </div>
+
+    <button class="btn-generate" onclick="generateLink()">Gerar Link da Campanha</button>
+
+    <div class="result-area">
+      <div class="result-url" id="result">https://andreavargas.com.br</div>
+      <button class="copy-btn" onclick="copyLink()" title="Copiar Link">📋</button>
+    </div>
+  </div>
+
+  <script>
+    function generateLink() {
+      const baseUrl = window.location.origin + window.location.pathname.replace('admin.html', '');
+      const type = document.getElementById('type').value;
+      const video = document.getElementById('video').value.trim();
+      const group = document.getElementById('group').value.trim();
+
+      let params = [];
+      
+      if (type === 'mentoria') {
+        params.push('mentoria=true');
+      }
+      
+      if (video) {
+        params.push('v=' + video);
+      }
+      
+      if (group) {
+        // Encurta o link do grupo se for o link completo do whatsapp
+        const groupClean = group.replace('https://chat.whatsapp.com/', '');
+        params.push('g=' + groupClean);
+      }
+
+      const queryString = params.length > 0 ? '?' + params.join('&') : '';
+      const finalUrl = baseUrl + queryString;
+      
+      document.getElementById('result').innerText = finalUrl;
+    }
+
+    function copyLink() {
+      const text = document.getElementById('result').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Link copiado para a área de transferência!');
+      });
+    }
+
+    // Inicializa
+    generateLink();
+  </script>
+</body>
+</html>
