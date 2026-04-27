@@ -163,7 +163,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-form-card {
   position: relative;
   z-index: 10;
-  background: rgba(10, 10, 10, 0.4);
+  background: rgba(10, 10, 10, 0.75);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(201, 169, 110, 0.15);
@@ -219,7 +219,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .hero-form-card .form-subtitle {
   font-size: 0.6rem;
-  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 1.2rem;
   text-align: center;
   font-weight: 300;
@@ -243,7 +243,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   outline: none;
   border-bottom-color: var(--accent);
 }
-.hero-input::placeholder { color: rgba(255, 255, 255, 0.2); font-weight: 300; }
+.hero-input::placeholder { color: rgba(255, 255, 255, 0.55); font-weight: 300; }
 
 .hero-form-btn {
   width: 100%;
@@ -264,7 +264,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .form-disclaimer {
   font-size: 0.55rem;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.65);
   margin-top: 0.8rem;
   text-align: center;
   line-height: 1.2;
