@@ -582,7 +582,12 @@ body.focus-mode .mentorship-video-wrapper {
 @media(max-width: 1024px) {
   .nav { padding: 1.5rem 2rem; }
   .nav-links { display: none; }
-  .btn-book { display: none; } /* Oculta o botão grande no mobile para dar lugar ao hambúrguer */
+  .btn-book { 
+    display: inline-flex; 
+    padding: 0.6rem 1rem; 
+    font-size: 0.7rem; 
+    white-space: nowrap; 
+  } /* Manter CTA visível mas menor em mobile */
   .menu-toggle { display: flex; }
   .hero-title { font-size: 14vw; }
   .ht-indent { margin-left: 0; }
@@ -594,7 +599,7 @@ body.focus-mode .mentorship-video-wrapper {
     align-items: center;
   }
   .gallery-item { 
-    width: 75vw !important; 
+    width: 55vw !important; 
     flex-shrink: 0;
   }
   
@@ -608,19 +613,19 @@ body.focus-mode .mentorship-video-wrapper {
 
 @media (max-width: 768px) {
   .hero-img-bg { width: 100vw !important; object-fit: cover !important; } /* Fix hero gap */
-  .hero-title { font-size: 16vw; }
-  .statement-text { font-size: 1.65rem !important; line-height: 1.4; } /* Reduce statement text size */
-  .gallery-header .section-title { font-size: 12vw !important; } /* Increase A Coleção size */
-  .testimonial-quote { font-size: 1.1rem !important; } /* Reduce testimonial size */
-  .expertise .section-title { font-size: 12vw !important; } /* Increase Padrão Ouro size */
-  .footer-logo-main { font-size: 12vw !important; display: block; line-height: 1.1; } /* Footer logo adjustment */
+  .hero-title { font-size: clamp(3rem, 12vw, 6rem); }
+  .statement-text { font-size: clamp(1.5rem, 4vw, 2rem) !important; line-height: 1.4; } /* Reduce statement text size */
+  .gallery-header .section-title { font-size: clamp(2rem, 8vw, 4rem) !important; } /* Increase A Coleção size */
+  .testimonial-quote { font-size: clamp(1rem, 3vw, 1.2rem) !important; } /* Reduce testimonial size */
+  .expertise .section-title { font-size: clamp(2rem, 8vw, 4rem) !important; } /* Increase Padrão Ouro size */
+  .footer-logo-main { font-size: clamp(2rem, 6vw, 3rem) !important; display: block; line-height: 1.1; } /* Footer logo adjustment */
   
   .masterclass-section { padding: 8vh 2rem !important; } /* Reduce padding */
   .footer { padding: 8vh 2rem 5vh !important; } /* Reduce padding */
   .footer-huge-text { padding: 4vw 0 !important; margin-bottom: 5vh !important; } /* Reduce huge text gap */
 
   .exp-item { flex-direction: column; gap: 1rem; }
-  .footer-huge-text { font-size: 14vw; }
+  .footer-huge-text { font-size: clamp(2rem, 6vw, 3rem); }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
 
