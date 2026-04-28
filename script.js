@@ -368,7 +368,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = document.getElementById('lead-name').value;
       const whatsapp = document.getElementById('lead-whatsapp').value;
       
-      const zelarUrl = `https://www.zelar.pro/agendar/studio-andrea-vargas`;
+      const message = `Olá Andrea! Meu nome é ${name}. Acabei de solicitar minha *${dynamicOffer}* através do site. Gostaria de agendar meu horário!`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/5512996023596?text=${encodedMessage}`;
       
       // Feedback visual
       const btn = leadForm.querySelector('button');
@@ -381,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="success-icon" style="color: var(--accent); font-size: 2.5rem; margin-bottom: 1.5rem;">✧</div>
             <h3 style="font-size: 1.2rem; color: var(--accent); margin-bottom: 1rem; font-family: var(--ff-display);">Solicitação Enviada!</h3>
             <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 2rem; line-height: 1.6;">Parabéns, ${name}! Sua solicitação de <strong>${dynamicOffer}</strong> foi pré-registrada.</p>
-            <a href="${zelarUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Agendar Agora</a>
+            <a href="${whatsappUrl}" target="_blank" class="hero-form-btn" style="display: block; text-decoration: none;">Confirmar via WhatsApp</a>
             <p class="form-disclaimer" style="margin-top: 1.5rem;">Clique acima para finalizar sua reserva exclusiva.</p>
           </div>
         `;
