@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Apostila Premium - Masterclass de Colorimetria</title>
+    <!-- Fontes Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* PDF and Print Base Settings */
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Merriweather', serif; 
+            color: #333; 
+            line-height: 1.8; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f4f4; /* Apenas visual na tela */
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; color: #1A5C5E; margin-top: 0; }
+        
+        /* Folhas (Páginas virtuais para tela e impressão) */
+        .page { 
+            display: flex;
+            flex-direction: column;
+            width: 210mm; 
+            min-height: 297mm; /* A4 */
+            padding: 12mm 20mm 25mm 20mm; /* Margem superior drasticamente reduzida */
+            margin: 0 auto 20px auto; 
+            background: white; 
+            position: relative;
+            page-break-after: always;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra na tela */
+        }
+
+        @media print {
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; min-height: 297mm; }
+        }
+
+        /* Capa Oficial */
+        .cover {
+            background-color: #000000;
+            background-image: url('imagens/capa.png');
+            background-size: cover;
+            background-position: center;
+            color: #FFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20mm;
+        }
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .cover-content { position: relative; z-index: 2; width: 100%; }
+        
+        .cover h1 { font-size: 52px; color: #F5F2ED; font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; border: none; }
+        .cover h2 { font-size: 26px; color: #F1C40F; font-weight: 400; margin-bottom: 40px; }
+        .cover .subtitle { font-size: 20px; font-family: 'Montserrat', sans-serif; letter-spacing: 4px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 20px; margin-bottom: 50px; }
+        
+        .cover .author-box { margin-top: 60px; padding: 40px; border: 2px solid #F1C40F; border-radius: 12px; display: inline-block; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); }
+        .cover .author-box strong { font-size: 32px; color: #F1C40F; display: block; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
+        .cover .author-box span { display: block; font-size: 18px; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .cover .author-box i { color: #fff; margin-right: 10px; width: 25px; }
+
+        /* Capa de Módulos */
+        .module-page {
+            background-color: #1A5C5E;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .module-page::before {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+            z-index: 1;
+        }
+        .module-page-content { position: relative; z-index: 2; }
+        .module-page h1 { font-size: 70px; color: #F5F2ED; margin-bottom: 20px; letter-spacing: 5px; }
+        .module-page h3 { font-size: 36px; color: #B8860B; font-weight: 400; line-height: 1.4; }
+        .module-page .decorator { width: 80px; height: 4px; background-color: #B8860B; margin: 40px auto; }
+
+        /* Títulos de Seção */
+        .section-title { font-size: 28px; color: #1A5C5E; border-bottom: 3px solid #B8860B; padding-bottom: 10px; margin-top: 50px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; }
+        .page > *:first-child, .page > .section-title:first-of-type { margin-top: 0 !important; }
+        .section-title i { color: #B8860B; margin-right: 15px; font-size: 24px; }
+        
+        /* Caixas de Informação */
+        .info-box { background: #fdf9f1; border-left: 8px solid #B8860B; padding: 25px; margin: 25px 0; border-radius: 0 12px 12px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .info-box h4 { margin-bottom: 10px; color: #B8860B; font-size: 20px; font-weight: 700; display: flex; align-items: center; }
+        .info-box h4 i { margin-right: 10px; }
+        .info-box p { margin-bottom: 0; }
+        
+        /* Caixas de Alerta */
+        .alert-box { background: #fff5f5; border-left: 8px solid #C0392B; padding: 25px; margin: 25px 0; border-radius: 0 12px 12px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .alert-box h4 { margin-bottom: 10px; color: #C0392B; font-size: 20px; font-weight: 700; display: flex; align-items: center; }
+        .alert-box h4 i { margin-right: 10px; }
+        
+        /* Grids */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 30px 0; }
+        
+        /* Tabelas Premium */
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; font-family: 'Montserrat', sans-serif; font-size: 14px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; }
+        th, td { border-bottom: 1px solid #eee; padding: 15px; text-align: left; }
+        th { background-color: #1A5C5E; color: white; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; border-bottom: 4px solid #0f3c3d; }
+        tr:nth-child(even) { background-color: #fafafa; }
+        tr:last-child td { border-bottom: none; }
+        
+        /* Imagens */
+        .img-wrap { text-align: center; margin: 40px 0; }
+        .img-wrap img { max-width: 100%; max-height: 400px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #f1f1f1; object-fit: contain; }
+        .img-caption { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #888; margin-top: 10px; font-style: italic; }
+
+        /* Listas Estilizadas */
+        ul.custom-list { list-style: none; padding-left: 0; }
+        ul.custom-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-size: 15px; }
+        ul.custom-list li::before { content: '\f0da'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: #B8860B; font-size: 22px; top: -2px; }
+
+        /* Etiquetas Coloridas */
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 20px; color: white; font-weight: 700; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .b-yellow { background: #F1C40F; color: #333; }
+        .b-blue { background: #3498DB; }
+        .b-red { background: #E74C3C; }
+        .b-green { background: #2ECC71; }
+        .b-orange { background: #E67E22; }
+        .b-violet { background: #8E44AD; }
+
+        /* Área de Anotações */
+        .notes-section { margin-top: 30px; margin-bottom: 5px; flex-grow: 1; display: flex; flex-direction: column; page-break-inside: avoid; break-inside: avoid; }
+        .notes-title { color: #1A5C5E; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; display: flex; align-items: center; }
+        .notes-title i { margin-right: 10px; color: #B8860B; }
+        .notes-lines { width: 100%; flex-grow: 1; min-height: 90px; background-image: repeating-linear-gradient(transparent, transparent 29px, #e0e0e0 30px); }
+
+        /* Rodapé de cada folha */
+        .footer { position: absolute; bottom: 15mm; left: 25mm; right: 25mm; border-top: 1px solid #eee; padding-top: 15px; display: flex; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-size: 11px; color: #999; }
+        .footer .brand { font-weight: 700; color: #1A5C5E; }
+
+        /* Controles de quebra de página (Essencial para o PDF perfeito) */
+        .avoid-break { page-break-inside: avoid; break-inside: avoid; }
+        
+        /* Regras Forçadas para Impressão */
+        @media print {
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; min-height: 297mm; }
+            table, tr, td, th { page-break-inside: avoid !important; break-inside: avoid !important; }
+            .info-box, .alert-box, .img-wrap, img, .author-box { page-break-inside: avoid !important; break-inside: avoid !important; }
+            h1, h2, h3, h4, h5 { page-break-after: avoid !important; break-after: avoid !important; }
+            .grid-2, .grid-3 { page-break-inside: avoid !important; break-inside: avoid !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= CAPA ================= -->
+    <div class="page cover">
+        <div class="cover-content">
+            <div class="subtitle">Guia Técnico e Prático para Coloristas</div>
+            <h1>Workshop<br>Mão na Massa:<br>O Poder da Cor</h1>
+            <h2>Dos Fundamentos ao Escurecimento Perfeito</h2>
+            
+            <div class="author-box">
+                <strong>Andrea Vargas</strong>
+                <span><i class="fab fa-instagram"></i> @andreavargas_oficial</span>
+                <span><i class="fas fa-globe"></i> www.andreavargas.hair</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 1: CAPA ================= -->
+    <div class="page module-page">
+        <div class="module-page-content">
+            <h1>MÓDULO 1</h1>
+            <div class="decorator"></div>
+            <h3>Fundamentos da Cor<br>e Estrutura do Fio</h3>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 1: CONTEÚDO ================= -->
+    <div class="page">
+        <h2 class="section-title"><i class="fas fa-palette"></i> As Cores Primárias</h2>
+        <p>As cores primárias são as mães de todas as cores do universo e da colorimetria. Elas dão origem a todas as outras cores e <strong>já existem no cabelo</strong> em forma de melanina e fundo de clareamento.</p>
+        
+        <div class="grid-3" style="text-align: center;">
+            <div class="avoid-break" style="padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px;">
+                <span class="badge b-yellow" style="margin-bottom: 15px; width: 60px; height: 60px; border-radius: 50%;"></span>
+                <h4 style="color: #333;">Amarelo</h4>
+            </div>
+            <div class="avoid-break" style="padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px;">
+                <span class="badge b-blue" style="margin-bottom: 15px; width: 60px; height: 60px; border-radius: 50%;"></span>
+                <h4 style="color: #333;">Azul</h4>
+            </div>
+            <div class="avoid-break" style="padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px;">
+                <span class="badge b-red" style="margin-bottom: 15px; width: 60px; height: 60px; border-radius: 50%;"></span>
+                <h4 style="color: #333;">Vermelho</h4>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-magic"></i> Cores Secundárias e Complementares</h2>
+        <div class="grid-2">
+            <div>
+                <p>A mistura de duas cores primárias forma uma cor secundária:</p>
+                <ul class="custom-list">
+                    <li><strong>Amarelo + Azul</strong> = Verde <br><em>(Reflexo mate)</em></li>
+                    <li><strong>Amarelo + Vermelho</strong> = Laranja <br><em>(Fundo castanho)</em></li>
+                    <li><strong>Azul + Vermelho</strong> = Violeta <br><em>(Irisado)</em></li>
+                </ul>
+            </div>
+            <div class="info-box" style="margin: 0;">
+                <h4><i class="fas fa-lightbulb"></i> Regra de Ouro</h4>
+                <p>Cores opostas se neutralizam! O Azul sempre neutraliza o Laranja, o Violeta neutraliza o Amarelo e o Verde neutraliza o Vermelho.</p>
+            </div>
+        </div>
+
+        <div class="img-wrap">
+            <img src="imagens/circulo-real.png" alt="Círculo Cromático">
+            <div class="img-caption">O Círculo Cromático: A ferramenta essencial do colorista.</div>
+        </div>
+
+        <div class="notes-section">
+            <div class="notes-title"><i class="fas fa-pen"></i> Anotações do Módulo</div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <div class="footer">
+            <span>Apostila Masterclass Colorimetria</span>
+            <span class="brand">Andrea Vargas</span>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2 DO MÓDULO 1 -->
+    <div class="page">
+        <h2 class="section-title"><i class="fas fa-layer-group"></i> Estrutura do Cabelo</h2>
+        <div class="grid-2 align-items-center">
+            <div class="img-wrap" style="margin: 0;">
+                <img src="imagens/estrutura_do_fio_de_Cabelo.png" alt="Estrutura do Fio">
+            </div>
+            <div>
+                <ul class="custom-list">
+                    <li><strong>Cutícula:</strong> A "porta" do fio. É a parte externa que protege e dá brilho ao cabelo. Não possui pigmentos (melanina).</li>
+                    <li><strong>Córtex:</strong> O "coração". É onde ficam as melaninas (cor natural) e onde a cor artificial se fixa durante a coloração.</li>
+                    <li><strong>Medula:</strong> O núcleo central do fio. Tem pouca ou nenhuma importância nas ações químicas.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="notes-section">
+            <div class="notes-title"><i class="fas fa-pen"></i> Anotações do Módulo</div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <h2 class="section-title" style="page-break-before: always; break-before: always;"><i class="fas fa-dna"></i> O Que São Melaninas?</h2>
+        <p>Melaninas são os pigmentos naturais que dão cor ao cabelo, produzidas pelas células chamadas <em>melanócitos</em>. A mistura de três tipos básicos cria todos os tons naturais de cabelo que conhecemos:</p>
+        
+        <div class="grid-3">
+            <div class="info-box" style="margin: 0; border-left-color: #3498DB; border-radius: 8px;">
+                <h4 style="color: #3498DB;">Eumelanina</h4>
+                <p style="font-size: 14px;">Pigmento granuloso de cor <strong>azul</strong>. Responsável pelos tons frios e escuros.</p>
+            </div>
+            <div class="info-box" style="margin: 0; border-left-color: #F1C40F; border-radius: 8px;">
+                <h4 style="color: #B8860B;">Feumelanina</h4>
+                <p style="font-size: 14px;">Pigmento difuso de cor <strong>amarela</strong>. Encontrada em grande escala nos cabelos loiros.</p>
+            </div>
+            <div class="info-box" style="margin: 0; border-left-color: #E74C3C; border-radius: 8px;">
+                <h4 style="color: #E74C3C;">Tricosiderina</h4>
+                <p style="font-size: 14px;">Pigmento difuso de cor <strong>vermelha</strong>. Muito comum em cabelos ruivos e castanhos.</p>
+            </div>
+        </div>
+
+        <div class="img-wrap avoid-break">
+            <img src="imagens/melaninas.png" alt="Melaninas no fio" style="max-height: 250px;">
+            <div class="img-caption">Distribuição dos pigmentos no interior do córtex. Quanto mais escuro o fio, maior a concentração.</div>
+        </div>
+
+        <div class="footer">
+            <span>Apostila Masterclass Colorimetria</span>
+            <span class="brand">Andrea Vargas</span>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 2: CAPA ================= -->
+    <div class="page module-page">
+        <div class="module-page-content">
+            <h1>MÓDULO 2</h1>
+            <div class="decorator"></div>
+            <h3>A Química da Coloração<br>e o Poder dos Oxidantes</h3>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 2: CONTEÚDO ================= -->
+    <div class="page">
+        <h2 class="section-title"><i class="fas fa-flask"></i> Corantes Oxidativos (Pigmentos Artificiais)</h2>
+        <p>A coloração em tubo ainda não possui a cor final. Ela é composta de <strong>corantes oxidativos</strong> — moléculas microscópicas e incolores que só ganham cor e tamanho após reagirem com o peróxido de hidrogênio (oxidante).</p>
+        
+        <div class="info-box">
+            <h4><i class="fas fa-microscope"></i> Como eles funcionam</h4>
+            <p>Os corantes entram na cutícula por serem muito pequenos. Lá dentro do córtex, ao encontrarem o oxidante, eles se unem, revelam a cor e aumentam de tamanho <strong>em até 300 vezes</strong>, ficando presos (macromoléculas) e formando a coloração permanente.</p>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-tags"></i> Tipos de Coloração</h2>
+        <table class="avoid-break">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Ação no Fio</th>
+                    <th>Durabilidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Permanente</strong></td>
+                    <td>Usa corantes oxidativos. Penetra fundo e fixa a cor no córtex. Pode clarear fios naturais.</td>
+                    <td>Definitiva (até crescer ou descolorir)</td>
+                </tr>
+                <tr>
+                    <td><strong>Demi / Semi-Permanente</strong> (Tonalizantes)</td>
+                    <td>Ação na cutícula e parte externa do córtex. Apenas deposita cor, não tem força de clareamento.</td>
+                    <td>Média (desbota com as lavagens)</td>
+                </tr>
+                <tr>
+                    <td><strong>Temporária</strong></td>
+                    <td>Pigmentos grandes de superfície (como a Nitroanilina). Ficam presos apenas na parte externa da cutícula.</td>
+                    <td>Curta (sai em 1 a 3 lavagens)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title"><i class="fas fa-tint"></i> O Poder dos Oxidantes (Peróxido)</h2>
+        <p>O oxidante é o motor da coloração. Ele possui três funções vitais: <strong>Clareia</strong> a melanina natural, <strong>Conduz</strong> o pigmento para dentro do córtex e <strong>Revela</strong> o corante incolor.</p>
+
+        <div class="grid-2 avoid-break">
+            <div>
+                <ul class="custom-list">
+                    <li><strong>5 / 6 / 8 Vol:</strong> Usados apenas para depósito de cor (Tonalizantes).</li>
+                    <li><strong>10 Vol:</strong> Clareia de 0.5 a 1 tom. Ideal para escurecimento e matização profunda.</li>
+                </ul>
+            </div>
+            <div>
+                <ul class="custom-list">
+                    <li><strong>20 Vol:</strong> Clareia de 1 a 2 tons. Padrão para cobertura de brancos.</li>
+                    <li><strong>30 Vol:</strong> Clareia de 2 a 3 tons.</li>
+                    <li><strong>40 Vol:</strong> Clareia até 4 tons.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="notes-section">
+            <div class="notes-title"><i class="fas fa-pen"></i> Anotações do Módulo</div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <div class="footer">
+            <span>Apostila Masterclass Colorimetria</span>
+            <span class="brand">Andrea Vargas</span>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 3: CAPA ================= -->
+    <div class="page module-page">
+        <div class="module-page-content">
+            <h1>MÓDULO 3</h1>
+            <div class="decorator"></div>
+            <h3>Escalas, Fundos de Pigmento<br>e Fundo de Clareamento</h3>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 3: CONTEÚDO ================= -->
+    <div class="page">
+        <h2 class="section-title"><i class="fas fa-list-ol"></i> Escala de Altura de Tom</h2>
+        <p>A escala de tons define o quão claro ou escuro é um cabelo, numa graduação universal de 1 a 10.</p>
+        
+        <div class="grid-2 avoid-break" style="background: #fdf9f1; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
+            <div>
+                <ul style="list-style: none; padding-left: 0; line-height: 2;">
+                    <li><strong>1.</strong> Preto</li>
+                    <li><strong>2.</strong> Castanho Escuríssimo</li>
+                    <li><strong>3.</strong> Castanho Escuro</li>
+                    <li><strong>4.</strong> Castanho Médio</li>
+                    <li><strong>5.</strong> Castanho Claro</li>
+                </ul>
+            </div>
+            <div>
+                <ul style="list-style: none; padding-left: 0; line-height: 2;">
+                    <li><strong>6.</strong> Louro Escuro</li>
+                    <li><strong>7.</strong> Louro Médio</li>
+                    <li><strong>8.</strong> Louro Claro</li>
+                    <li><strong>9.</strong> Louro Muito Claro</li>
+                    <li><strong>10.</strong> Louro Claríssimo</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-vial"></i> O Fundo de Pigmento das Marcas</h2>
+        <p>Você já se perguntou por que um 7.0 da marca X fica diferente do 7.0 da marca Y? A resposta é o <strong>Fundo de Pigmento</strong>. Ele é a "massa base" que dá sustentação à cor daquela empresa, intensificando ou suavizando o tom resultante de forma oculta.</p>
+
+        <ul class="custom-list avoid-break">
+            <li><strong>Base Azul (ex: L'Oréal):</strong> Esfria muito a cor. Neutraliza automaticamente laranjas e amarelos mais intensos.</li>
+            <li><strong>Base Verde (ex: Wella):</strong> Excelente para naturalidade. Neutraliza vermelhos e fundos quentes indesejados.</li>
+            <li><strong>Base Violeta (ex: Italian Color):</strong> Foca na neutralização do amarelado, gerando loiros mais limpos na base.</li>
+        </ul>
+
+        <h2 class="section-title"><i class="fas fa-sun"></i> Fundo de Clareamento (Residual)</h2>
+        <p>É o pigmento natural revelado <strong>sempre que um cabelo é clareado</strong> (por pó descolorante ou coloração permanente). Todo colorista de sucesso domina essa tabela de cor para saber exatamente o que precisará ser neutralizado.</p>
+
+        <table class="avoid-break">
+            <thead>
+                <tr>
+                    <th style="width: 15%; text-align: center;">Nível</th>
+                    <th style="width: 40%;">Altura de Tom</th>
+                    <th>Fundo Residual Exposto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td align="center"><strong>1 a 3</strong></td><td>Castanhos Escuros</td><td style="color: #C0392B; font-weight: bold;">Vermelho</td></tr>
+                <tr><td align="center"><strong>4</strong></td><td>Castanho Claro</td><td style="color: #D35400; font-weight: bold;">Vermelho Alaranjado</td></tr>
+                <tr><td align="center"><strong>5</strong></td><td>Louro Escuro</td><td style="color: #E67E22; font-weight: bold;">Alaranjado</td></tr>
+                <tr><td align="center"><strong>6</strong></td><td>Louro Médio</td><td style="color: #D4AC0D; font-weight: bold;">Alaranjado Amarelo</td></tr>
+                <tr><td align="center"><strong>7</strong></td><td>Louro Claro</td><td style="color: #F1C40F; font-weight: bold;">Amarelo</td></tr>
+                <tr><td align="center"><strong>8</strong></td><td>Louro Muito Claro</td><td style="color: #F39C12; font-weight: bold;">Amarelo Claro</td></tr>
+                <tr><td align="center"><strong>9 e 10</strong></td><td>Louros Claríssimos</td><td style="color: #FAD7A1; font-weight: bold;">Amarelo Pálido a Branco</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="notes-section">
+            <div class="notes-title"><i class="fas fa-pen"></i> Anotações do Módulo</div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <div class="footer">
+            <span>Apostila Masterclass Colorimetria</span>
+            <span class="brand">Andrea Vargas</span>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 4: CAPA ================= -->
+    <div class="page module-page">
+        <div class="module-page-content">
+            <h1>MÓDULO 4</h1>
+            <div class="decorator"></div>
+            <h3>O Grande Final:<br>Escurecimento de Cabelos</h3>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 4: CONTEÚDO ================= -->
+    <div class="page">
+        <h2 class="section-title"><i class="fas fa-level-down-alt"></i> A Arte de Escurecer Fios</h2>
+        <p>Escurecer um cabelo globalmente descolorido ou loiro não é apenas passar uma tinta escura por cima. Se fizermos isso, o cabelo "chumba" (fica verde ou acinzentado opaco) ou desbota na primeira lavagem. <strong>Temos que devolver os pigmentos quentes perdidos.</strong></p>
+
+        <h2 class="section-title"><i class="fas fa-check-circle"></i> Técnica 1: Tabela de Escurecimento</h2>
+        <div class="info-box avoid-break">
+            <h4><i class="fas fa-info-circle"></i> Como funciona</h4>
+            <p><strong>Uso Exclusivo:</strong> Somente em fundos de clareamento 9 ou 10.<br>
+            <strong>A Regra:</strong> Aplique uma cor 1 tom MAIS ESCURA + 1 reflexo A MAIS.<br>
+            <strong>Exemplo Prático:</strong> Se o desejo for chegar num <strong>6.3</strong>, a fórmula na cumbuca será <strong>5.4</strong>.</p>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-layer-group"></i> Técnica 2: Sequência de Reflexos</h2>
+        <p>A técnica mais segura para criar tons naturais vibrantes, profundos e que não desbotam.</p>
+        
+        <div class="alert-box avoid-break" style="border-left-color: #1A5C5E; background: #e8f4f4;">
+            <h4 style="color: #1A5C5E;"><i class="fas fa-sync-alt"></i> O Ciclo de Devolução</h4>
+            <p style="font-size: 18px; text-align: center; font-weight: bold; margin-top: 15px;">DOURADO <i class="fas fa-arrow-right" style="color:#B8860B; margin:0 10px;"></i> CINZA <i class="fas fa-arrow-right" style="color:#B8860B; margin:0 10px;"></i> NATURAL</p>
+            <p style="margin-top: 15px; font-size: 14px;"><strong>Exemplo:</strong> Para sair de um loiro 8 para um castanho 6.0 perfeito: <br>Mistura-se: <strong>6.3 + 6.1 + 6.0</strong> (Sempre no volume 10).</p>
+        </div>
+
+        <div class="alert-box avoid-break">
+            <h4><i class="fas fa-exclamation-triangle"></i> Atenção ao Cobre</h4>
+            <p>O reflexo Cobre (.4) <strong>SÓ ENTRA</strong> na cumbuca se o fundo atual do cabelo for 9 ou 10 (pois não tem nada de base vermelha nele). Do fundo 8 para baixo, já existe laranja residual, então o cobre não é usado para evitar que o cabelo fique marrom quente indesejado.</p>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-magic"></i> Técnica 3: Escurecer Neutralizando</h2>
+        <div class="info-box avoid-break">
+            <p><strong>O Cenário:</strong> A cliente quer um tom FRIO (ex: 5.1), mas o fundo atual dela está quente e revelando Laranja (7.0 oxidado).</p>
+            <p><strong>O Erro:</strong> Aplicar apenas o 5.1. O cinza não terá força para apagar o laranja e a cor final ficará quente.</p>
+            <p><strong>A Solução Ouro:</strong> Neutralize o fundo residual! Adicione corretor <strong>Azul</strong> à mistura.<br>
+            <strong>Fórmula:</strong> 5.0 + 5.1 + Corretor Azul + OX 10vol.</p>
+        </div>
+        
+        <div class="notes-section">
+            <div class="notes-title"><i class="fas fa-pen"></i> Anotações do Módulo</div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <div class="footer">
+            <span>Apostila Masterclass Colorimetria</span>
+            <span class="brand">Andrea Vargas</span>
+        </div>
+    </div>
+
+    <!-- ================= MÓDULO 5: CAPA E CONTEÚDO JUNTOS PARA ECONOMIZAR ESPAÇO ================= -->
+    <div class="page module-page">
+        <div class="module-page-content">
+            <h1>MÓDULO 5</h1>
+            <div class="decorator"></div>
+            <h3>O Desafio Máximo:<br>Cobertura de Brancos</h3>
+        </div>
+    </div>
+
+    <div class="page">
+        <h2 class="section-title"><i class="fas fa-snowflake"></i> A Natureza do Fio Branco</h2>
+        <p>O fio branco não apenas perdeu a cor, ele sofreu uma mutação estrutural. Sem melanina, ele adquire mais camadas de cutícula para se proteger, tornando-se <strong>impermeável e rígido</strong>. É por isso que ele é tão resistente às colorações.</p>
+
+        <h2 class="section-title"><i class="fas fa-times-circle"></i> Os 6 Erros Fatais na Cobertura</h2>
+        
+        <div class="grid-2">
+            <div class="alert-box" style="margin: 0;">
+                <h4><i class="fas fa-skull-crossbones"></i> 1. OX Incorreta</h4>
+                <p>Usar volumes baixos (10 ou 20vol) sem critério. Muitas vezes não dilata a cutícula grossa do branco, gerando transparência.</p>
+            </div>
+            <div class="alert-box" style="margin: 0;">
+                <h4><i class="fas fa-skull-crossbones"></i> 2. Cabelo Sujo</h4>
+                <p>O fio branco já é impermeável. Lavar mal, deixando resíduos de oleosidade e leave-in, impede que a coloração fixe.</p>
+            </div>
+            <div class="alert-box" style="margin: 0;">
+                <h4><i class="fas fa-skull-crossbones"></i> 3. Pouco Produto</h4>
+                <p>Branco não aceita economia. "Pincelar e arrastar" remove a massa da cor. A aplicação tem que ser por <strong>depósito</strong> generoso.</p>
+            </div>
+            <div class="alert-box" style="margin: 0;">
+                <h4><i class="fas fa-skull-crossbones"></i> 4. Usar só Reflexo</h4>
+                <p>Aplicar apenas a cor 8.3 num branco gera desbotamento na primeira lavagem. O fio branco precisa da fixação das bases puras (.0).</p>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fas fa-crown"></i> A Técnica de Ouro para Brancos</h2>
+        <div class="info-box avoid-break" style="border-left-color: #1A5C5E;">
+            <ul class="custom-list">
+                <li><strong>O Segredo da Mistura:</strong> Trabalhe sempre com a regra de <strong>50% Base Natural (.0) + 50% Cor de Reflexo Desejada</strong>.</li>
+                <li><strong>Foco no Fio Natural:</strong> Ao escolher o volume da OX, ignore o branco! Você escolhe o oxidante focado na necessidade de clareamento do <em>cabelo natural escuro</em> que está ao lado dos fios brancos.</li>
+                <li><strong>Tempo Correto:</strong> Respeite o limite máximo de tempo do fabricante (geralmente de 40 a 45 minutos). Tirar antes por medo é a principal causa de cobertura translúcida.</li>
+            </ul>
+        </div>
+        
+        <div class="notes-section" style="margin-top: 20px;">
+            <div class="notes-title"><i class="fas fa-pen"></i> Anotações Finais</div>
+            <div class="notes-lines"></div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ddd;">
+            <h1 style="color: #1A5C5E; font-size: 36px; margin-bottom: 5px;">MUITO OBRIGADA!</h1>
+            <p style="font-size: 16px; color: #666; margin-bottom: 20px;">Você agora possui o conhecimento técnico de uma master colorista.</p>
+            <div style="display: inline-block; background: #1A5C5E; color: white; padding: 15px 30px; border-radius: 8px;">
+                <strong>Andrea Vargas</strong><br>
+                <i class="fab fa-instagram" style="margin-right: 5px; margin-top: 5px;"></i> @andreavargas_oficial | <i class="fas fa-globe" style="margin-right: 5px;"></i> www.andreavargas.hair
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>Apostila Masterclass Colorimetria</span>
+            <span class="brand">Andrea Vargas</span>
+        </div>
+    </div>
+
+</body>
+</html>

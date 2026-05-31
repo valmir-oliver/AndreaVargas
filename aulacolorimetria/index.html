@@ -1,0 +1,1329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Masterclass de Colorimetria</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.css">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Theme / Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Theme for TV 32" */
+        :root {
+            --r-background-color: #F5F2ED;
+            --r-main-font: 'Inter', sans-serif;
+            --r-main-font-size: 36px;
+            --r-main-color: #2C3E50;
+            --r-heading-font: 'Montserrat', sans-serif;
+            --r-heading-color: #1A5C5E;
+            --r-heading-text-transform: uppercase;
+            --r-heading-font-weight: 800;
+            --accent-color: #B8860B;
+            --alert-color: #C0392B;
+        }
+        
+        .reveal {
+            background-color: var(--r-background-color);
+            color: var(--r-main-color);
+            font-family: var(--r-main-font);
+            font-size: var(--r-main-font-size);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: var(--r-heading-font);
+            color: var(--r-heading-color);
+            font-weight: var(--r-heading-font-weight);
+            text-transform: var(--r-heading-text-transform);
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal h1 { font-size: 72px; }
+        .reveal h2 { font-size: 56px; }
+        .reveal h3 { font-size: 44px; }
+
+        .reveal p, .reveal li {
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .reveal ul {
+            display: block;
+            text-align: left;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .reveal strong {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--accent-color);
+            text-align: left;
+            width: 80%;
+        }
+
+        .card-alert {
+            border-left: 8px solid var(--alert-color);
+            background: #fff5f5;
+        }
+        
+        .card-alert h4 {
+            color: var(--alert-color);
+            margin-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .grid-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .grid-item h4 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .highlight {
+            background-color: rgba(26, 92, 94, 0.1);
+            padding: 5px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .flex-center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .color-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 10px;
+            border: 2px solid #ccc;
+        }
+        
+        .c-yellow { background-color: #F1C40F; }
+        .c-blue { background-color: #3498DB; }
+        .c-red { background-color: #E74C3C; }
+        .c-green { background-color: #2ECC71; }
+        .c-orange { background-color: #E67E22; }
+        .c-violet { background-color: #8E44AD; }
+        .c-black { background-color: #2C3E50; }
+        .c-brown { background-color: #8D6E63; }
+
+        .arrow {
+            font-size: 40px;
+            color: var(--accent-color);
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+        
+        /* Ensures content doesn't hit the edges of the TV */
+        .reveal .slides {
+            width: 90% !important;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: Capa -->
+            <section class="flex-center" data-background-image="imagens/capa.png" data-background-opacity="0.4" data-background-color="#000000">
+                <h1 style="color: #F5F2ED; font-size: 80px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">WORKSHOP MÃO NA MASSA<br>O PODER DA COR</h1>
+                <h3 style="color: #F1C40F; font-weight: 400; text-transform: none; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">Dos Fundamentos ao Escurecimento Perfeito</h3>
+                <p style="margin-top: 50px; font-size: 24px; color: #ffffff; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Guia Técnico e Prático</p>
+                
+                <div style="margin-top: 60px; font-size: 24px; color: #FFF; text-shadow: 1px 1px 8px rgba(0,0,0,0.9); display: flex; flex-direction: column; gap: 8px;">
+                    <strong style="font-size: 32px; color: #F1C40F; letter-spacing: 1px;">Andrea Vargas - Educadora</strong>
+                    <span><i class="fab fa-instagram" style="color: #E1306C; margin-right: 8px;"></i> @andreavargas_oficial</span>
+                    <span><i class="fas fa-globe" style="color: #3498DB; margin-right: 8px;"></i> www.andreavargas.hair</span>
+                </div>
+            </section>
+
+            <!-- MÓDULO 1 -->
+            <section data-background-image="imagens/mod1.png" data-background-opacity="0.35" data-background-color="#000000">
+                <h1 style="color: #F5F2ED; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">MÓDULO 1</h1>
+                <h3 style="color: #B8860B; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">Fundamentos da Cor e<br>Estrutura do Fio</h3>
+            </section>
+
+            <!-- SLIDE 2 -->
+            <section>
+                <h2>As Cores Primárias</h2>
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <div class="color-badge c-yellow" style="width: 80px; height: 80px; margin: 0 auto 20px auto; display: block;"></div>
+                        <h4>Amarelo</h4>
+                    </div>
+                    <div class="grid-item">
+                        <div class="color-badge c-blue" style="width: 80px; height: 80px; margin: 0 auto 20px auto; display: block;"></div>
+                        <h4>Azul</h4>
+                    </div>
+                    <div class="grid-item">
+                        <div class="color-badge c-red" style="width: 80px; height: 80px; margin: 0 auto 20px auto; display: block;"></div>
+                        <h4>Vermelho</h4>
+                    </div>
+                </div>
+                <div class="card" style="text-align: center; margin-top: 40px;">
+                    <p>Dão origem a <strong>TODAS</strong> as outras cores.<br>Já existem no cabelo (melanina e fundo de clareamento).</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 3 -->
+            <section>
+                <h2>Cores Secundárias e Complementares</h2>
+                <div class="card">
+                    <p><span class="color-badge c-yellow"></span> Amarelo + <span class="color-badge c-blue"></span> Azul = <span class="color-badge c-green"></span> <strong>VERDE</strong> (Reflexo mate)</p>
+                </div>
+                <div class="card">
+                    <p><span class="color-badge c-yellow"></span> Amarelo + <span class="color-badge c-red"></span> Vermelho = <span class="color-badge c-orange"></span> <strong>LARANJA</strong> (Fundo castanho)</p>
+                </div>
+                <div class="card">
+                    <p><span class="color-badge c-blue"></span> Azul + <span class="color-badge c-red"></span> Vermelho = <span class="color-badge c-violet"></span> <strong>VIOLETA</strong></p>
+                </div>
+                <div class="highlight" style="margin-top: 20px;">
+                    Cores OPOSTAS se neutralizam! (Ex: Azul neutraliza Laranja)
+                </div>
+            </section>
+
+            <!-- SLIDE 3.1: Círculo Cromático -->
+            <section>
+                <img src="imagens/circulo-real.png" alt="Círculo Cromático Completo" style="width: 100%; max-width: 1300px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 0 auto; display: block; background: white; padding: 15px;">
+            </section>
+
+            <!-- SLIDE 4 -->
+            <section>
+                <h2>Estrutura do Cabelo</h2>
+                <div class="grid-2" style="grid-template-columns: 55% 45%; align-items: center; gap: 40px; text-align: left; margin-top: 10px;">
+                    <!-- Coluna da Imagem -->
+                    <div>
+                        <img src="imagens/estrutura_do_fio_de_Cabelo.png" alt="Estrutura Transversal do Fio" style="max-height: 650px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); width: 100%; object-fit: contain; background: white; padding: 15px; margin: 0;">
+                    </div>
+                    <!-- Coluna dos Textos -->
+                    <div>
+                        <div class="card" style="width: 100%; margin: 0 0 15px 0; border-left-color: #3498DB; padding: 20px;">
+                            <h4 style="margin-bottom: 5px; color: #B8860B;">Cutícula</h4>
+                            <p style="font-size: 26px; margin: 0;">A "porta". Protege e dá brilho. (Não tem melanina).</p>
+                        </div>
+                        <div class="card" style="width: 100%; margin: 0 0 15px 0; border-left-color: #E67E22; padding: 20px;">
+                            <h4 style="margin-bottom: 5px; color: #B8860B;">Córtex</h4>
+                            <p style="font-size: 26px; margin: 0;">O "coração". Onde ficam as melaninas e onde a cor fixa.</p>
+                        </div>
+                        <div class="card" style="width: 100%; margin: 0; border-left-color: #9B59B6; padding: 20px;">
+                            <h4 style="margin-bottom: 5px; color: #B8860B;">Medula</h4>
+                            <p style="font-size: 26px; margin: 0;">O núcleo central. (Ação química mínima).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5A: O Que São Melaninas -->
+            <section>
+                <h2 style="font-size: 50px; color: #5C3A21; margin-bottom: 5px; font-family: 'Georgia', serif; font-style: italic;">O Que São Melaninas?</h2>
+                <p style="font-size: 24px; margin-bottom: 30px; color: #555;">Definindo a cor natural do fio.</p>
+                
+                <div class="grid-2" style="gap: 30px; text-align: left; align-items: start;">
+                    <!-- Coluna Esquerda -->
+                    <div>
+                        <div class="card" style="margin: 0 0 20px 0; padding: 25px; border-left: 6px solid #3498DB;">
+                            <h4 style="margin-bottom: 10px; color: #2C3E50;">Estrutura e Função</h4>
+                            <p style="font-size: 20px; margin: 0; line-height: 1.6;">Melaninas são os pigmentos naturais que dão cor ao cabelo. São produzidas pelos <strong>melanócitos</strong>.</p>
+                        </div>
+                        
+                        <div class="card" style="margin: 0; padding: 25px; border-left: 6px solid #E74C3C;">
+                            <h4 style="margin-bottom: 15px; color: #2C3E50;">Tipos de Melaninas</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 20px; line-height: 1.8;">
+                                <li><strong style="color: #191970;">Eumelanina:</strong> pigmento azul.</li>
+                                <li><strong style="color: #DAA520;">Feumelanina:</strong> pigmento amarelo.</li>
+                                <li><strong style="color: #8B0000;">Tricosiderina:</strong> pigmento vermelho.</li>
+                            </ul>
+                            <p style="font-size: 18px; margin-top: 15px; font-style: italic; color: #555;">A mistura dessas três cria todos os tons naturais.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Coluna Direita: Distribuição (Base Natural) -->
+                    <div style="text-align: center; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                        <img src="imagens/roda-melaninas.png" alt="Distribuição de Melaninas (Base Natural)" style="width: 100%; max-width: 450px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 0 auto; display: block; object-fit: contain;">
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; background: #5C3A21; color: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    <h4 style="margin-bottom: 5px; color: #F5DEB3;">Por que isso importa na Colorimetria?</h4>
+                    <p style="font-size: 22px; margin: 0;">Eles formam o fundo de clareamento e influenciam toda cor que você aplica.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 5B: Distribuição no Fio -->
+            <section>
+                <h2 style="font-size: 42px; margin-bottom: 40px; color: #2C3E50;">Distribuição das Melaninas</h2>
+                
+                <div class="grid-2" style="gap: 50px; align-items: center;">
+                    <!-- Desenho do Fio -->
+                    <div style="text-align: center; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <img src="imagens/melaninas.png" alt="Córtex e Melaninas" style="width: 100%; max-width: 550px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 0 auto; display: block; object-fit: contain;">
+                    </div>
+                    
+                    <!-- Explicação -->
+                    <div style="text-align: left;">
+                        <p style="font-size: 24px; margin-bottom: 30px; font-weight: bold; color: #2C3E50;">Quanto mais escuro o cabelo <span style="color: #E74C3C;">→</span> maior concentração de pigmentos.</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <!-- Preto -->
+                            <div style="background: #f8f9fa; padding: 15px 20px; border-radius: 8px; border-left: 6px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                                <div style="flex: 1;">
+                                    <strong style="font-size: 22px; display: block; color: #1a1a1a;">A. Exemplo: Cabelo Preto</strong>
+                                    <span style="font-size: 16px; color: #555;">Muito azul + Vermelho-amarelo</span>
+                                </div>
+                                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #2c3e50, #000000); border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.3); border: 2px solid #fff;"></div>
+                            </div>
+                            
+                            <!-- Castanho -->
+                            <div style="background: #f8f9fa; padding: 15px 20px; border-radius: 8px; border-left: 6px solid #8b5a2b; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                                <div style="flex: 1;">
+                                    <strong style="font-size: 22px; display: block; color: #8b5a2b;">B. Exemplo: Castanho</strong>
+                                    <span style="font-size: 16px; color: #555;">Azul moderado + Vermelho/Amarelo</span>
+                                </div>
+                                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #a0522d, #5c3a21); border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.3); border: 2px solid #fff;"></div>
+                            </div>
+                            
+                            <!-- Loiro -->
+                            <div style="background: #f8f9fa; padding: 15px 20px; border-radius: 8px; border-left: 6px solid #f5deb3; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                                <div style="flex: 1;">
+                                    <strong style="font-size: 22px; display: block; color: #d4af37;">C. Exemplo: Loiro</strong>
+                                    <span style="font-size: 16px; color: #555;">Predominância de amarelo-vermelho</span>
+                                </div>
+                                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #fff8dc, #f5deb3); border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.3); border: 2px solid #fff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MÓDULO 2 -->
+            <section data-background-image="imagens/mod2.png" data-background-opacity="0.35" data-background-color="#000000">
+                <h1 style="color: #F5F2ED; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">MÓDULO 2</h1>
+                <h3 style="color: #B8860B; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">A Química da Coloração<br>e Oxidantes</h3>
+            </section>
+
+            <!-- SLIDE 6A: Pigmentos Artificiais e Corantes -->
+            <section>
+                <h2 style="font-size: 50px; color: #8B4513; margin-bottom: 5px;">PIGMENTOS ARTIFICIAIS</h2>
+                <p style="font-size: 24px; margin-bottom: 25px; color: var(--heading-color);">A criação de cores na indústria de beleza.</p>
+                
+                <div class="grid-2" style="gap: 20px; text-align: left; align-items: stretch;">
+                    <div class="card" style="margin: 0; padding: 25px; border-left: 6px solid #1A5C5E;">
+                        <h4 style="margin-bottom: 10px; color: #1A5C5E;">O Que São?</h4>
+                        <p style="font-size: 20px; margin: 0;">São pigmentos criados pela indústria e usados nas colorações. No tubo ainda não são pigmentos <span class="arrow" style="font-size: 20px; margin: 0 5px;">→</span> são <strong>corantes oxidativos</strong>.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 25px; border-left: 6px solid #1A5C5E;">
+                        <h4 style="margin-bottom: 10px; color: #1A5C5E;">Corantes Oxidativos</h4>
+                        <p style="font-size: 20px; margin: 0;">São moléculas pequenas e sem cor até serem ativadas e reveladas pelo oxidante. <strong>Função:</strong> formar a cor artificial dentro do córtex após oxidação.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h4 style="margin-bottom: 15px; color: #1A5C5E;">Ativação e Expansão (Microscópica)</h4>
+                    <div style="display: flex; justify-content: space-around; align-items: center;">
+                        <div style="text-align: center;">
+                            <div style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; background: #f9f9f9;">
+                                <div style="display: flex; gap: 3px;">
+                                    <div style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid #999; background: white;"></div>
+                                    <div style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid #999; background: white;"></div>
+                                    <div style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid #999; background: white;"></div>
+                                </div>
+                            </div>
+                            <strong style="font-size: 18px;">Original (Incolor)</strong>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <strong style="font-size: 20px; color: #1A5C5E; display: block; margin-bottom: 5px;">Oxidante Ativado</strong>
+                            <span style="font-size: 40px; color: #1A5C5E; line-height: 0.8; display: block;">→</span>
+                            <div style="font-size: 16px; background: rgba(26, 92, 94, 0.1); padding: 5px 10px; border-radius: 20px; margin-top: 5px; border: 1px solid #1A5C5E; font-weight: bold;">Aumento (até 300x)</div>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <div style="width: 90px; height: 90px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: linear-gradient(135deg, #4A2511, #8B0000, #4B0082); box-shadow: inset 0 0 10px rgba(0,0,0,0.5); margin: 0 auto 10px auto;"></div>
+                            <strong style="font-size: 18px;">Ativado e Revelado</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6B: Como Eles Funcionam -->
+            <section>
+                <h2 style="font-size: 46px; margin-bottom: 30px;">COMO ELES FUNCIONAM?</h2>
+                
+                <div class="card" style="margin-bottom: 30px; padding: 25px; font-size: 24px; text-align: left; border-left: 6px solid #8B4513;">
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><strong>Corante + Oxidante</strong> <span class="arrow" style="font-size: 24px;">→</span> pigmento visível revelado.</li>
+                        <li>Eles aumentam <strong>até 300 vezes</strong> de tamanho.</li>
+                        <li>Entram no córtex para formar a cor permanente.</li>
+                    </ul>
+                </div>
+
+                <h4 style="margin-bottom: 20px; color: var(--heading-color); font-size: 28px;">Mecanismo de Penetração e Fixação</h4>
+                
+                <div class="grid-3" style="gap: 20px;">
+                    <div style="background: #eef7f6; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; position: relative; border: 2px solid #cae4e0;">
+                        <div style="position: absolute; top: -15px; left: -15px; background: #62A6A1; color: white; width: 35px; height: 35px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">A</div>
+                        <div style="width: 70px; height: 70px; border-radius: 50%; border: 2px dashed #8EAAA8; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; padding: 10px; background: white;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;">
+                                <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid #8EAAA8; background: white;"></div>
+                                <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid #8EAAA8; background: white;"></div>
+                                <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid #8EAAA8; background: white;"></div>
+                            </div>
+                        </div>
+                        <strong style="font-size: 20px; display: block; margin-bottom: 5px;">Penetração:</strong>
+                        <span style="font-size: 16px; color: #555;">Corantes Pequenos</span>
+                    </div>
+                    
+                    <div style="background: #eef7f6; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; position: relative; border: 2px solid #cae4e0;">
+                        <div style="position: absolute; top: -15px; left: -15px; background: #62A6A1; color: white; width: 35px; height: 35px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">B</div>
+                        <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; position: relative;">
+                             <div style="position: absolute; width: 45px; height: 45px; border-radius: 50%; background: #2B4C6F; border: 2px solid #1A2E42;"></div>
+                             <div style="position: absolute; width: 30px; height: 30px; border-radius: 50%; background: #4B0082; top: 10px; left: 5px; border: 2px solid #2B004D;"></div>
+                             <div style="position: absolute; width: 30px; height: 30px; border-radius: 50%; background: #8B0000; bottom: 5px; right: 5px; border: 2px solid #4A0000;"></div>
+                        </div>
+                        <strong style="font-size: 20px; display: block; margin-bottom: 5px;">Ativação:</strong>
+                        <span style="font-size: 16px; color: #555;">Crescimento Molecular</span>
+                    </div>
+                    
+                    <div style="background: #eef7f6; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; position: relative; border: 2px solid #cae4e0;">
+                        <div style="position: absolute; top: -15px; left: -15px; background: #62A6A1; color: white; width: 35px; height: 35px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">C</div>
+                        <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: linear-gradient(135deg, #4A2511, #8B0000, #4B0082); border: 2px solid #fff; box-shadow: 0 0 0 2px #333;"></div>
+                        <strong style="font-size: 20px; display: block; margin-bottom: 5px;">Fixação:</strong>
+                        <span style="font-size: 16px; color: #555;">Pigmento Grande Permanente</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7 -->
+            <section>
+                <h2>Tipos de Coloração</h2>
+                <div class="card">
+                    <h4 style="margin-bottom: 5px;">PERMANENTE</h4>
+                    <p style="font-size: 28px;">Corantes Oxidativos. Penetra e fixa no córtex.</p>
+                </div>
+                <div class="card">
+                    <h4 style="margin-bottom: 5px;">DEMI / SEMI-PERMANENTE</h4>
+                    <p style="font-size: 28px;">Ação na cutícula e superfície do fio.</p>
+                </div>
+                <div class="card">
+                    <h4 style="margin-bottom: 5px;">TEMPORÁRIA</h4>
+                    <p style="font-size: 28px;">Pigmentos de superfície (Nitroanilina). Sai na água.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 8 -->
+            <section>
+                <h2 style="font-size: 42px; margin-bottom: 5px; color: #1A5C5E;">Classificação dos Corantes Oxidativos</h2>
+                <p style="font-size: 24px; margin-bottom: 40px; color: #555;">Dentro da fórmula das colorações e tonalizantes existem 5 tipos:</p>
+                
+                <div style="display: flex; justify-content: space-between; gap: 20px; background: #1C2833; padding: 40px 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <!-- 1 -->
+                    <div style="text-align: center; flex: 1;">
+                        <div style="width: 90px; height: 90px; background: linear-gradient(135deg, #191970, #8B0000); margin: 0 auto 20px auto; border-radius: 6px; border: 3px solid #FFF; box-shadow: 0 5px 15px rgba(0,0,0,0.6);"></div>
+                        <strong style="font-size: 22px; color: #F1C40F;">Pigmento plano<br><span style="font-size: 16px; color: #FFF; font-weight: normal;">(base)</span></strong>
+                    </div>
+                    <!-- 2 -->
+                    <div style="text-align: center; flex: 1;">
+                        <div style="width: 90px; height: 90px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); background: #E0E0E0; border-radius: 4px; margin: 0 auto 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.6);"></div>
+                        <strong style="font-size: 22px; color: #F1C40F;">Pigmento reflexivo</strong>
+                    </div>
+                    <!-- 3 -->
+                    <div style="text-align: center; flex: 1;">
+                        <div style="width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, #D2691E 20%, #8B4513 80%); border: 4px solid #CD853F; margin: 0 auto 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.6);"></div>
+                        <strong style="font-size: 22px; color: #F1C40F;">Pigmento expandido<br><span style="font-size: 16px; color: #FFF; font-weight: normal;">de reflexos</span></strong>
+                    </div>
+                    <!-- 4 -->
+                    <div style="text-align: center; flex: 1;">
+                        <div style="width: 90px; height: 90px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: radial-gradient(circle, #FFA07A 20%, #800000 80%); margin: 0 auto 20px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.6);"></div>
+                        <strong style="font-size: 22px; color: #F1C40F;">Pigmento revelado<br><span style="font-size: 16px; color: #FFF; font-weight: normal;">(direto de reflexos)</span></strong>
+                    </div>
+                    <!-- 5 -->
+                    <div style="text-align: center; flex: 1;">
+                        <div style="display: flex; gap: 8px; justify-content: center; align-items: center; height: 90px; margin-bottom: 20px;">
+                            <div style="width: 25px; height: 25px; border-radius: 50%; background: #FF4500; border: 2px solid #FFF; box-shadow: 0 5px 10px rgba(0,0,0,0.6);"></div>
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: #A0522D; border: 2px solid #FFF; box-shadow: 0 5px 10px rgba(0,0,0,0.6);"></div>
+                            <div style="width: 25px; height: 25px; border-radius: 50%; background: #8B0000; border: 2px solid #FFF; box-shadow: 0 5px 10px rgba(0,0,0,0.6);"></div>
+                        </div>
+                        <strong style="font-size: 22px; color: #F1C40F;">Nitroanilina<br><span style="font-size: 16px; color: #FFF; font-weight: normal;">(direto de reflexos)</span></strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9 -->
+            <section>
+                <h2 style="font-size: 50px; color: #1A5C5E; text-transform: uppercase; margin-bottom: 40px; font-weight: bold;">O Poder dos Oxidantes (Peróxido)</h2>
+                
+                <div class="grid-2" style="font-size: 28px; gap: 30px; align-items: stretch;">
+                    <div style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: left; height: 100%;">
+                        <ul style="margin: 0; padding-left: 20px; line-height: 2;">
+                            <li><strong style="color: #B8860B;">5/6/8 Vol:</strong> Depósito de cor (tonalizantes)</li>
+                            <li><strong style="color: #B8860B;">10 Vol:</strong> Clareia 0.5 a 1 tom</li>
+                            <li><strong style="color: #B8860B;">20 Vol:</strong> Clareia 1 a 2 tons</li>
+                        </ul>
+                    </div>
+                    <div style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: left; height: 100%;">
+                        <ul style="margin: 0; padding-left: 20px; line-height: 2;">
+                            <li><strong style="color: #B8860B;">30 Vol:</strong> Clareia 2 a 3 tons</li>
+                            <li><strong style="color: #B8860B;">40 Vol:</strong> Clareia até 4 tons</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; background-color: #E8E8E8; border-radius: 8px; padding: 15px 30px; display: inline-block; font-size: 32px; font-weight: bold;">
+                    <span style="color: #2C3E50;">Possui 3 Funções:</span> <span style="color: #B8860B;">Clareia, Conduz e Revela</span>
+                </div>
+            </section>
+
+            <!-- MÓDULO 3 -->
+            <section data-background-image="imagens/mod3.png" data-background-opacity="0.35" data-background-color="#000000">
+                <h1 style="color: #F5F2ED; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">MÓDULO 3</h1>
+                <h3 style="color: #B8860B; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">Escalas, Fundos e<br>Corretores</h3>
+            </section>
+
+            <!-- SLIDE 10 -->
+            <section>
+                <h2>Escala de Tons</h2>
+                <div class="grid-2" style="font-size: 28px;">
+                    <div class="card" style="margin: 0;">
+                        <ul style="list-style: none; margin:0; padding:0;">
+                            <li>10. Loiro Claríssimo</li>
+                            <li>9. Loiro Muito Claro</li>
+                            <li>8. Loiro Claro</li>
+                            <li>7. Loiro Médio</li>
+                            <li>6. Loiro Escuro</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="margin: 0;">
+                        <ul style="list-style: none; margin:0; padding:0;">
+                            <li>5. Castanho Claro</li>
+                            <li>4. Castanho Médio</li>
+                            <li>3. Castanho Escuro</li>
+                            <li>2. Castanho Escuríssimo</li>
+                            <li>1. Preto</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 24px;">Destaque: Base Natural (Ex: 5) vs Base Cosmética (Ex: 5.0)</p>
+            </section>
+
+            <!-- SLIDE 11A: Tabela de Reflexos Universais -->
+            <section>
+                <h2 style="font-size: 40px; margin-bottom: 5px;">ESCALA DE REFLEXOS UNIVERSAIS</h2>
+                <p style="font-size: 24px; margin-bottom: 15px; color: var(--heading-color);">Entenda o Sistema de Reflexos e Nuances (Após a Barra, Vírgula ou Ponto)</p>
+                
+                <table style="width: 100%; border-collapse: collapse; font-size: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; margin-top: 0;">
+                    <thead>
+                        <tr style="background-color: #E8DECC; border-bottom: 2px solid #D4C4A8;">
+                            <th style="padding: 6px; text-align: center; color: #5D4037; width: 15%;">Reflexo (.0-.9)</th>
+                            <th style="padding: 6px; text-align: left; color: #5D4037; width: 25%;">Nomenclatura Padrão</th>
+                            <th style="padding: 6px; text-align: left; color: #5D4037; width: 45%;">Descrição / Ação</th>
+                            <th style="padding: 6px; text-align: center; color: #5D4037; width: 15%;">Visual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; font-size: 24px;"><strong>.0</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; font-size: 22px;">Natural</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Sem Reflexo Adicional</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #4A3A2C; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #556B2F; font-size: 24px;"><strong>.1</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #556B2F; font-size: 22px;">Cinza</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Neutralizar tons quentes</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #708090; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #4B0082; font-size: 24px;"><strong>.2</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #4B0082; font-size: 22px;">Violeta</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Neutralizar tons amarelos</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #4B0082; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #B8860B; font-size: 24px;"><strong>.3</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #B8860B; font-size: 22px;">Dourado</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Adicionar calor e brilho</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #DAA520; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #D2691E; font-size: 24px;"><strong>.4</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #D2691E; font-size: 22px;">Cobre</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Cor vibrante e quente</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #D2691E; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #800000; font-size: 24px;"><strong>.5</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #800000; font-size: 22px;">Acaju</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Tons de mogno e vermelho frio</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #8B0000; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #FF0000; font-size: 24px;"><strong>.6</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #FF0000; font-size: 22px;">Vermelho</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Vermelho intenso e quente</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #DC143C; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #8B4513; font-size: 24px;"><strong>.7</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #8B4513; font-size: 22px;">Marrom</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Equilibrar tons frios/quentes</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #8B4513; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #000080; font-size: 24px;"><strong>.8</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #000080; font-size: 22px;">Azul</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Neutralizar tons alaranjados</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #191970; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center; color: #2E8B57; font-size: 24px;"><strong>.9</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #2E8B57; font-size: 22px;">Mate</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Neutralizar tons de vermelho puro</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #2F4F4F; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1;">
+                            <td style="padding: 6px; text-align: center; color: #4682B4; font-size: 24px;"><strong>.89</strong></td>
+                            <td style="padding: 6px; text-align: left; font-weight: bold; color: #4682B4; font-size: 22px;">Cendré</td>
+                            <td style="padding: 6px; text-align: left; font-size: 20px;">Neutralizar tons muito alaranjados</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #4682B4; height: 22px; width: 80px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SLIDE 11B: Exemplo de Diferenciação de Empresas -->
+            <section>
+                <h2 style="font-size: 40px; margin-bottom: 10px;">EXEMPLO DE DIFERENCIAÇÃO DE EMPRESAS</h2>
+                <p style="font-size: 26px; margin-bottom: 40px; color: var(--heading-color);">O Mesmo Reflexo, Nomes Diferentes no Mercado</p>
+                
+                <div style="background-color: #FDF9F1; border: 2px solid #E8DECC; border-radius: 12px; padding: 40px; text-align: center; position: relative; max-width: 800px; margin: 0 auto;">
+                    
+                    <!-- Fator Comum -->
+                    <div style="background-color: #fff; border-radius: 8px; padding: 15px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: inline-block;">
+                        <h3 style="margin: 0; color: #D2691E; font-size: 32px;">Base 7.0 + Reflexo .3</h3>
+                        <p style="margin: 5px 0 0 0; font-size: 22px;">(Tonalidade Base + Reflexo Dourado)</p>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: stretch; gap: 30px;">
+                        <!-- Marca A -->
+                        <div style="flex: 1; background-color: #fff; padding: 25px; border-radius: 8px; border-top: 5px solid #4682B4; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                            <div style="background-color: #4682B4; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; margin: 0 auto 15px auto;">A</div>
+                            <h4 style="margin-bottom: 10px; font-size: 22px;">Nossa Nomenclatura:</h4>
+                            <p style="font-size: 32px; font-weight: bold; margin: 0; color: var(--heading-color);">7.3</p>
+                            <p style="font-size: 22px; margin-top: 5px;">Louro Claro Dourado Reluzente</p>
+                        </div>
+
+                        <!-- Marca B -->
+                        <div style="flex: 1; background-color: #fff; padding: 25px; border-radius: 8px; border-top: 5px solid #556B2F; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                            <div style="background-color: #556B2F; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; margin: 0 auto 15px auto;">B</div>
+                            <h4 style="margin-bottom: 10px; font-size: 22px;">Nossa Nomenclatura:</h4>
+                            <p style="font-size: 32px; font-weight: bold; margin: 0; color: var(--heading-color);">7/G</p>
+                            <p style="font-size: 22px; margin-top: 5px;">Louro Claro 'Ouro'</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; font-size: 24px; font-style: italic; font-weight: bold; color: var(--heading-color); background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; display: inline-block;">
+                    * As empresas criam nomenclaturas únicas para diferenciar seus produtos e nuances no mercado.
+                </div>
+            </section>
+
+            <!-- SLIDE 12A: Fundo de Pigmento - Teoria -->
+            <section>
+                <h2 style="font-size: 46px; margin-bottom: 10px;">FUNDO DE PIGMENTO</h2>
+                <p style="font-size: 28px; margin-bottom: 30px; color: var(--heading-color);">O segredo que diferencia uma marca da outra.</p>
+                
+                <div class="grid-2" style="align-items: stretch; gap: 25px; text-align: left;">
+                    <!-- Coluna Esquerda -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="card" style="margin: 0; padding: 25px;">
+                            <h4 style="margin-bottom: 10px; color: var(--accent-color);">O QUE É FUNDO DE PIGMENTO?</h4>
+                            <p style="margin: 0; font-size: 24px;">É o diferencial de cor da base de cada empresa. Não é reflexo, não é correção, não é o número depois do ponto. É a <strong>"massa"</strong> da coloração, aquilo que sustenta o tom.</p>
+                        </div>
+                        <div class="card" style="margin: 0; padding: 25px;">
+                            <h4 style="margin-bottom: 10px; color: var(--accent-color);">ONDE ELE ATUA?</h4>
+                            <p style="margin: 0; font-size: 24px;">O fundo de pigmento está na base, no pigmento que chega mais fundo no fio. É ele que encontra o fundo de clareamento primeiro. Por isso influencia TANTO o resultado.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Coluna Direita -->
+                    <div class="card" style="margin: 0; padding: 25px; display: flex; flex-direction: column; justify-content: center;">
+                        <h4 style="margin-bottom: 20px; color: var(--accent-color);">AS TRÊS POSSIBILIDADES</h4>
+                        <ul style="font-size: 28px; line-height: 2.2; list-style: none; padding: 0;">
+                            <li style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 25px; height: 25px; border-radius: 50%; background-color: #0047AB; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
+                                <strong>Azul</strong> (ex: L'Oréal)
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 25px; height: 25px; border-radius: 50%; background-color: #228B22; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
+                                <strong>Verde</strong> (ex: Wella)
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 25px; height: 25px; border-radius: 50%; background-color: #6A0DAD; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
+                                <strong>Violeta</strong> (ex: Italian Color)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 12B: Fundo de Pigmento - Prática -->
+            <section>
+                <h2 style="font-size: 40px; margin-bottom: 15px;">POR QUE ISSO MUDA TUDO?</h2>
+                <p style="font-size: 24px; margin-bottom: 30px;">Porque o fundo de pigmento intensifica, suaviza ou neutraliza o fundo de clareamento automaticamente, sem você pedir. É a <strong>"personalidade"</strong> da marca.</p>
+                
+                <div class="grid-3" style="gap: 20px; font-size: 20px; text-align: left;">
+                    <!-- A: Azul -->
+                    <div class="card" style="margin: 0; padding: 20px; border-top: 6px solid #0047AB;">
+                        <h4 style="margin-bottom: 10px;">Base Azul</h4>
+                        <p style="font-size: 18px; margin: 0;"><strong>Exemplo na Base 7.0:</strong><br>Neutraliza amarelos e laranjas intensos. Serve para intensificar bastante os tons frios.</p>
+                    </div>
+                    <!-- B: Verde -->
+                    <div class="card" style="margin: 0; padding: 20px; border-top: 6px solid #228B22;">
+                        <h4 style="margin-bottom: 10px;">Base Verde</h4>
+                        <p style="font-size: 18px; margin: 0;"><strong>Exemplo na Base 7.0:</strong><br>Neutraliza muito bem os vermelhos e laranjas avermelhados. Suaviza tons quentes criando bases mais naturais.</p>
+                    </div>
+                    <!-- C: Violeta -->
+                    <div class="card" style="margin: 0; padding: 20px; border-top: 6px solid #6A0DAD;">
+                        <h4 style="margin-bottom: 10px;">Base Violeta</h4>
+                        <p style="font-size: 18px; margin: 0;"><strong>Exemplo na Base 7.0:</strong><br>Foco em neutralizar totalmente o amarelo e acobreado. Equilibra e neutraliza tons de base perfeitamente.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: rgba(184, 134, 11, 0.1); border-left: 6px solid var(--accent-color); border-radius: 8px; text-align: left;">
+                    <h4 style="margin-bottom: 10px; color: var(--heading-color); font-size: 28px;">CONQUISTE O DOMÍNIO DA COR</h4>
+                    <ul style="font-size: 24px; margin: 0; padding-left: 20px;">
+                        <li style="margin-bottom: 10px;">Entenda o Fundo de Pigmento = Diferença entre Marcas.</li>
+                        <li>A <strong>mesma fórmula</strong> (Ex: 7.0), em marcas diferentes, gera <strong>resultados diferentes!</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLIDE 12C: Mecanismo de Acoplamento -->
+            <section>
+                <h2 style="font-size: 42px; margin-bottom: 10px;">OS CORANTES OXIDATIVOS</h2>
+                <p style="font-size: 26px; margin-bottom: 30px; color: var(--heading-color);">Mecanismo de Acoplamento e Tempo de Fixação</p>
+                
+                <div class="grid-2" style="gap: 25px; text-align: left; align-items: stretch;">
+                    <!-- Linha do Tempo -->
+                    <div class="card" style="margin: 0; padding: 25px;">
+                        <h4 style="margin-bottom: 20px; color: var(--accent-color);">Tempo de Revelação e Fixação (10 min)</h4>
+                        
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 20px; margin-bottom: 5px;">
+                            <span>0 min</span>
+                            <span>5 min</span>
+                            <span>10 min</span>
+                        </div>
+                        <div style="height: 15px; background: linear-gradient(to right, #D4C4A8 0%, #8B4513 50%, #4A2511 100%); border-radius: 8px; margin-bottom: 15px;"></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 16px; color: #555;">
+                            <span>Aplicação Superficial</span>
+                            <span>Penetração no Córtex</span>
+                            <span>Revelação Total (Acoplamento)</span>
+                        </div>
+                        
+                        <div style="margin-top: 40px; padding: 15px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+                            <h4 style="margin-bottom: 10px; font-size: 20px;">A Importância da Base no Córtex</h4>
+                            <p style="margin: 0; font-size: 18px;"><strong>Com Base Forte (Estável):</strong> Pigmento se fixa de forma estruturada. Cor duradoura.</p>
+                            <p style="margin: 10px 0 0 0; font-size: 18px;"><strong>Com Base Fraca (Instável):</strong> Acoplamento frágil. Cor desbota rapidamente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Mecanismo -->
+                    <div class="card" style="margin: 0; padding: 25px;">
+                        <h4 style="margin-bottom: 20px; color: var(--accent-color);">Mecanismo de Acoplamento Molecular</h4>
+                        <p style="font-size: 18px; margin-bottom: 25px;">Corantes oxidativos <strong>mergem</strong> no interior do fio. É a combinação de diferentes moléculas pequenas que penetram e, ao reagirem, se unem formando um pigmento final enorme e estável dentro do córtex.</p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px; background: #fff; padding: 15px; border-radius: 8px;">
+                            <!-- moléculas precursoras -->
+                            <div style="display: flex; gap: 8px;">
+                                <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #8B4513; border: 2px solid #5D4037;"></div>
+                                <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #D2691E; border: 2px solid #5D4037;"></div>
+                                <div style="width: 20px; height: 20px; border-radius: 50%; background-color: #A0522D; border: 2px solid #5D4037;"></div>
+                            </div>
+                            <div style="font-size: 24px; font-weight: bold;">+</div>
+                            <div style="font-size: 24px; color: #1A5C5E; font-weight: bold;">O₂</div>
+                            <div style="font-size: 24px; font-weight: bold;">=</div>
+                            <!-- Macromolécula final -->
+                            <div style="width: 50px; height: 50px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: linear-gradient(135deg, #4A2511, #8B0000, #4B0082); box-shadow: inset 0 0 10px rgba(0,0,0,0.5);"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 14px; margin-top: 15px; color: #666;"><em>Moléculas precursoras se unem formando uma macromolécula aprisionada no fio.</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 12D: Classificação dos Pigmentos -->
+            <section>
+                <h2 style="font-size: 40px; margin-bottom: 10px;">A CLASSIFICAÇÃO DOS PIGMENTOS</h2>
+                <p style="font-size: 24px; margin-bottom: 15px; color: var(--heading-color);">Um Guia Completo sobre Profundidade e Fixação</p>
+                
+                <table style="width: 100%; border-collapse: collapse; font-size: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; margin-top: 0;">
+                    <thead>
+                        <tr style="background-color: #E8DECC; border-bottom: 2px solid #D4C4A8;">
+                            <th style="padding: 10px; text-align: left; color: #5D4037;">Tipo de Pigmento</th>
+                            <th style="padding: 10px; text-align: center; color: #5D4037;">Profundidade</th>
+                            <th style="padding: 10px; text-align: center; color: #5D4037;">Fixação</th>
+                            <th style="padding: 10px; text-align: left; color: #5D4037;">Comparativo Visual</th>
+                            <th style="padding: 10px; text-align: left; color: #5D4037;">Função Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 10px; text-align: left; font-weight: bold;">1. Nitroanilina</td>
+                            <td style="padding: 10px; text-align: center;">Superficial</td>
+                            <td style="padding: 10px; text-align: center;">Temporária</td>
+                            <td style="padding: 10px; text-align: left; color: #8B008B; font-weight: bold;"><em>"Glitter"</em></td>
+                            <td style="padding: 10px; text-align: left;">Brilho, cor imediata</td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 10px; text-align: left; font-weight: bold;">2. Revelado</td>
+                            <td style="padding: 10px; text-align: center;">Entre cutículas</td>
+                            <td style="padding: 10px; text-align: center;">Média</td>
+                            <td style="padding: 10px; text-align: left; color: #C71585; font-weight: bold;"><em>"Esmalte cintilante"</em></td>
+                            <td style="padding: 10px; text-align: left;">Cor vibrante, brilho</td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 10px; text-align: left; font-weight: bold;">3. Expandido</td>
+                            <td style="padding: 10px; text-align: center;">Parcial</td>
+                            <td style="padding: 10px; text-align: center;">Boa</td>
+                            <td style="padding: 10px; text-align: left; color: #800000; font-weight: bold;"><em>"Esmalte fosco"</em></td>
+                            <td style="padding: 10px; text-align: left;">Aderência maior</td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 10px; text-align: left; font-weight: bold;">4. Refletivo</td>
+                            <td style="padding: 10px; text-align: center;">Endocutícula</td>
+                            <td style="padding: 10px; text-align: center;">Alta</td>
+                            <td style="padding: 10px; text-align: left; color: #696969; font-weight: bold;"><em>"Pigmento metálico"</em></td>
+                            <td style="padding: 10px; text-align: left;">Reflexos duradouros</td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1;">
+                            <td style="padding: 10px; text-align: left; font-weight: bold;">5. Plano (Base)</td>
+                            <td style="padding: 10px; text-align: center; color: #8B0000; font-weight: bold;">Córtex profundo</td>
+                            <td style="padding: 10px; text-align: center; color: #8B0000; font-weight: bold;">Máxima</td>
+                            <td style="padding: 10px; text-align: left; color: #191970; font-weight: bold;"><em>"Pigmento de base"</em></td>
+                            <td style="padding: 10px; text-align: left; font-weight: bold;">Cobertura e profundidade</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 25px; padding: 15px; background: rgba(26, 92, 94, 0.1); border-left: 6px solid var(--accent-color); border-radius: 8px;">
+                    <p style="margin: 0; font-size: 26px; font-weight: bold; color: var(--heading-color); font-style: italic;">
+                        "Quem entende pigmento não depende da sorte — cria resultados previsíveis e duradouros."
+                    </p>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: Fundo de Clareamento - Conceitos -->
+            <section>
+                <h2 style="font-size: 50px;">Guia Completo de Fundo de Clareamento</h2>
+                <div class="grid-2" style="align-items: start; gap: 20px; font-size: 24px; text-align: left;">
+                    <div class="card" style="margin: 0; padding: 20px; width: 100%;">
+                        <h4 style="margin-bottom: 10px; color: var(--accent-color);">O que é Fundo de Clareamento?</h4>
+                        <p style="margin: 0;">É o pigmento natural revelado quando o cabelo clareia. Não é reflexo ou nuance; é a base sobre a qual a cor final é construída.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px; width: 100%;">
+                        <h4 style="margin-bottom: 10px; color: var(--accent-color);">Onde encontrar?</h4>
+                        <p style="margin: 0;">Sempre que houver descoloração ou clareamento com cor permanente. Presente em todos os níveis de cabelo, do 1 ao 10.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px; width: 100%;">
+                        <h4 style="margin-bottom: 10px; color: var(--accent-color);">Para que serve?</h4>
+                        <p style="margin: 0;">Determina a base para a cor final; influencia a neutralização, fixação e intensidade do reflexo.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px; width: 100%;">
+                        <h4 style="margin-bottom: 10px; color: var(--accent-color);">Como identificar?</h4>
+                        <p style="margin: 0;">Interpretando o tom residual exposto após a oxidação, não a cor original. Requer conhecimento profundo da Estrela de Oswald.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; padding: 20px; background: rgba(184, 134, 11, 0.1); border-left: 6px solid var(--accent-color); border-radius: 8px;">
+                    <p style="margin: 0; font-size: 32px; font-weight: bold; color: var(--heading-color);">Dominar o Fundo Residual é dominar a Cor e criar tons perfeitos.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: Fundo de Clareamento - Tabela -->
+            <section>
+                <h2 style="font-size: 38px; margin-bottom: 10px;">Tabela de Profundidade e Fundo Residual</h2>
+                
+                <table style="width: 100%; border-collapse: collapse; font-size: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden; margin-top: 0;">
+                    <thead>
+                        <tr style="background-color: #E8DECC; border-bottom: 3px solid #D4C4A8;">
+                            <th style="padding: 8px; text-align: center; color: #5D4037;">Nível</th>
+                            <th style="padding: 8px; text-align: left; color: #5D4037;">Altura de Tom</th>
+                            <th style="padding: 8px; text-align: left; color: #5D4037;">Fundo Residual (Cor)</th>
+                            <th style="padding: 8px; text-align: center; color: #5D4037;">Exemplo Visual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linha 1 -->
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #000; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">1</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Castanho Escuríssimo</td>
+                            <td style="padding: 6px; text-align: left; color: #C0392B;">Vermelho</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #2b0b0b; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 2 -->
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #2b0b0b; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">2</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Castanho Escuro</td>
+                            <td style="padding: 6px; text-align: left; color: #C0392B;">Vermelho</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #3b1111; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 3 -->
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #3b1111; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">3</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Castanho Médio</td>
+                            <td style="padding: 6px; text-align: left; color: #C0392B;">Vermelho</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #4a1515; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 4 -->
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #4a1515; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">4</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Castanho Claro</td>
+                            <td style="padding: 6px; text-align: left; color: #D35400;">Vermelho Alaranjado</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #8E300B; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 5 -->
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #8E300B; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">5</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Louro Escuro</td>
+                            <td style="padding: 6px; text-align: left; color: #E67E22;">Alaranjado</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #B54F00; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 6 -->
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #B54F00; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">6</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Louro Médio</td>
+                            <td style="padding: 6px; text-align: left; color: #D4AC0D;">Alaranjado Amarelo</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #D68A27; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 7 -->
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #D68A27; color: #FFF; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">7</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Louro Claro</td>
+                            <td style="padding: 6px; text-align: left; color: #F1C40F;">Amarelo</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #F5B041; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 8 -->
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #F5B041; color: #5D4037; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">8</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Louro Muito Claro</td>
+                            <td style="padding: 6px; text-align: left; color: #F7DC6F;">Amarelo Claro</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #F8C471; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 9 -->
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #F8C471; color: #5D4037; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">9</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Louro Claríssimo</td>
+                            <td style="padding: 6px; text-align: left; color: #F39C12;">Amarelo Muito Claro</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #FAD7A1; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto;"></div></td>
+                        </tr>
+                        <!-- Linha 10 -->
+                        <tr style="background-color: #FAF5EB;">
+                            <td style="padding: 6px; text-align: center;"><span style="background-color: #FAD7A1; color: #5D4037; border-radius: 50%; width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">10</span></td>
+                            <td style="padding: 6px; text-align: left; font-weight: 600;">Ultra Louro</td>
+                            <td style="padding: 6px; text-align: left; color: #7f8c8d;">Branco (mínimo)</td>
+                            <td style="padding: 6px; text-align: center;"><div style="background-color: #FDF2E9; height: 26px; width: 140px; border-radius: 4px; margin: 0 auto; border: 1px solid #ccc;"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SLIDE 15 -->
+            <section>
+                <h2>Descoloração VS Decapagem</h2>
+                <div class="grid-2">
+                    <div class="card" style="margin:0;">
+                        <h4 style="margin-bottom: 10px;">DESCOLORAÇÃO</h4>
+                        <p style="font-size: 26px;">Retira pigmento <strong>NATURAL</strong> (Melanina). Usa pó descolorante (persulfatos).</p>
+                    </div>
+                    <div class="card" style="margin:0; border-left-color: #1A5C5E;">
+                        <h4 style="margin-bottom: 10px;">DECAPAGEM</h4>
+                        <p style="font-size: 26px;">Retira pigmento <strong>ARTIFICIAL</strong> (Coloração prévia).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 16 -->
+            <section>
+                <h2>O Princípio da Neutralização</h2>
+                <div class="card">
+                    <p>Juntar as 3 cores primárias para ir para o <strong>NATURAL</strong>.</p>
+                </div>
+                <div class="card" style="border-left-color: #2ECC71;">
+                    <p style="font-size: 32px;"><strong>Exemplo Prático:</strong><br>Fundo de clareamento 5 (<span class="color-badge c-red"></span> Vermelho) <br> <span class="arrow">→</span> Aplicar <strong>VERDE</strong> (<span class="color-badge c-blue"></span> Azul + <span class="color-badge c-yellow"></span> Amarelo) na cumbuca.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 17 -->
+            <section>
+                <h2>Direcionamento de Reflexo</h2>
+                <p>Modifica a nuance <strong>sem alterar a altura</strong> do tom.</p>
+                <ul>
+                    <li>Usado para corrigir resultados ou criar caramelo/bege.</li>
+                    <li><strong>Exemplo:</strong> 8 muito amarelo <span class="arrow">→</span> adiciona Cinza para esfriar.</li>
+                </ul>
+            </section>
+
+            <!-- SLIDE 18 -->
+            <section>
+                <h2>Corretores e Medidas</h2>
+                <p style="font-size: 26px; margin-bottom: 10px;">Pigmentos puros para corrigir, direcionar ou criar cores. Para <strong>30g de massa</strong>:</p>
+                <div class="grid-3" style="font-size: 24px; gap: 10px;">
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 10 e 9:</strong> 0,5 cm</div>
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 8:</strong> 1 cm</div>
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 7:</strong> 1,5 cm</div>
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 6:</strong> 2 cm</div>
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 5:</strong> 2,5 cm</div>
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 4:</strong> 3 cm</div>
+                    <div class="grid-item" style="padding: 10px;"><strong>Alt 3:</strong> 3,5 cm</div>
+                </div>
+            </section>
+
+            <!-- MÓDULO 4 -->
+            <section data-background-image="imagens/mod4.png" data-background-opacity="0.35" data-background-color="#000000">
+                <h1 style="color: #F5F2ED; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">MÓDULO 4</h1>
+                <h3 style="color: #B8860B; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">Escurecimento de Cabelos<br>O Grande Final</h3>
+            </section>
+
+            <!-- SLIDE 19 -->
+            <section>
+                <h2>Como Fazer o Escurecimento</h2>
+                <h3 style="font-size: 36px; text-transform: none; color: #7f8c8d;">Três técnicas, três cenários diferentes.</h3>
+                <div class="card">
+                    <p style="font-size: 32px;">Para escurecer um cabelo perfeitamente, precisamos devolver os pigmentos corretos. Dominar as 3 técnicas a seguir separa o amador do colorista profissional.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 20 -->
+            <section>
+                <h2>Técnica 1: Tabela de Escurecimento</h2>
+                <div class="card">
+                    <p><strong>QUANDO USAR:</strong> Somente em cabelos 9 ou 10!</p>
+                </div>
+                <div class="card">
+                    <p><strong>COMO FUNCIONA:</strong> Aplica uma cor <strong>1 tom MAIS ESCURA + 1 reflexo A MAIS</strong>.</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 28px;"><strong>RESULTADO:</strong> Desbota 1 tom e desbota 1 reflexo, chegando exatamente no tom desejado.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 21 -->
+            <section>
+                <h2>Exemplos: Tabela de Escurecimento</h2>
+                <div class="grid-3">
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        Quero criar <strong>6.3</strong><br><span class="arrow">↓</span><br>Aplico <strong>5.4</strong>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        Quero criar <strong>7.4</strong><br><span class="arrow">↓</span><br>Aplico <strong>6.6</strong>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        Quero criar <strong>5.0</strong><br><span class="arrow">↓</span><br>Aplico <strong>4.3</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 22 -->
+            <section>
+                <h2>Técnica 2: Sequência de Reflexos</h2>
+                <div class="card">
+                    <p><strong>QUANDO USAR:</strong> Para criar tons naturais com profundidade perfeita.</p>
+                </div>
+                <div class="highlight" style="display: block; font-size: 36px; margin: 20px 0;">
+                    DOURADO <span class="arrow">→</span> CINZA <span class="arrow">→</span> NATURAL
+                </div>
+                <p style="font-size: 24px; color: var(--alert-color); font-weight: bold;">ATENÇÃO: O "Cobre" só entra na sequência quando o cabelo estiver no fundo 9 ou 10!</p>
+            </section>
+
+            <!-- SLIDE 23 -->
+            <section>
+                <h2>Exemplos: Sequência de Reflexos</h2>
+                <div class="card" style="padding: 20px;">
+                    <p style="font-size: 28px; margin: 0;"><strong>Do 9 para o 6.0:</strong><br>Misturar 6.3 + 6.1 + 6.0 + 6.4 <br><span style="font-size: 20px; color:#7f8c8d;">(Cobre entra porque o 9 não tem base vermelha)</span></p>
+                </div>
+                <div class="card" style="padding: 20px;">
+                    <p style="font-size: 28px; margin: 0;"><strong>Do 8 para o 6.0:</strong><br>Misturar 6.3 + 6.1 + 6.0 <br><span style="font-size: 20px; color:#7f8c8d;">(Sem cobre, pois o fundo 8 já possui laranja/vermelho)</span></p>
+                </div>
+            </section>
+
+            <!-- SLIDE 24 -->
+            <section>
+                <h2>Regras de Escurecimento</h2>
+                <div class="card card-alert">
+                    <p style="font-size: 30px;"><strong>NUNCA</strong> coloque cobre na cumbuca para criar tom natural do 8 para baixo (vai virar marrom quente).</p>
+                </div>
+                <div class="card card-alert">
+                    <p style="font-size: 30px;"><strong>NUNCA</strong> use a Tabela de Escurecimento do 8 para baixo.</p>
+                </div>
+                <div class="card">
+                    <p style="font-size: 30px;">Use <strong>SEMPRE</strong> oxidante de 10 volumes para escurecer.</p>
+                </div>
+            </section>
+            <!-- SLIDE 24.1: Tabela de Medidas -->
+            <section>
+                <h2 style="font-size: 40px; margin-bottom: 10px;">Tabela de Medidas para 30g de Massa da Cor</h2>
+                
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden;">
+                    <thead>
+                        <tr style="background-color: #E8DECC; border-bottom: 3px solid #D4C4A8;">
+                            <th style="padding: 6px; text-align: center; color: #5D4037;">Nível</th>
+                            <th style="padding: 6px; text-align: center; color: #5D4037;">Medida de Pigmento</th>
+                            <th style="padding: 6px; text-align: center; color: #5D4037;">Medida Visual (cm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #D7CCC8; color: #5D4037; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">10</span></td>
+                            <td style="padding: 4px; text-align: center;">0,25 mg</td>
+                            <td style="padding: 4px; text-align: center;">0,5 cm</td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #D7CCC8; color: #5D4037; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">9</span></td>
+                            <td style="padding: 4px; text-align: center;">0,25 mg</td>
+                            <td style="padding: 4px; text-align: center;">0,5 cm</td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #BCAAA4; color: #5D4037; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">8</span></td>
+                            <td style="padding: 4px; text-align: center;">0,50 mg</td>
+                            <td style="padding: 4px; text-align: center;">1 cm</td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #A1887F; color: #FFFFFF; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">7</span></td>
+                            <td style="padding: 4px; text-align: center;">0,75 mg</td>
+                            <td style="padding: 4px; text-align: center;">1,5 cm</td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #795548; color: #FFFFFF; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">6</span></td>
+                            <td style="padding: 4px; text-align: center;">1 g</td>
+                            <td style="padding: 4px; text-align: center;">2 cm</td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #6D4C41; color: #FFFFFF; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">5</span></td>
+                            <td style="padding: 4px; text-align: center;">1,25 g</td>
+                            <td style="padding: 4px; text-align: center;">2,5 cm</td>
+                        </tr>
+                        <tr style="background-color: #FDF9F1; border-bottom: 1px solid #E8DECC;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #5D4037; color: #FFFFFF; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">4</span></td>
+                            <td style="padding: 4px; text-align: center;">1,50 g</td>
+                            <td style="padding: 4px; text-align: center;">3 cm</td>
+                        </tr>
+                        <tr style="background-color: #FAF5EB;">
+                            <td style="padding: 4px; text-align: center;"><span style="background-color: #4E342E; color: #FFFFFF; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px;">3</span></td>
+                            <td style="padding: 4px; text-align: center;">1,75 g</td>
+                            <td style="padding: 4px; text-align: center;">3,5 cm</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="text-align: left; font-size: 20px; padding: 0 20px; color: #2C3E50;">
+                    <ul style="margin-bottom: 10px;">
+                        <li style="margin-bottom: 2px;"><strong>Nota Técnica:</strong> Esta tabela fornece as medidas exatas para cada 30g de massa de cor básica.</li>
+                        <li style="margin-bottom: 2px;"><strong>Ajuste de Quantidade:</strong> Para 60g de massa de cor, dobre a quantidade das medidas fornecidas.</li>
+                    </ul>
+                    <p style="font-style: italic; border-left: 4px solid var(--accent-color); padding-left: 15px; margin-top: 10px; margin-bottom: 0;">Newimpact: "Compreender as medidas precisas é fundamental para a consistência e a perfeição técnica."</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 25 -->
+            <section>
+                <h2>Técnica 3: Escurecer Neutralizando</h2>
+                <div class="card">
+                    <p><strong>QUANDO USAR:</strong> Cliente quer tom FRIO, mas o cabelo dela revela fundo QUENTE (laranja/cobre).</p>
+                </div>
+                <div class="card" style="border-left-color: var(--accent-color);">
+                    <p><strong>REGRA DE OURO:</strong> Neutralize o que você está VENDO no fundo, não apenas o número que ela deseja!</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 26 -->
+            <section>
+                <h2>Exemplo Prático: Escurecer Neutralizando</h2>
+                <p style="font-size: 28px; text-align: left; margin-left: 10%;"><strong>O Caso:</strong> Cabelo 7 Laranja. Cliente quer 5.1 (Cinza Frio).</p>
+                
+                <div class="card card-alert" style="padding: 15px; margin-top: 10px;">
+                    <p style="font-size: 24px; margin:0;"><strong>ERRO:</strong> Aplicar só o 5.1. O cinza não cobre o laranja do 7. Vai virar marrom quente!</p>
+                </div>
+                <div class="card" style="padding: 15px; margin-top: 10px; border-left-color: #3498DB;">
+                    <p style="font-size: 24px; margin:0;"><strong>SOLUÇÃO:</strong> Colocar corretor Azul para "matar" o laranja revelado.</p>
+                </div>
+                <div class="highlight" style="font-size: 36px; margin-top: 20px;">
+                    <strong>FÓRMULA IDEAL:</strong> 5.0 + 5.1 + Corretor Azul
+                </div>
+            </section>
+
+            <!-- MÓDULO 5 -->
+            <section data-background-image="imagens/mod5.png" data-background-opacity="0.35" data-background-color="#000000">
+                <h1 style="color: #F5F2ED; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">MÓDULO 5</h1>
+                <h3 style="color: #B8860B; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">Cobertura de<br>Cabelos Brancos</h3>
+            </section>
+
+            <!-- SLIDE 27 -->
+            <section>
+                <h2>Por que o Cabelo Fica Branco?</h2>
+                <div class="card">
+                    <p style="font-size: 32px;">O melanócito para de produzir melanina. Sendo um fio sem cor, ele se torna mais rígido e com mais camadas de cutículas.</p>
+                </div>
+                <div class="highlight" style="font-size: 32px; display: block; margin-top: 20px;">
+                    Resultado: É um fio impermeável e MUITO mais difícil de cobrir!
+                </div>
+            </section>
+
+            <!-- SLIDE 28 -->
+            <section>
+                <h2>Principais Causas da Canície</h2>
+                <div class="grid-2" style="font-size: 26px;">
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        <h4 style="margin-bottom: 5px;">Genética e Idade</h4>
+                        <p>Fator principal. Entre 30 e 40 anos, a produção reduz naturalmente.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        <h4 style="margin-bottom: 5px;">Radicais Livres</h4>
+                        <p>Estresse, poluição, cigarro e sol matam os melanócitos rápido.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        <h4 style="margin-bottom: 5px;">Déficit Nutricional</h4>
+                        <p>Falta de vitamina B12 prejudica as células do folículo.</p>
+                    </div>
+                    <div class="card" style="margin: 0; padding: 20px;">
+                        <h4 style="margin-bottom: 5px;">Doenças / Tireoide</h4>
+                        <p>Vitiligo, alopecia, alterações de T3/T4 paralisam a melanina.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 29 -->
+            <section>
+                <h2>Erros Fatais na Cobertura</h2>
+                <div class="grid-2" style="font-size: 24px;">
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Usar OX fraca (10/20 vol)</strong>Não dilata a cutícula do branco. Gera transparência.
+                    </div>
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Cabelo sujo (resíduos)</strong>O fio já é impermeável. Óleo e leave-in impedem a fixação.
+                    </div>
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Economizar produto</strong>Branco exige carga alta de pigmento. Aplicação fina = falha.
+                    </div>
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Usar apenas reflexo</strong>Ex: só 8.3. O fio branco precisa de base para fixar.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 30 -->
+            <section>
+                <h2>Erros Fatais (Parte 2)</h2>
+                <div class="grid-2" style="font-size: 24px;">
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Errar OX pelo branco</strong>Quem define o oxidante é o cabelo NATURAL ao lado dele!
+                    </div>
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Usar Tonalizante</strong>Ele não abre cutícula. É só "maquiagem", sai logo.
+                    </div>
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Ignorar fundo natural</strong>O natural ao lado tem fundo. Ignorar isso suja a cor final.
+                    </div>
+                    <div class="card card-alert" style="margin: 0; padding: 15px;">
+                        <strong style="display: block; margin-bottom: 10px;">Pausa insuficiente</strong>Tirar antes = transparência. Deixe o tempo TOTAL da marca.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 31 -->
+            <section>
+                <h2>Técnica Perfeita de Cobertura</h2>
+                <div class="card" style="padding: 20px;">
+                    <p style="font-size: 28px; margin: 0;"><strong>1. Preparar o fio:</strong> Use anti-resíduos para abrir a cutícula rígida.</p>
+                </div>
+                <div class="card" style="padding: 20px;">
+                    <p style="font-size: 28px; margin: 0;"><strong>2. Mistura de Ouro:</strong> SEMPRE use 50% BASE + 50% REFLEXO.</p>
+                </div>
+                <div class="card" style="padding: 20px;">
+                    <p style="font-size: 28px; margin: 0;"><strong>3. Carga Generosa:</strong> Deposite o produto. Não fique apenas "pincelando".</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 32 -->
+            <section>
+                <h2>O Segredo do Natural vs Branco</h2>
+                <p style="font-size: 28px;">O branco não tem fundo, mas o cabelo natural do lado TEM!</p>
+                <div class="grid-3" style="font-size: 24px;">
+                    <div class="card" style="margin:0; border-left-color: #2ECC71;">Natural é Vermelho <span class="arrow">→</span> Verde</div>
+                    <div class="card" style="margin:0; border-left-color: #3498DB;">Natural é Laranja <span class="arrow">→</span> Azul</div>
+                    <div class="card" style="margin:0; border-left-color: #8E44AD;">Natural é Amarelo <span class="arrow">→</span> Violeta</div>
+                </div>
+                <div class="highlight" style="font-size: 26px; margin-top: 30px;">
+                    <strong>Dica Pro:</strong> Em casos de muita resistência, adicione um toque de <strong>Dourado</strong> para ancorar a fixação.
+                </div>
+            </section>
+
+            <!-- SLIDE FINAL -->
+            <section class="flex-center">
+                <h1 style="color: #1A5C5E; font-size: 70px; margin-bottom: 10px;">MUITO OBRIGADA!</h1>
+                <h3 style="color: #B8860B; font-weight: 400; text-transform: none;">Dúvidas?</h3>
+                
+                <div style="margin-top: 60px; font-size: 24px; color: #444; display: flex; flex-direction: column; gap: 8px;">
+                    <strong style="font-size: 32px; color: #1A5C5E; letter-spacing: 1px;">Andrea Vargas - Educadora</strong>
+                    <span><i class="fab fa-instagram" style="color: #E1306C; margin-right: 8px;"></i> @andreavargas_oficial</span>
+                    <span><i class="fas fa-globe" style="color: #3498DB; margin-right: 8px;"></i> www.andreavargas.hair</span>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: false, // Cleaner look for TV
+            progress: true,
+            center: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+        });
+    </script>
+</body>
+</html>
