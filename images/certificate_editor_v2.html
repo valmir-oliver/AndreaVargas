@@ -1,0 +1,3854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Certificado Ultra Premium | Andrea Vargas</title>
+    
+    <!-- Importação de Fontes Premium do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400..700;1,400..700&family=Great+Vibes&family=Italiana&family=Marcellus&family=Montserrat:wght@200..700&family=Outfit:wght@300..700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Prata&family=Spectral:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <!-- Captura de Tela do HTML para Imagem (PNG) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Estilização Premium (Vanilla CSS) -->
+    <style>
+        :root {
+            --bg-dark: #0a0b0d;
+            --sidebar-width: 400px;
+            
+            /* Paleta Ouro Metálico */
+            --gold-light: #f9f5e8;
+            --gold-primary: #dfba6b;
+            --gold-dark: #8c6239;
+            --gold-gradient: linear-gradient(135deg, #f9f5e8 0%, #dfba6b 35%, #b38938 70%, #8c6239 100%);
+            --silver-gradient: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #cbd5e1 70%, #94a3b8 100%);
+            --rose-gradient: linear-gradient(135deg, #fff1f2 0%, #fda4af 45%, #f43f5e 75%, #be123c 100%);
+            
+            /* UI Glassmorphism */
+            --glass-bg: rgba(15, 17, 21, 0.85);
+            --glass-border: rgba(223, 186, 107, 0.25);
+            --glass-hover: rgba(223, 186, 107, 0.4);
+            --text-light: #f8fafc;
+            
+            /* Variáveis Dinâmicas do Certificado */
+            --cert-bg: #090a0d;
+            --cert-text: #ffffff;
+            --cert-gold: #dfba6b;
+            --cert-gold-rgb: 223, 186, 107;
+            
+            /* Cores responsivas do Aluno (Adaptativas por Tema) */
+            --student-gold: var(--gold-gradient);
+            --student-silver: var(--silver-gradient);
+            --student-rose: var(--rose-gradient);
+            --student-white: #ffffff;
+            --student-color: var(--student-gold);
+
+            /* Cores e Sombra responsivas do Curso (Adaptativas por Tema) */
+            --course-gold: var(--gold-gradient);
+            --course-silver: var(--silver-gradient);
+            --course-rose: var(--rose-gradient);
+            --course-white: #ffffff;
+            --course-color: var(--course-white);
+            --course-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* PAINEL DE CONTROLE (SIDEBAR FIGMA STYLE) */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--glass-bg);
+            border-right: 1px solid var(--glass-border);
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+            backdrop-filter: blur(20px);
+            box-shadow: 15px 0 45px rgba(0,0,0,0.6);
+            overflow-y: auto;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-primary) rgba(0,0,0,0.2);
+        }
+
+        /* Scrollbar customizada */
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: var(--gold-primary);
+            border-radius: 10px;
+        }
+
+        .logo-area {
+            text-align: center;
+            border-bottom: 1px solid rgba(223, 186, 107, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        .logo-area h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo-area p {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            opacity: 0.6;
+            margin-top: 5px;
+            color: #fff;
+        }
+
+        /* Accordion / Seções no Menu com Identidade Visual por Cor */
+        .menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(255,255,255,0.015);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-left: 4px solid var(--section-accent, var(--gold-primary)) !important;
+            border-radius: 6px;
+            padding: 15px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Definição de Cores das Seções */
+        .menu-section[data-section="conteudo"] { --section-accent: #38bdf8; } /* Azul Celeste */
+        .menu-section[data-section="lote"] { --section-accent: #0d9488; }     /* Teal / Esmeralda Escuro */
+        .menu-section[data-section="imagem"] { --section-accent: #10b981; }   /* Esmeralda */
+        .menu-section[data-section="tema"] { --section-accent: #f43f5e; }     /* Rosé Glow */
+        .menu-section[data-section="aluno"] { --section-accent: #ec4899; }    /* Pink Neon */
+        .menu-section[data-section="curso"] { --section-accent: #a855f7; }    /* Violeta Imperial */
+        .menu-section[data-section="moldura"] { --section-accent: #f59e0b; }  /* Amber / Ouro Antigo */
+        .menu-section[data-section="titulo"] { --section-accent: #eab308; }   /* Ouro Amarelo */
+
+        .menu-section:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
+            border-left-color: var(--section-accent) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(1.01);
+        }
+
+        /* Seção Ativa (Focada ou com elemento interno focado) */
+        .menu-section.focused-section {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            border-left-color: var(--section-accent) !important;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4), 0 0 10px rgba(var(--section-accent-rgb, 223, 186, 107), 0.15) !important;
+        }
+
+        .section-header {
+            font-family: 'Cinzel', serif;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--section-accent, var(--gold-primary));
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .section-header svg {
+            color: var(--section-accent, var(--gold-primary));
+            transition: transform 0.3s ease;
+        }
+
+        .menu-section:hover .section-header svg {
+            transform: scale(1.15) rotate(3deg);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.75;
+            font-weight: 500;
+        }
+
+        select, input[type="range"], input[type="text"] {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(223, 186, 107, 0.15);
+            border-radius: 6px;
+            color: #fff;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 12.5px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input[type="text"]:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 8px rgba(223, 186, 107, 0.25);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Seletor de Paleta */
+        .color-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .preset-btn {
+            height: 35px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 9.5px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preset-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .preset-btn.active {
+            border: 2.5px solid var(--gold-primary);
+            box-shadow: 0 0 12px rgba(223, 186, 107, 0.35);
+        }
+
+        .btn-obsidian { background: linear-gradient(135deg, #090a0d 0%, #151821 100%); }
+        .btn-emerald { background: linear-gradient(135deg, #03120d 0%, #08291f 100%); }
+        .btn-ruby { background: linear-gradient(135deg, #130307 0%, #2a0812 100%); }
+        .btn-classic { background: linear-gradient(135deg, #181310 0%, #2e2620 100%); }
+        .btn-light { 
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%); 
+            color: #1a1a1a !important; 
+            text-shadow: none !important;
+            border: 1px solid rgba(0,0,0,0.15) !important;
+        }
+
+        /* Estilo de Botões de Cor da Fonte */
+        .font-color-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .font-color-btn, .course-color-btn {
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 9px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .font-color-btn.active, .course-color-btn.active {
+            border: 2px solid #fff;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+
+        .f-gold { background: var(--gold-gradient); color: #000; }
+        .f-solid-gold { background: var(--gold-primary); color: #000; }
+        .f-silver { background: var(--silver-gradient); color: #000; }
+        .f-rose { background: var(--rose-gradient); color: #000; }
+        .f-white { background: #ffffff; color: #000; border: 1px solid rgba(255,255,255,0.3) !important; }
+        .f-black { background: #000000; color: #fff; border: 1px solid rgba(255,255,255,0.2) !important; }
+        .f-gray { background: #4b5563; color: #fff; border: 1px solid rgba(255,255,255,0.2) !important; }
+
+        /* UPLOADER DE IMAGEM PERSONALIZADA (DRAG & DROP) */
+        .image-uploader-box {
+            border: 2px dashed rgba(223, 186, 107, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .image-uploader-box:hover {
+            border-color: var(--gold-primary);
+            background: rgba(223, 186, 107, 0.05);
+        }
+
+        .image-uploader-box svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--gold-primary);
+            opacity: 0.8;
+        }
+
+        .image-uploader-box span {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .action-buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .btn-print, .btn-save {
+            width: 100%;
+            font-weight: 800;
+            border-radius: 6px;
+            padding: 14px;
+            font-family: 'Cinzel', serif;
+            font-size: 12.5px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn-save {
+            background: var(--gold-gradient);
+            color: #0d0e11;
+            border: none;
+            box-shadow: 0 4px 15px rgba(223, 186, 107, 0.2);
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(223, 186, 107, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .btn-print {
+            background: transparent;
+            color: #dfba6b;
+            border: 2px solid #dfba6b;
+            box-shadow: none;
+        }
+
+        .btn-print:hover {
+            background: rgba(223, 186, 107, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(223, 186, 107, 0.15);
+        }
+
+        .sidebar input[type="text"]:focus,
+        .sidebar textarea:focus {
+            border-color: var(--gold-primary) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 0 10px rgba(223, 186, 107, 0.25) !important;
+        }
+
+        .sidebar input[type="text"]::placeholder,
+        .sidebar textarea::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ESPAÇO DE PREVIEW DO CERTIFICADO */
+        .preview-area {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: radial-gradient(circle, #13151c 0%, #060709 100%);
+            min-height: 100vh;
+        }
+
+        /* CANVAS DO CERTIFICADO (A4 HORIZONTAL) */
+        .cert-container {
+            width: 1050px;
+            height: 742px;
+            background-color: var(--cert-bg);
+            border: 1px solid rgba(223, 186, 107, 0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 65px 75px;
+            box-shadow: 0 35px 80px rgba(0,0,0,0.8);
+            overflow: hidden;
+            transition: background-color 0.6s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s, border-color 0.6s;
+            color: var(--cert-text);
+        }
+
+        /* GUILLOCHÉ - LINHAS DE SEGURANÇA (CSS SVG PATTERN) */
+        .guilloche-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.08; /* Super sutil */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q25,0 50,50 T100,50' fill='none' stroke='%23dfba6b' stroke-width='0.5'/%3E%3Cpath d='M0,50 Q25,100 50,50 T100,50' fill='none' stroke='%23dfba6b' stroke-width='0.5'/%3E%3Cpath d='M50,0 Q100,25 50,50 T50,100' fill='none' stroke='%23dfba6b' stroke-width='0.5'/%3E%3Cpath d='M50,0 Q0,25 50,50 T50,100' fill='none' stroke='%23dfba6b' stroke-width='0.5'/%3E%3C/svg%3E");
+            transition: opacity 0.3s;
+        }
+
+        /* IMAGEM DA MODELO (LATERAL DIREITA POR PADRÃO) */
+        .cert-image {
+            position: absolute !important;
+            top: 0 !important;
+            right: 0;
+            height: 100% !important;
+            width: 46%;
+            background-size: cover !important;
+            background-position: center top !important;
+            background-repeat: no-repeat !important;
+            background-color: transparent !important;
+            opacity: 0.3;
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.5s, left 0.5s, right 0.5s;
+            z-index: 1;
+            pointer-events: none;
+            mask-image: linear-gradient(to left, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+            bottom: 0 !important;
+        }
+
+        /* NOVA MODELO ESQUERDA (PARA MODO DUAL) */
+        .cert-image-left {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0;
+            height: 100% !important;
+            width: 33%;
+            background-size: cover !important;
+            background-position: center top !important;
+            background-repeat: no-repeat !important;
+            background-color: transparent !important;
+            opacity: 0.3;
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.5s;
+            z-index: 1;
+            pointer-events: none;
+            mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            display: none;
+            bottom: 0 !important;
+        }
+
+        /* CLASSE DE SOBREPOSIÇÃO PARA DESABILITAR DEGRADÊ DA MODELO (EXCELENTE PARA FUNDOS CLAROS/BRANCOS) */
+        .cert-container.no-fade-image .cert-image {
+            mask-image: none !important;
+            -webkit-mask-image: none !important;
+        }
+        .cert-container.no-fade-image .cert-image-left {
+            mask-image: none !important;
+            -webkit-mask-image: none !important;
+        }
+
+        /* Configurações de Posição da Imagem */
+        .cert-container.img-left .cert-image {
+            right: auto;
+            left: 0;
+            mask-image: linear-gradient(to right, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+        }
+
+        .cert-container.img-bg .cert-image {
+            width: 100%;
+            left: 0;
+            opacity: 0.12;
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+
+        /* CONFIGURAÇÕES DE LAYOUT DUAL (DUAS MODELOS SIMULTÂNEAS) */
+        .cert-container.img-dual .cert-image {
+            width: 33%;
+            mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        }
+        
+        .cert-container.img-dual .cert-image-left {
+            display: block;
+        }
+
+        .cert-container.img-dual .cert-content {
+            width: 48%;
+            margin: 0 auto;
+            text-align: center;
+            align-items: center;
+        }
+
+        .cert-container.img-dual .cert-brand-area {
+            justify-content: center;
+        }
+
+        .cert-container.img-dual .cert-footer {
+            width: 100%;
+            justify-content: space-around;
+            border-top: 1px solid rgba(223, 186, 107, 0.15);
+            padding-top: 18px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .cert-container.img-dual .cert-info-block {
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        /* TEXTOS DO CERTIFICADO (BLOQUEIO DE SELEÇÃO E FOCO) */
+        .cert-content {
+            position: relative;
+            z-index: 3;
+            width: 58%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: width 0.5s, margin 0.5s, padding 0.5s, transform 0.5s;
+        }
+
+        .cert-container.img-bg .cert-content {
+            width: 100%;
+            text-align: center;
+            align-items: center;
+        }
+
+        .cert-container.img-left .cert-content {
+            margin-left: auto;
+        }
+
+        /* MOLDURAS E BORDAS PREMIUM */
+        .cert-border {
+            position: absolute;
+            top: 25px;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            border: 2px solid var(--cert-gold);
+            pointer-events: none;
+            z-index: 4;
+            transition: all 0.3s;
+        }
+
+        .cert-border-inner {
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            left: 5px;
+            right: 5px;
+            border: 1px dashed rgba(var(--cert-gold-rgb), 0.45);
+            pointer-events: none;
+        }
+
+        /* OPÇÃO: MOLDURA MINIMALISTA */
+        .cert-container.frame-minimalist .cert-border {
+            border: 1px solid rgba(var(--cert-gold-rgb), 0.3);
+        }
+        .cert-container.frame-minimalist .cert-border-inner {
+            display: none;
+        }
+
+        /* OPÇÃO: SEM MOLDURA */
+        .cert-container.frame-none .cert-border {
+            display: none;
+        }
+
+        /* CANTOS ORNAMENTAIS VETORIAIS (INLINE SVG VICTORIAN STYLE) */
+        .corner-svg {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            z-index: 5;
+            pointer-events: none;
+            fill: var(--cert-gold);
+            transition: all 0.3s;
+        }
+
+        .corner-tl { top: 20px; left: 20px; }
+        .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+        .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+        .corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
+
+        /* Ocultar cantos em modos sem moldura */
+        .cert-container.frame-minimalist .corner-svg {
+            width: 35px;
+            height: 35px;
+            opacity: 0.6;
+        }
+        .cert-container.frame-none .corner-svg {
+            display: none;
+        }
+
+        /* CABEÇALHO DO CERTIFICADO */
+        .cert-header {
+            margin-top: 10px;
+        }
+
+        .cert-brand-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .cert-container.img-bg .cert-brand-area {
+            justify-content: center;
+        }
+
+        /* Logo Icon (SVG) */
+        .cert-logo-icon {
+            width: 25px;
+            height: 25px;
+            fill: var(--cert-gold);
+        }
+
+        .cert-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--cert-gold);
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .cert-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 10%, var(--cert-gold) 60%, #8c6239 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            outline: none;
+            display: inline-block;
+        }
+
+        /* CORPO DE TEXTO DO CERTIFICADO */
+        .cert-body-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14.5px;
+            line-height: 1.8;
+            font-weight: 300;
+            color: rgba(255,255,255,0.82);
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        /* NOME DO ALUNO (COM COR GRADIENTE DINÂMICA E AJUSTES DE FLOURISH) */
+        .cert-student-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 60px; /* Alterado dinamicamente por slider */
+            background: var(--student-color);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 8px 0;
+            line-height: 1.2; /* Espaçamento vertical otimizado para curvas cursivas */
+            padding: 4px 20px; /* Padding compacto mas suficiente para curvas extremas */
+            outline: none;
+            display: inline-block;
+            transition: font-size 0.2s;
+            overflow: visible !important; /* Previne qualquer recorte pelo navegador */
+        }
+
+        .cert-course {
+            font-family: 'Playfair Display', serif;
+            font-style: normal;
+            font-size: 26px;
+            font-weight: 600;
+            background: var(--course-color);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 8px 0;
+            outline: none;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: font-size 0.2s;
+            overflow: visible !important;
+            text-shadow: var(--course-shadow);
+        }
+
+        /* ASSINATURAS E RODAPÉ */
+        .cert-footer {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .cert-footer-signatures {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            width: 100%;
+            padding-bottom: 15px;
+        }
+
+        .cert-container.img-bg .cert-footer-signatures {
+            justify-content: center;
+        }
+
+        .signature-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 210px;
+        }
+
+        .sig-line {
+            width: 100%;
+            height: 1.5px;
+            background: linear-gradient(to right, rgba(223,186,107,0) 0%, var(--cert-gold) 50%, rgba(223,186,107,0) 100%);
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .sig-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            outline: none;
+            color: #ffffff;
+        }
+
+        .sig-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            opacity: 0.55;
+            margin-top: 4px;
+            outline: none;
+        }
+
+        .cert-info-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.55;
+            border-top: 1px solid rgba(223, 186, 107, 0.15);
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+
+        .cert-info-line .info-separator {
+            opacity: 0.4;
+            font-size: 6px;
+        }
+
+        .cert-info-item {
+            outline: none;
+            white-space: nowrap;
+        }
+
+        /* SELO DE METAL DOURADO VECTOR SVG COM FITAS */
+        .seal-wrapper {
+            display: none !important;
+            position: absolute;
+            bottom: 50px;
+            right: 65px;
+            width: 110px;
+            height: 170px; /* Permite espaço para as fitas penduradas */
+            align-items: center;
+            z-index: 5;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        /* Posicionamento independente do Selo */
+        .cert-container.seal-left .seal-wrapper {
+            left: 65px;
+            right: auto;
+        }
+
+        .cert-container.seal-right .seal-wrapper {
+            right: 65px;
+            left: auto;
+        }
+
+        .gold-seal-ribbons {
+            position: absolute;
+            top: 45px;
+            width: 60px;
+            height: 100px;
+            fill: #9a0c1e; /* Vermelho escuro imperial */
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+            transition: fill 0.3s;
+        }
+
+        /* Alterar cor da fita dependendo do tema */
+        .cert-container.theme-emerald .gold-seal-ribbons { fill: #0d422a; } /* Fita Verde */
+        .cert-container.theme-ruby .gold-seal-ribbons { fill: #9a0c1e; } /* Fita Vermelha */
+        .cert-container.theme-obsidian .gold-seal-ribbons { fill: #1d2026; } /* Fita Preta */
+        .cert-container.theme-classic .gold-seal-ribbons { fill: #6a4422; } /* Fita Marrom */
+
+        .gold-seal-starburst {
+            width: 85px;
+            height: 85px;
+            fill: url(#goldGradientSeal);
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.6));
+            z-index: 2;
+        }
+
+        /* QR CODE DIGITAL DE SEGURANÇA */
+        .qr-validation {
+            display: none !important;
+            position: absolute;
+            top: 55px;
+            right: 55px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(223, 186, 107, 0.25);
+            border-radius: 5px;
+            padding: 5px;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .cert-container.img-left .qr-validation {
+            right: auto;
+            left: 55px;
+        }
+
+        .cert-container.img-bg .qr-validation {
+            display: none; /* Escondido em fundo total */
+        }
+
+        /* DICAS DE EDIÇÃO */
+        .edit-tooltip {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 11, 13, 0.9);
+            border: 1px solid var(--gold-primary);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            pointer-events: none;
+            animation: pulse 2.5s infinite;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.03); }
+            100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        [contenteditable="true"]:focus {
+            outline: 2px dashed var(--gold-primary);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 4px 8px;
+            border-radius: 5px;
+            /* Desativa temporariamente efeitos de degradê de texto (background-clip + text-fill-color) durante a edição.
+               Isso evita o bug nativo do Chrome/Webkit em que o cursor e os caracteres recém-digitados somem ou ficam invisíveis. */
+            background-image: none !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            background-clip: unset !important;
+            -webkit-text-fill-color: var(--cert-text, #ffffff) !important;
+            color: var(--cert-text, #ffffff) !important;
+            text-shadow: none !important;
+        }
+
+        /* RESPONSIVIDADE NA TELA */
+        @media (max-width: 1450px) {
+            .preview-area { padding: 20px; }
+            .cert-container { transform: scale(0.85); }
+        }
+        @media (max-width: 1250px) {
+            .cert-container { transform: scale(0.7); }
+        }
+        @media (max-width: 1000px) {
+            .cert-container { transform: scale(0.55); }
+        }
+
+        .cert-container.title-font-cinzel .cert-title,
+        .cert-container.title-font-cinzel .cert-brand {
+            font-family: 'Cinzel', serif !important;
+        }
+        .cert-container.title-font-playfair .cert-title,
+        .cert-container.title-font-playfair .cert-brand {
+            font-family: 'Playfair Display', serif !important;
+        }
+        .cert-container.title-font-montserrat .cert-title,
+        .cert-container.title-font-montserrat .cert-brand {
+            font-family: 'Montserrat', sans-serif !important;
+            letter-spacing: 6px !important;
+        }
+        .cert-container.title-font-prata .cert-title,
+        .cert-container.title-font-prata .cert-brand {
+            font-family: 'Prata', serif !important;
+        }
+        .cert-container.title-font-cormorant .cert-title,
+        .cert-container.title-font-cormorant .cert-brand {
+            font-family: 'Cormorant Garamond', serif !important;
+            font-weight: 700 !important;
+            letter-spacing: 3px !important;
+        }
+
+        /* CONFIGURAÇÕES DE CORES DO TÍTULO INDEPENDENTES */
+        .cert-container.title-color-gold .cert-title {
+            background: linear-gradient(135deg, #ffffff 10%, var(--cert-gold) 60%, #8c6239 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        .cert-container.title-color-gold .cert-brand {
+            color: var(--cert-gold) !important;
+        }
+
+        .cert-container.title-color-silver .cert-title {
+            background: linear-gradient(135deg, #ffffff 10%, #dcdcdc 50%, #708090 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        .cert-container.title-color-silver .cert-brand {
+            color: #dcdcdc !important;
+        }
+
+        .cert-container.title-color-solid-gold .cert-title {
+            background: none !important;
+            -webkit-text-fill-color: initial !important;
+            color: var(--cert-gold) !important;
+        }
+        .cert-container.title-color-solid-gold .cert-brand {
+            color: var(--cert-gold) !important;
+        }
+
+        .cert-container.title-color-white .cert-title {
+            background: none !important;
+            -webkit-text-fill-color: initial !important;
+            color: #ffffff !important;
+        }
+        .cert-container.title-color-white .cert-brand {
+            color: #ffffff !important;
+        }
+
+        /* TEMA CLARO DE LUXO (WHITE BACKGROUND / FUNDO BRANCO) */
+        .cert-container.theme-light {
+            --cert-bg: #ffffff !important;
+            --cert-text: #1a1a1a !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 35px 80px rgba(0,0,0,0.12) !important;
+            border: 1px solid rgba(140, 98, 57, 0.3) !important;
+            
+            /* Overrides de cores responsivas para alta legibilidade no fundo branco */
+            --student-gold: linear-gradient(135deg, #8c6239 0%, #b38938 50%, #5c4314 100%);
+            --student-silver: linear-gradient(135deg, #334155 0%, #64748b 50%, #1e293b 100%);
+            --student-rose: linear-gradient(135deg, #be123c 0%, #f43f5e 50%, #9f1239 100%);
+            --student-white: #1a1a1a;
+
+            --course-gold: linear-gradient(135deg, #8c6239 0%, #b38938 50%, #5c4314 100%);
+            --course-silver: linear-gradient(135deg, #334155 0%, #64748b 50%, #1e293b 100%);
+            --course-rose: linear-gradient(135deg, #be123c 0%, #f43f5e 50%, #9f1239 100%);
+            --course-white: #1a1a1a;
+            --course-shadow: none;
+        }
+        .cert-container.theme-light .cert-body-text {
+            color: #333333 !important;
+        }
+        .cert-container.theme-light .cert-info-item,
+        .cert-container.theme-light .sig-title {
+            color: #555555 !important;
+        }
+        .cert-container.theme-light .sig-name {
+            color: #1a1a1a !important;
+        }
+        .cert-container.theme-light .sig-line {
+            background: linear-gradient(to right, rgba(140,98,57,0) 0%, var(--cert-gold) 50%, rgba(140,98,57,0) 100%) !important;
+        }
+        .cert-container.theme-light .guilloche-overlay {
+            opacity: 0.12 !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q25,0 50,50 T100,50' fill='none' stroke='%238c6239' stroke-width='0.4'/%3E%3Cpath d='M0,50 Q25,100 50,50 T100,50' fill='none' stroke='%238c6239' stroke-width='0.4'/%3E%3C/svg%3E") !important;
+        }
+        
+        /* Ajuste de contraste para o Título em Tema Claro */
+        .cert-container.theme-light.title-color-gold .cert-title {
+            background: linear-gradient(135deg, #1a1a1a 10%, var(--cert-gold) 60%, #8c6239 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        .cert-container.theme-light.title-color-silver .cert-title {
+            background: linear-gradient(135deg, #334155 10%, #64748b 50%, #1e293b 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        .cert-container.theme-light.title-color-white .cert-title {
+            color: #1a1a1a !important; /* Fallback em tema claro */
+        }
+        .cert-container.theme-light.title-color-white .cert-brand {
+            color: #1a1a1a !important;
+        }
+
+        /* INDEPENDENT QR POSITIONS & SIZES */
+        .cert-container.qr-pos-tr .qr-validation {
+            top: 55px !important;
+            right: 55px !important;
+            bottom: auto !important;
+            left: auto !important;
+        }
+        .cert-container.qr-pos-tl .qr-validation {
+            top: 55px !important;
+            left: 55px !important;
+            bottom: auto !important;
+            right: auto !important;
+        }
+        .cert-container.qr-pos-bl .qr-validation {
+            bottom: 55px !important;
+            left: 55px !important;
+            top: auto !important;
+            right: auto !important;
+        }
+        .cert-container.qr-pos-br .qr-validation {
+            bottom: 55px !important;
+            right: 55px !important;
+            top: auto !important;
+            left: auto !important;
+        }
+
+        .cert-container.qr-size-sm .qr-validation {
+            width: 42px !important;
+            height: 42px !important;
+            padding: 3px !important;
+        }
+        .cert-container.qr-size-md .qr-validation {
+            width: 60px !important;
+            height: 60px !important;
+            padding: 5px !important;
+        }
+        .cert-container.qr-size-lg .qr-validation {
+            width: 80px !important;
+            height: 80px !important;
+            padding: 7px !important;
+        }
+        
+        /* CONFIGURAÇÃO PARA OCULTAR O SELO DE FORMA INDEPENDENTE */
+        .cert-container.seal-none .seal-wrapper {
+            display: none !important;
+        }
+
+        /* ==========================================================================
+           ESTILOS DE IMPRESSÃO (A4 LANDSCAPE PERFEITO)
+           ========================================================================== */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+
+            .sidebar, .edit-tooltip {
+                display: none !important;
+            }
+
+            .preview-area {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: none !important;
+                min-height: auto !important;
+                display: block !important;
+            }
+
+            .cert-container {
+                width: 297mm !important;
+                height: 210mm !important;
+                border: none !important;
+                box-shadow: none !important;
+                transform: none !important;
+                page-break-inside: avoid !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                padding: 20mm 22mm !important; /* Bordas de segurança */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            [contenteditable="true"]:focus {
+                outline: none !important;
+                background: none !important;
+            }
+        }
+
+        /* BARRA DE FERRAMENTAS CONTEXTUAL FLUTUANTE (ESTILO CANVA/FIGMA) */
+        .contextual-toolbar {
+            position: fixed;
+            background: #11141c;
+            border: 1px solid var(--gold-primary, #dfba6b);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+            z-index: 9999;
+            pointer-events: auto;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+        }
+
+        .contextual-toolbar.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .contextual-toolbar .toolbar-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contextual-toolbar select {
+            background: #1c1f26;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-family: inherit;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .contextual-toolbar select:hover, .contextual-toolbar select:focus {
+            border-color: var(--gold-primary);
+        }
+
+        .contextual-toolbar .size-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 4px;
+            background: #1c1f26;
+            overflow: hidden;
+        }
+
+        .contextual-toolbar .size-controls button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            width: 26px;
+            height: 26px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .contextual-toolbar .size-controls button:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--gold-primary);
+        }
+
+        .contextual-toolbar .size-controls input {
+            width: 42px;
+            height: 26px;
+            border: none;
+            border-left: 1px solid rgba(255,255,255,0.15);
+            border-right: 1px solid rgba(255,255,255,0.15);
+            background: none;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .contextual-toolbar .spacing-control {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .contextual-toolbar .spacing-control button {
+            background: #1c1f26;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #ffffff;
+            border-radius: 4px;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .contextual-toolbar .spacing-control button:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        /* Estilo dos Botões de Formatação (Negrito, Itálico, etc.) */
+        .contextual-toolbar .tb-btn {
+            background: #1c1f26;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #ffffff;
+            border-radius: 4px;
+            width: 30px;
+            height: 26px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .contextual-toolbar .tb-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .contextual-toolbar .tb-btn.active {
+            background: rgba(223, 186, 107, 0.15) !important;
+            border-color: var(--gold-primary) !important;
+            color: var(--gold-primary) !important;
+            box-shadow: 0 0 6px rgba(223, 186, 107, 0.2);
+        }
+
+        /* RESPONSIVIDADE DA BARRA CONTEXTUAL PARA MÓVEL */
+        @media (max-width: 768px) {
+            .contextual-toolbar {
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                top: auto !important;
+                width: 100% !important;
+                border-radius: 12px 12px 0 0 !important;
+                box-shadow: 0 -8px 25px rgba(0,0,0,0.4) !important;
+                border: none !important;
+                border-top: 1px solid var(--gold-primary) !important;
+                z-index: 99999 !important;
+                justify-content: space-around !important;
+                padding: 12px !important;
+                background: #11141c !important;
+                transform: translateY(100%) !important;
+            }
+            .contextual-toolbar.active {
+                transform: translateY(0) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE FERRAMENTAS CONTEXTUAL FLUTUANTE (ESTILO CANVA/FIGMA) -->
+    <div class="contextual-toolbar" id="text-toolbar">
+        <!-- Seletor de Família de Fonte -->
+        <div class="toolbar-item">
+            <select id="tb-font-family">
+                <!-- Fontes Cursivas -->
+                <option value="'Great Vibes', cursive">Great Vibes (Caligrafia Fluida)</option>
+                <option value="'Pinyon Script', cursive">Pinyon Script (Luxo Fino)</option>
+                <!-- Fontes Serifadas Clássicas -->
+                <option value="'Cinzel', serif">Cinzel (Imperial Romano)</option>
+                <option value="'Cormorant Garamond', serif">Cormorant Garamond (Certificado Clássico)</option>
+                <option value="'Playfair Display', serif">Playfair Display (Serifa Elegante)</option>
+                <option value="'Prata', serif">Prata (Estilo Editorial)</option>
+                <!-- Fontes Novas Premium -->
+                <option value="'Bodoni Moda', serif">Bodoni Moda (Moderno Luxury)</option>
+                <option value="'Marcellus', serif">Marcellus (Clássico Romano)</option>
+                <option value="'Cardo', serif">Cardo (Medieval Elite)</option>
+                <option value="'Spectral', serif">Spectral (Literário Premium)</option>
+                <option value="'Italiana', serif">Italiana (Editorial Italiano)</option>
+                <!-- Fontes Sans-Serif Modernas -->
+                <option value="'Montserrat', sans-serif">Montserrat (Clean & Moderno)</option>
+                <option value="'Outfit', sans-serif">Outfit (Minimalista Premium)</option>
+            </select>
+        </div>
+
+        <!-- Controles de Tamanho da Fonte -->
+        <div class="toolbar-item size-controls">
+            <button id="tb-size-decrease" title="Diminuir Fonte">−</button>
+            <input type="text" id="tb-size-input" value="16px" readonly />
+            <button id="tb-size-increase" title="Aumentar Fonte">+</button>
+        </div>
+
+        <!-- Seletor de Cor/Efeito de Texto -->
+        <div class="toolbar-item">
+            <select id="tb-text-color">
+                <option value="gold">Efeito Degradê Ouro</option>
+                <option value="solid-gold">Ouro Sólido</option>
+                <option value="silver">Efeito Degradê Prata</option>
+                <option value="rose">Efeito Degradê Rose</option>
+                <option value="white">Branco Real</option>
+                <option value="black">Preto Absoluto</option>
+                <option value="gray">Cinza Escuro</option>
+            </select>
+        </div>
+
+        <!-- Botão Estilo Itálico -->
+        <div class="toolbar-item">
+            <button id="tb-italic-btn" class="tb-btn" title="Alternar Itálico" style="font-style: italic;">I</button>
+        </div>
+
+        <!-- Controles de Espaçamento entre Letras (Letter-Spacing) -->
+        <div class="toolbar-item spacing-control">
+            <button id="tb-spacing-decrease" title="Diminuir Espaçamento">↔−</button>
+            <button id="tb-spacing-increase" title="Aumentar Espaçamento">↔+</button>
+        </div>
+    </div>
+
+    <!-- DEF INLINE DE GRADIENTES SVG REUTILIZÁVEIS -->
+    <svg style="width:0; height:0; position:absolute;">
+        <defs>
+            <linearGradient id="goldGradientSeal" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f9f5e8" />
+                <stop offset="30%" stop-color="#dfba6b" />
+                <stop offset="70%" stop-color="#b38938" />
+                <stop offset="100%" stop-color="#6e4d25" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- DICA FLUTUANTE DE EDIÇÃO -->
+    <div class="edit-tooltip">
+        👑 Modo Design Ativo: Clique e digite em qualquer texto para personalizar!
+    </div>
+
+    <!-- PAINEL DE CONTROLE (SIDEBAR ESTILO DESIGNER) -->
+    <div class="sidebar">
+        <div class="logo-area">
+            <h1>ANDREA VARGAS</h1>
+            <p>DESIGN STUDIO PREMIUM</p>
+        </div>
+
+        <!-- SEÇÃO: GERENCIADOR DE PROJETOS (SALVAR COMO / MODELOS) -->
+        <div class="menu-section" data-section="projetos" style="--section-accent: #14b8a6; margin-bottom: 12px;">
+            <div class="section-header" style="font-weight: 600; font-size: 13px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10 0H4v12h8V2z"/>
+                    <path d="M4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zM4 8.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                Modelos & Salvar Como (BD)
+            </div>
+
+            <!-- Criar/Salvar Novo Projeto -->
+            <div class="control-group" style="margin-top: 5px;">
+                <label for="project-name-input">Nome para "Salvar Como":</label>
+                <div style="display: flex; gap: 8px; margin-top: 4px;">
+                    <input type="text" id="project-name-input" placeholder="Ex: Modelo Gold Mechas" style="flex: 1; min-width: 0; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+                    <button id="btn-save-project-as" title="Salvar Novo Modelo" style="background: linear-gradient(135deg, #0d9488, #14b8a6); border: none; border-radius: 5px; color: #fff; padding: 0 12px; font-weight: 600; font-size: 12px; cursor: pointer; transition: transform 0.2s; white-space: nowrap;">
+                        💾 Salvar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projetos Salvos no Banco de Dados Local (LocalStorage) -->
+            <div class="control-group">
+                <label for="saved-projects-dropdown">Modelos no Banco de Dados:</label>
+                <div style="display: flex; gap: 8px; margin-top: 4px;">
+                    <select id="saved-projects-dropdown" style="flex: 1; min-width: 0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; cursor: pointer;">
+                        <option value="">-- Nenhum Modelo Salvo --</option>
+                    </select>
+                    <button id="btn-load-saved-project" title="Carregar Modelo Selecionado" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; color: #fff; padding: 0 10px; font-size: 11px; cursor: pointer; transition: background 0.2s;">
+                        📂 Abrir
+                    </button>
+                    <button id="btn-delete-saved-project" title="Excluir Modelo" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 5px; color: #ef4444; padding: 0 10px; font-size: 11px; cursor: pointer; transition: background 0.2s;">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+
+            <!-- Importar / Exportar Arquivo JSON (Salvar Como Externo) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;">
+                <button id="btn-export-project-file" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 5px; color: #fff; padding: 8px; font-size: 11px; font-weight: 500; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; gap: 5px; transition: background 0.2s;">
+                    📥 Baixar Projeto
+                </button>
+                <label for="import-project-file" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 5px; color: #fff; padding: 8px; font-size: 11px; font-weight: 500; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; gap: 5px; margin: 0; transition: background 0.2s;">
+                    📤 Enviar Projeto
+                    <input type="file" id="import-project-file" accept=".json" style="display: none;">
+                </label>
+            </div>
+        </div>
+
+        <!-- SEÇÃO: CONTEÚDO DO CERTIFICADO -->
+        <div class="menu-section" data-section="conteudo">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/><path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM2.5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/></svg>
+                Conteúdo do Certificado
+            </div>
+
+            <div class="control-group">
+                <label for="input-brand">Academia / Escola:</label>
+                <input type="text" id="input-brand" value="ANDREA VARGAS ACADEMY" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+            </div>
+
+            <div class="control-group">
+                <label for="input-student">Nome do Aluno:</label>
+                <input type="text" id="input-student" value="Maria Eduarda Alencar" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+            </div>
+
+            <div class="control-group">
+                <label for="input-course">Nome do Curso / Especialidade:</label>
+                <input type="text" id="input-course" value="Masterclass de Cachos & Mechas Avançado" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                <div class="control-group">
+                    <label for="input-date">Data:</label>
+                    <input type="text" id="input-date" value="07 de Maio de 2026" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+                </div>
+                <div class="control-group">
+                    <label for="input-hours">Carga Horária:</label>
+                    <input type="text" id="input-hours" value="32 Horas" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="input-reg">Número de Registro:</label>
+                <input type="text" id="input-reg" value="AV-2026-99384" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; transition: border-color 0.2s;">
+            </div>
+        </div>
+
+        <!-- SEÇÃO: GERAÇÃO EM LOTE -->
+        <div class="menu-section" data-section="lote">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M15 14H1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1zm-13-2h12V3H2v9z"/><path d="M4 4h8v2H4V4zm0 3h8v2H4V7zm0 3h8v1H4v-1z"/></svg>
+                Geração em Lote (Até 10 Alunos)
+            </div>
+            
+            <div class="control-group">
+                <label for="batch-names">Lista de Alunos (um nome por linha):</label>
+                <textarea id="batch-names" placeholder="Nome do Aluno 1&#10;Nome do Aluno 2&#10;Nome do Aluno 3..." rows="5" style="width:100%; box-sizing:border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 10px; color:#fff; font-family:inherit; font-size:12px; outline:none; resize:none; transition: border-color 0.2s; line-height: 1.5;"></textarea>
+                <div style="font-size: 10px; color: var(--gold-primary); margin-top: 5px; display: flex; justify-content: space-between;">
+                    <span id="batch-count">0 alunos detectados</span>
+                    <span>Máx: 10 nomes</span>
+                </div>
+            </div>
+
+            <button class="btn-save" id="btn-generate-batch" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2); font-size:11px;">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 5px;"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                Gerar & Baixar Lote (PNG)
+            </button>
+        </div>
+
+        <!-- SEÇÃO: ASSETS & MODELO -->
+        <div class="menu-section" data-section="imagem">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 3a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4.382l2.895-1.447a1 1 0 0 1 1.053.076l5.24 3.493a1 1 0 0 1 .414.8V3z"/></svg>
+                Fotografia e Imagem
+            </div>
+
+            <div class="control-group">
+                <label for="model-selector">Modelo de Cabelo:</label>
+                <select id="model-selector">
+                    <option value="voluminous_blonde_mechas.png" selected>Modelo Masterclass Ondas & Mechas (Inspirada!)</option>
+                    <option value="curly_blonde_highlights.png">Modelo Cachos & Mechas Loiras</option>
+                    <option value="natural_brunette_curls.png">Modelo Cachos Castanhos Naturais</option>
+                    <option value="caramel_honey_curls.png">Modelo Cachos com Luzes Mel</option>
+                    <option value="natural_coily_afro.png">Modelo Cabelo Crespo/Afro Natural</option>
+                    <option value="curly_colorful_hair.png">Modelo Cacho Volumoso & Colorido (Novidade!)</option>
+                    <option value="modern_colorful_hair.png">Modelo Corte Moderno & Colorido</option>
+                    <option value="multicolor_hair_model.png">Modelo Balayage Platina/Rose Gold</option>
+                    <option value="rose_gold_model.png">Modelo Rose Gold & Pink</option>
+                    <option value="subtle_rainbow_model.png">Modelo Arco-íris Pastel</option>
+                    <option value="sunset_fire_hair.png">Modelo Degradê Sunset Fire (Novidade!)</option>
+                    <option value="cyber_emerald_hair.png">Modelo Mechas Esmeralda & Prata (Novidade!)</option>
+                </select>
+            </div>
+
+            <!-- Upload Customizado -->
+            <div class="control-group">
+                <label>Ou Use Sua Própria Imagem:</label>
+                <div class="image-uploader-box" onclick="document.getElementById('file-input').click()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                    </svg>
+                    <span>Arraste ou clique para enviar foto</span>
+                    <input type="file" id="file-input" accept="image/*">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="pos-selector">Enquadramento / Posição:</label>
+                <select id="pos-selector">
+                    <option value="right" selected>Fusão Lateral Direita</option>
+                    <option value="left">Fusão Lateral Esquerda</option>
+                    <option value="bg">Fundo Inteiro (Marca d'Água)</option>
+                    <option value="dual">Duas Modelas (Lados Opostos)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="opacity-slider">Opacidade (Principal/Direita): <span id="opacity-val">30%</span></label>
+                <input type="range" id="opacity-slider" min="5" max="100" value="30">
+            </div>
+
+            <div class="control-group">
+                <label for="fade-toggle">Efeito Degradê (Desvanecer Lateral):</label>
+                <select id="fade-toggle">
+                    <option value="on" selected>Com Degradê (Fusão Suave)</option>
+                    <option value="off">Sem Degradê (Foto Inteira / Fundo Claro)</option>
+                </select>
+            </div>
+
+            <!-- Grupo para Modelo Secundária (Esquerda) em modo Dual -->
+            <div class="control-group" id="sec-model-group" style="display: none; border-top: 1px dashed rgba(223, 186, 107, 0.15); padding-top: 12px; margin-top: 8px;">
+                <label for="model-selector-left" style="color: var(--gold-primary); font-weight: bold;">Modelo da Esquerda:</label>
+                <select id="model-selector-left" style="margin-bottom: 8px;">
+                    <option value="voluminous_blonde_mechas.png">Modelo Masterclass Ondas & Mechas (Inspirada!)</option>
+                    <option value="curly_colorful_hair.png" selected>Modelo Cacho Volumoso & Colorido (Novidade!)</option>
+                    <option value="natural_brunette_curls.png">Modelo Cachos Castanhos Naturais</option>
+                    <option value="caramel_honey_curls.png">Modelo Cachos com Luzes Mel</option>
+                    <option value="natural_coily_afro.png">Modelo Cabelo Crespo/Afro Natural</option>
+                    <option value="curly_blonde_highlights.png">Modelo Cachos & Mechas Loiras</option>
+                    <option value="modern_colorful_hair.png">Modelo Corte Moderno & Colorido</option>
+                    <option value="multicolor_hair_model.png">Modelo Balayage Platina/Rose Gold</option>
+                    <option value="rose_gold_model.png">Modelo Rose Gold & Pink</option>
+                    <option value="subtle_rainbow_model.png">Modelo Arco-íris Pastel</option>
+                    <option value="sunset_fire_hair.png">Modelo Degradê Sunset Fire (Novidade!)</option>
+                    <option value="cyber_emerald_hair.png">Modelo Mechas Esmeralda & Prata (Novidade!)</option>
+                </select>
+
+                <label for="opacity-slider-left">Opacidade (Esquerda): <span id="opacity-val-left">30%</span></label>
+                <input type="range" id="opacity-slider-left" min="5" max="100" value="30">
+            </div>
+        </div>
+
+        <!-- SEÇÃO: TEMA & CORES -->
+        <div class="menu-section" data-section="tema">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                Paleta de Cores & Fundo
+            </div>
+
+            <div class="control-group">
+                <label>Tema de Cores:</label>
+                <div class="color-presets" style="grid-template-columns: repeat(5, 1fr) !important;">
+                    <button class="preset-btn btn-obsidian active" data-theme="obsidian">Obsidian</button>
+                    <button class="preset-btn btn-emerald" data-theme="emerald">Emerald</button>
+                    <button class="preset-btn btn-ruby" data-theme="ruby">Ruby</button>
+                    <button class="preset-btn btn-classic" data-theme="classic">Classic</button>
+                    <button class="preset-btn btn-light" data-theme="light">Branco</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="guilloche-toggle">Linhas de Segurança (Guilloché):</label>
+                <select id="guilloche-toggle">
+                    <option value="on" selected>Habilitado (Sutil)</option>
+                    <option value="off">Desabilitado</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- SEÇÃO: TIPOGRAFIA & NOMES -->
+        <div class="menu-section" data-section="aluno" style="display: none;">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M12.258 3h-8.51l-.083 2.46h.479c.26-1.54.759-1.669 2.493-1.669h1.378v8.434c0 1-.36 1.15-1.312 1.15h-.833v.46h4.376v-.46h-.827c-.952 0-1.312-.15-1.312-1.15V3.791h1.378c1.734 0 2.233.13 2.493 1.669h.479L12.258 3z"/></svg>
+                Tipografia do Aluno
+            </div>
+
+            <div class="control-group">
+                <label for="font-selector">Fonte do Nome:</label>
+                <select id="font-selector">
+                    <option value="'Great Vibes', cursive" selected>Great Vibes (Clássica)</option>
+                    <option value="'Pinyon Script', cursive">Pinyon Script (Luxo Fino)</option>
+                    <option value="'Playfair Display', serif">Playfair Display (Serifa Elegante)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Efeito de Cor do Nome:</label>
+                <div class="font-color-presets" style="grid-template-columns: repeat(3, 1fr) !important;">
+                    <button class="font-color-btn f-gold active" data-color="gold">Ouro</button>
+                    <button class="font-color-btn f-solid-gold" data-color="solid-gold">Ouro Sólido</button>
+                    <button class="font-color-btn f-silver" data-color="silver">Prata</button>
+                    <button class="font-color-btn f-rose" data-color="rose">Rose</button>
+                    <button class="font-color-btn f-white" data-color="white">Branco</button>
+                    <button class="font-color-btn f-black" data-color="black">Preto</button>
+                    <button class="font-color-btn f-gray" data-color="gray">Cinza</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="font-size-slider">Tamanho da Fonte: <span id="font-size-val">60px</span></label>
+                <input type="range" id="font-size-slider" min="30" max="90" value="60">
+            </div>
+        </div>
+
+        <!-- SEÇÃO: TIPOGRAFIA DO CURSO -->
+        <div class="menu-section" data-section="curso" style="display: none;">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M12.258 3h-8.51l-.083 2.46h.479c.26-1.54.759-1.669 2.493-1.669h1.378v8.434c0 1-.36 1.15-1.312 1.15h-.833v.46h4.376v-.46h-.827c-.952 0-1.312-.15-1.312-1.15V3.791h1.378c1.734 0 2.233.13 2.493 1.669h.479L12.258 3z"/></svg>
+                Tipografia do Curso / Especialidade
+            </div>
+
+            <div class="control-group">
+                <label for="course-font-selector">Fonte do Curso:</label>
+                <select id="course-font-selector">
+                    <option value="'Playfair Display', serif" selected>Playfair Display (Serifa Elegante Italic)</option>
+                    <option value="'Cinzel', serif">Cinzel (Imperial Romano)</option>
+                    <option value="'Cormorant Garamond', serif">Cormorant Garamond (Certificado Clássico)</option>
+                    <option value="'Prata', serif">Prata (Moda & Editorial)</option>
+                    <option value="'Montserrat', sans-serif">Montserrat (Moderno Limpo)</option>
+                    <option value="'Outfit', sans-serif">Outfit (Minimalista Premium)</option>
+                    <option value="'Great Vibes', cursive">Great Vibes (Caligrafia Fluida)</option>
+                    <option value="'Bodoni Moda', serif">Bodoni Moda (Moderno Luxury)</option>
+                    <option value="'Marcellus', serif">Marcellus (Clássico Romano)</option>
+                    <option value="'Cardo', serif">Cardo (Medieval Elite)</option>
+                    <option value="'Spectral', serif">Spectral (Literário Premium)</option>
+                    <option value="'Italiana', serif">Italiana (Editorial Italiano)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Efeito de Cor do Curso:</label>
+                <div class="font-color-presets" style="grid-template-columns: repeat(3, 1fr) !important;">
+                    <button class="course-color-btn f-white active" data-color="white">Padrão</button>
+                    <button class="course-color-btn f-gold" data-color="gold">Ouro</button>
+                    <button class="course-color-btn f-solid-gold" data-color="solid-gold">Ouro Sólido</button>
+                    <button class="course-color-btn f-silver" data-color="silver">Prata</button>
+                    <button class="course-color-btn f-rose" data-color="rose">Rose</button>
+                    <button class="course-color-btn f-black" data-color="black">Preto</button>
+                    <button class="course-color-btn f-gray" data-color="gray">Cinza</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="course-font-size-slider">Tamanho da Fonte: <span id="course-font-size-val">26px</span></label>
+                <input type="range" id="course-font-size-slider" min="16" max="48" value="26">
+            </div>
+        </div>
+
+        <!-- SEÇÃO: MOLDURA DO CERTIFICADO -->
+        <div class="menu-section" data-section="moldura">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2zm3 4V3a3 3 0 0 0-6 0v2H2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3z"/></svg>
+                Moldura do Certificado
+            </div>
+
+            <div class="control-group">
+                <label for="frame-selector">Estilo da Moldura:</label>
+                <select id="frame-selector">
+                    <option value="classic" selected>Moldura Imperial Ornada</option>
+                    <option value="minimalist">Moldura Fina Minimalista</option>
+                    <option value="none">Sem Moldura (Bordas Limpas)</option>
+                </select>
+            </div>
+
+            <div class="control-group" style="display: none;">
+                <label for="seal-pos-selector">Selo de Ouro:</label>
+                <select id="seal-pos-selector">
+                    <option value="right" selected>Selo na Direita</option>
+                    <option value="left">Selo na Esquerda</option>
+                    <option value="none">Ocultar Selo de Ouro</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- SEÇÃO: PERSONALIZAÇÃO DO TÍTULO -->
+        <div class="menu-section" data-section="titulo" style="display: none;">
+            <div class="section-header">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M12.258 3h-8.51l-.083 2.46h.479c.26-1.54.759-1.669 2.493-1.669h1.378v8.434c0 1-.36 1.15-1.312 1.15h-.833v.46h4.376v-.46h-.827c-.952 0-1.312-.15-1.312-1.15V3.791h1.378c1.734 0 2.233.13 2.493 1.669h.479L12.258 3z"/></svg>
+                Personalização do Título
+            </div>
+
+            <div class="control-group">
+                <label for="title-font-selector">Fonte do Título:</label>
+                <select id="title-font-selector">
+                    <option value="'Cinzel', serif" selected>Cinzel (Imperial Romano)</option>
+                    <option value="'Cormorant Garamond', serif">Cormorant Garamond (Certificado Clássico)</option>
+                    <option value="'Playfair Display', serif">Playfair Display (Serifa Clássica)</option>
+                    <option value="'Prata', serif">Prata (Estilo Editorial)</option>
+                    <option value="'Montserrat', sans-serif">Montserrat (Clean & Moderno)</option>
+                    <option value="'Outfit', sans-serif">Outfit (Minimalista Premium)</option>
+                    <option value="'Great Vibes', cursive">Great Vibes (Caligrafia Fluida)</option>
+                    <option value="'Bodoni Moda', serif">Bodoni Moda (Moderno Luxury)</option>
+                    <option value="'Marcellus', serif">Marcellus (Clássico Romano)</option>
+                    <option value="'Cardo', serif">Cardo (Medieval Elite)</option>
+                    <option value="'Spectral', serif">Spectral (Literário Premium)</option>
+                    <option value="'Italiana', serif">Italiana (Editorial Italiano)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="title-color-selector">Efeito de Cor do Título:</label>
+                <select id="title-color-selector">
+                    <option value="gold" selected>Degradê de Ouro Imperial</option>
+                    <option value="silver">Degradê de Prata Cromada</option>
+                    <option value="solid-gold">Ouro Sólido</option>
+                    <option value="white">Branco Real</option>
+                </select>
+            </div>
+
+            <div class="control-group" style="display: none;">
+                <label for="qr-toggle">Validador QR Code:</label>
+                <select id="qr-toggle">
+                    <option value="on" selected>Mostrar QR Code</option>
+                    <option value="off">Ocultar</option>
+                </select>
+            </div>
+
+            <div class="control-group" style="display: none;">
+                <label for="qr-pos-selector">Posição do QR Code:</label>
+                <select id="qr-pos-selector">
+                    <option value="tr" selected>Superior Direito</option>
+                    <option value="tl">Superior Esquerdo</option>
+                    <option value="br">Inferior Direito</option>
+                    <option value="bl">Inferior Esquerdo</option>
+                </select>
+            </div>
+
+            <div class="control-group" style="display: none;">
+                <label for="qr-size-selector">Tamanho do QR Code:</label>
+                <select id="qr-size-selector">
+                    <option value="sm">Pequeno (Discreto)</option>
+                    <option value="md" selected>Médio (Padrão)</option>
+                    <option value="lg">Grande (Visível)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Botões Principais de Ação: Salvar Imagem e Exportar PDF -->
+        <div class="action-buttons-container">
+            <button class="btn-save" id="btn-save-png">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                Salvar Arte (PNG)
+            </button>
+            <button class="btn-print" onclick="window.print()">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v3a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+                Imprimir / PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- ÁREA DE PREVIEW DO CERTIFICADO -->
+    <div class="preview-area">
+        
+        <!-- Certificado Container (A4 Proporção) -->
+        <div class="cert-container seal-right title-font-cinzel title-color-gold qr-pos-tr qr-size-md" id="cert-box">
+            
+            <!-- Guilloché Overlay de Segurança -->
+            <div class="guilloche-overlay" id="guilloche-bg"></div>
+            
+            <!-- Molduras Decorativas Dinâmicas -->
+            <div class="cert-border" id="main-border">
+                <div class="cert-border-inner"></div>
+            </div>
+            
+            <!-- Cantos Ornamentais Vitorianos em SVG de Alta Resolução -->
+            <!-- Top Left -->
+            <svg class="corner-svg corner-tl" id="c-tl" viewBox="0 0 100 100">
+                <path d="M 10,10 L 80,10 A 5,5 0 0,1 80,20 L 30,20 C 25,20 20,25 20,30 L 20,80 A 5,5 0 0,1 10,80 Z M 25,25 C 35,25 40,30 40,40 C 40,30 50,25 60,25" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="15" cy="15" r="3" fill="currentColor"/>
+                <path d="M 25,25 Q 35,15 45,35" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <!-- Top Right -->
+            <svg class="corner-svg corner-tr" id="c-tr" viewBox="0 0 100 100">
+                <path d="M 10,10 L 80,10 A 5,5 0 0,1 80,20 L 30,20 C 25,20 20,25 20,30 L 20,80 A 5,5 0 0,1 10,80 Z M 25,25 C 35,25 40,30 40,40 C 40,30 50,25 60,25" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="15" cy="15" r="3" fill="currentColor"/>
+                <path d="M 25,25 Q 35,15 45,35" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <!-- Bottom Left -->
+            <svg class="corner-svg corner-bl" id="c-bl" viewBox="0 0 100 100">
+                <path d="M 10,10 L 80,10 A 5,5 0 0,1 80,20 L 30,20 C 25,20 20,25 20,30 L 20,80 A 5,5 0 0,1 10,80 Z M 25,25 C 35,25 40,30 40,40 C 40,30 50,25 60,25" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="15" cy="15" r="3" fill="currentColor"/>
+                <path d="M 25,25 Q 35,15 45,35" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <!-- Bottom Right -->
+            <svg class="corner-svg corner-br" id="c-br" viewBox="0 0 100 100">
+                <path d="M 10,10 L 80,10 A 5,5 0 0,1 80,20 L 30,20 C 25,20 20,25 20,30 L 20,80 A 5,5 0 0,1 10,80 Z M 25,25 C 35,25 40,30 40,40 C 40,30 50,25 60,25" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="15" cy="15" r="3" fill="currentColor"/>
+                <path d="M 25,25 Q 35,15 45,35" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+
+            <!-- Imagem de Fundo/Lateral com Fusão (Principal/Direita) -->
+            <div class="cert-image" id="cert-img-element" style="background-image: url('voluminous_blonde_mechas.png');"></div>
+
+            <!-- Imagem Oposta (Esquerda) para Layout Dual -->
+            <div class="cert-image-left" id="cert-img-element-left" style="background-image: url('curly_colorful_hair.png');"></div>
+
+            <!-- Validador QR Code Seguro de Verificação em SVG -->
+            <div class="qr-validation" id="qr-box">
+                <svg width="100%" height="100%" viewBox="0 0 29 29" style="fill: var(--cert-gold);">
+                    <path d="M0 0h9v9H0zm1 1v7h7V1zm10 0h9v9h-9zm1 1v7h7V1zm11 0h7v7h-7zm0 10h9v9h-9zm1 1v7h7v-7zm-13-1h9v9H9zm1 1v7h7v-7zm10 1h2v2h-2zm4 0h3v3h-3zm-2 4h2v3h-2zm4 1h1v1h-1z" />
+                    <!-- Detalhes do Miolo QR fictício para realismo -->
+                    <rect x="3" y="3" width="3" height="3" />
+                    <rect x="13" y="3" width="3" height="3" />
+                    <rect x="3" y="13" width="3" height="3" />
+                    <rect x="23" y="3" width="3" height="3" />
+                    <rect x="13" y="13" width="3" height="3" />
+                    <rect x="20" y="20" width="2" height="2" />
+                    <rect x="23" y="23" width="3" height="3" />
+                </svg>
+            </div>
+
+            <!-- SELO DE METAL DOURADO PREMIUM COM FITAS IMPERIAIS -->
+            <div class="seal-wrapper" id="seal-container">
+                <!-- Fitas de Cetim Penduradas -->
+                <svg class="gold-seal-ribbons" viewBox="0 0 100 150">
+                    <!-- Fita Esquerda -->
+                    <path d="M30,10 L15,130 L35,115 L55,130 L45,10 Z" opacity="0.9"/>
+                    <!-- Fita Direita -->
+                    <path d="M45,10 L60,140 L75,125 L90,140 L70,10 Z" />
+                </svg>
+                <!-- Selo Circular de Metal -->
+                <svg class="gold-seal-starburst" viewBox="0 0 100 100">
+                    <defs>
+                        <radialGradient id="goldPlate" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+                            <stop offset="0%" stop-color="#fff9e6" />
+                            <stop offset="45%" stop-color="#e5c158" />
+                            <stop offset="80%" stop-color="#b38938" />
+                            <stop offset="100%" stop-color="#5c4314" />
+                        </radialGradient>
+                    </defs>
+                    <!-- Bordas de estrela/scalloped -->
+                    <path d="M50,3 L53,15 L65,10 L63,22 L75,20 L70,31 L81,32 L73,42 L82,46 L72,53 L79,61 L68,65 L72,76 L61,77 L62,89 L51,87 L49,97 L40,92 L36,101 L29,93 L22,99 L19,89 L10,91 L11,80 L2,78 L7,68 L0,64 L8,55 L1,48 L10,43 L6,33 L16,31 L15,19 L26,20 L28,9 L38,13 L42,3 Z" fill="url(#goldPlate)"/>
+                    <!-- Anéis Inseridos -->
+                    <circle cx="50" cy="50" r="33" fill="none" stroke="#2b2216" stroke-width="1" opacity="0.3"/>
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="#2b2216" stroke-dasharray="2 2" stroke-width="1" opacity="0.5"/>
+                    <circle cx="50" cy="50" r="28" fill="none" stroke="#2b2216" stroke-width="0.5" opacity="0.4"/>
+                    <!-- Textos Arqueados Fictícios do Selo -->
+                    <path id="sealTextPath" d="M 26,50 A 24,24 0 0,1 74,50" fill="none" />
+                    <text font-family="'Cinzel', serif" font-size="4.5" font-weight="700" fill="#2b2216">
+                        <textPath href="#sealTextPath" startOffset="50%" text-anchor="middle">ANDREA VARGAS ACADEMY</textPath>
+                    </text>
+                    <path id="sealTextPathBottom" d="M 74,50 A 24,24 0 0,1 26,50" fill="none" />
+                    <text font-family="'Montserrat', sans-serif" font-size="4" font-weight="600" fill="#2b2216">
+                        <textPath href="#sealTextPathBottom" startOffset="50%" text-anchor="middle">• EXCELÊNCIA •</textPath>
+                    </text>
+                    <!-- Estrela Central -->
+                    <polygon points="50,42 53,49 61,49 55,54 57,61 50,57 43,61 45,54 39,49 47,49" fill="#2b2216" opacity="0.8"/>
+                </svg>
+            </div>
+
+            <!-- Bloco de Conteúdo -->
+            <div class="cert-content" id="cert-content-box">
+                
+                <!-- Cabeçalho -->
+                <div class="cert-header">
+                    <div class="cert-brand-area">
+                        <!-- Ícone Elegante de Flor-de-Lis / Brasão em SVG -->
+                        <svg class="cert-logo-icon" viewBox="0 0 24 24">
+                            <path d="M12 2C11.5 4 10 5.5 8 6C10 6.5 11 8 11 10C11 8 12 6.5 14 6C12 5.5 12.5 4 12 2Z M12 22C12.5 20 14 18.5 16 18C14 17.5 13 16 13 14C13 16 12 17.5 10 18C12 17.5 11.5 20 12 22Z M5 12C7 11.5 8.5 10 9 8C9.5 10 11 11 13 11C11 11.5 9.5 13 9 15C8.5 13 7 12.5 5 12Z M19 12C17 12.5 15.5 13 15 15C14.5 13 13 11.5 11 11C13 11 14.5 10 15 8C15.5 10 17 11.5 19 12Z"/>
+                        </svg>
+                        <div class="cert-brand" id="brand-name-field" contenteditable="true" spellcheck="false">ANDREA VARGAS ACADEMY</div>
+                    </div>
+                    <div class="cert-title" id="title-field" contenteditable="true" spellcheck="false">Certificado de Conclusão</div>
+                </div>
+
+                <!-- Corpo de Texto Principal -->
+                <div class="cert-body-text" id="body-field" contenteditable="true" spellcheck="false">
+                    Certificamos de forma solene e de acordo com as diretrizes de alta performance que o(a) profissional abaixo concluiu com êxito e maestria técnica todos os módulos práticos e teóricos do programa de especialização:
+                </div>
+
+                <!-- Nome do Aluno (Editável, Cursivo, com Cor Dinâmica) -->
+                <div class="cert-student-name" id="student-name-field" contenteditable="true" spellcheck="false">Maria Eduarda Alencar</div>
+
+                <!-- Curso Realizado -->
+                <div class="cert-course" id="course-name-field" contenteditable="true" spellcheck="false">Masterclass em Design de Mechas, Colorimetria Avançada & Iluminação de Cachos</div>
+
+                <!-- Rodapé de Assinatura, Registro e Data -->
+                <div class="cert-footer">
+                    <!-- Bloco de Assinaturas -->
+                    <div class="cert-footer-signatures">
+                        <!-- Assinatura 1 (Diretora/Instrutora) -->
+                        <div class="signature-block">
+                            <div class="sig-line"></div>
+                            <div class="sig-name" id="sig1-name" contenteditable="true" spellcheck="false">Andrea Vargas</div>
+                            <div class="sig-title" id="sig1-title" contenteditable="true" spellcheck="false">Diretora Executiva</div>
+                        </div>
+
+                        <!-- Assinatura 2 (Coordenador Técnico) -->
+                        <div class="signature-block">
+                            <div class="sig-line"></div>
+                            <div class="sig-name" id="sig2-name" contenteditable="true" spellcheck="false">Valmir Oliver</div>
+                            <div class="sig-title" id="sig2-title" contenteditable="true" spellcheck="false">Coordenador Técnico</div>
+                        </div>
+                    </div>
+
+                    <!-- Informações Legais - Linha Única Abaixo das Assinaturas -->
+                    <div class="cert-info-line">
+                        <span class="cert-info-item" id="date-field" contenteditable="true" spellcheck="false">07 de Maio de 2026</span>
+                        <span class="info-separator">◆</span>
+                        <span class="cert-info-item" id="hours-field" contenteditable="true" spellcheck="false">Carga Horária: 32h</span>
+                        <span class="info-separator">◆</span>
+                        <span class="cert-info-item" id="reg-field" contenteditable="true" spellcheck="false">Reg. nº AV-2026-99384</span>
+                    </div>
+                </div>
+
+            </div> <!-- /cert-content -->
+            
+        </div> <!-- /cert-container -->
+
+    </div>
+
+    <!-- Script de Controle Interativo -->
+    <script>
+        // Referências DOM
+        const modelSelector = document.getElementById('model-selector');
+        const posSelector = document.getElementById('pos-selector');
+        const opacitySlider = document.getElementById('opacity-slider');
+        const opacityVal = document.getElementById('opacity-val');
+        const fadeToggle = document.getElementById('fade-toggle');
+        const fontSelector = document.getElementById('font-selector');
+        const fontColorBtns = document.querySelectorAll('.font-color-btn');
+        const fontSizeSlider = document.getElementById('font-size-slider');
+        const fontSizeVal = document.getElementById('font-size-val');
+        const frameSelector = document.getElementById('frame-selector');
+        const qrToggle = document.getElementById('qr-toggle');
+        const guillocheToggle = document.getElementById('guilloche-toggle');
+        const fileInput = document.getElementById('file-input');
+        
+        const certBox = document.getElementById('cert-box');
+        const certImg = document.getElementById('cert-img-element');
+        const studentName = document.getElementById('student-name-field');
+        const presetBtns = document.querySelectorAll('.preset-btn');
+        const qrBox = document.getElementById('qr-box');
+        const guillocheBg = document.getElementById('guilloche-bg');
+
+        // Referências adicionais para Modelo Esquerda e Selo Independente
+        const secModelGroup = document.getElementById('sec-model-group');
+        const modelSelectorLeft = document.getElementById('model-selector-left');
+        const opacitySliderLeft = document.getElementById('opacity-slider-left');
+        const opacityValLeft = document.getElementById('opacity-val-left');
+        const certImgLeft = document.getElementById('cert-img-element-left');
+        const sealPosSelector = document.getElementById('seal-pos-selector');
+
+        // Referências para Títulos e QR Customizados
+        const titleFontSelector = document.getElementById('title-font-selector');
+        const titleColorSelector = document.getElementById('title-color-selector');
+        const qrPosSelector = document.getElementById('qr-pos-selector');
+        const qrSizeSelector = document.getElementById('qr-size-selector');
+
+        // Referências para Tipografia do Curso
+        const courseName = document.getElementById('course-name-field');
+        const courseFontSelector = document.getElementById('course-font-selector');
+        const courseColorBtns = document.querySelectorAll('.course-color-btn');
+        const courseFontSizeSlider = document.getElementById('course-font-size-slider');
+        const courseFontSizeVal = document.getElementById('course-font-size-val');
+
+        // ==========================================================================
+        // BARRA DE FERRAMENTAS CONTEXTUAL FLUTUANTE (ESTILO CANVA/FIGMA)
+        // ==========================================================================
+        let activeElement = null;
+        const textToolbar = document.getElementById('text-toolbar');
+        const tbFontFamily = document.getElementById('tb-font-family');
+        const tbSizeInput = document.getElementById('tb-size-input');
+        const tbTextColor = document.getElementById('tb-text-color');
+        const tbItalicBtn = document.getElementById('tb-italic-btn');
+
+        // Reposiciona a barra de ferramentas em viewport space
+        function positionToolbar(element) {
+            if (!element || !textToolbar) return;
+            
+            // Em dispositivos móveis (largura <= 768px), o CSS fixa a barra no rodapé
+            if (window.innerWidth <= 768) {
+                textToolbar.style.top = 'auto';
+                textToolbar.style.left = '0';
+                textToolbar.style.right = '0';
+                textToolbar.style.bottom = '0';
+                textToolbar.classList.add('active');
+                return;
+            }
+
+            const rect = element.getBoundingClientRect();
+            const toolbarRect = textToolbar.getBoundingClientRect();
+            
+            // Posiciona a barra centralizada acima do elemento editável focado (com margem de 15px)
+            let top = rect.top - toolbarRect.height - 15;
+            let left = rect.left + (rect.width / 2) - (toolbarRect.width / 2);
+
+            // Se bater no topo da viewport, inverte e exibe logo abaixo do elemento
+            if (top < 10) {
+                top = rect.bottom + 15;
+            }
+
+            // Garante que não ultrapasse os limites laterais da viewport
+            if (left < 10) left = 10;
+            if (left + toolbarRect.width > window.innerWidth - 10) {
+                left = window.innerWidth - toolbarRect.width - 10;
+            }
+
+            textToolbar.style.top = `${top}px`;
+            textToolbar.style.left = `${left}px`;
+            textToolbar.classList.add('active');
+        }
+
+        function hideToolbar() {
+            if (textToolbar) {
+                textToolbar.classList.remove('active');
+            }
+            activeElement = null;
+        }
+
+        // Sincroniza controles da barra de ferramentas com as regras de estilo do elemento ativo
+        function showToolbarFor(element) {
+            activeElement = element;
+            
+            const computedStyle = window.getComputedStyle(element);
+            
+            // 1. Sincroniza a família de fontes (normalizada sem aspas)
+            let family = computedStyle.fontFamily;
+            const normalizedFamily = family.replace(/['"]/g, '').toLowerCase();
+            
+            let matched = false;
+            for (let option of tbFontFamily.options) {
+                const optVal = option.value.replace(/['"]/g, '').toLowerCase();
+                if (normalizedFamily.includes(optVal.split(',')[0].trim())) {
+                    tbFontFamily.value = option.value;
+                    matched = true;
+                    break;
+                }
+            }
+            if (!matched) {
+                for (let option of tbFontFamily.options) {
+                    const firstPart = option.value.split(',')[0].replace(/['"]/g, '').trim().toLowerCase();
+                    if (normalizedFamily.includes(firstPart)) {
+                        tbFontFamily.value = option.value;
+                        break;
+                    }
+                }
+            }
+
+            // 2. Sincroniza o tamanho do texto (em px)
+            tbSizeInput.value = computedStyle.fontSize;
+
+            // 3. Sincroniza o efeito ou cor sólida
+            const bgImage = computedStyle.backgroundImage || '';
+            const textFillColor = computedStyle.webkitTextFillColor || computedStyle.color || '';
+            
+            if (bgImage.includes('gold-gradient') || bgImage.includes('goldPlate') || bgImage.includes('goldGradientSeal')) {
+                tbTextColor.value = 'gold';
+            } else if (bgImage.includes('silver-gradient')) {
+                tbTextColor.value = 'silver';
+            } else if (bgImage.includes('rose-gradient')) {
+                tbTextColor.value = 'rose';
+            } else if (textFillColor.includes('dfba6b') || textFillColor.includes('rgb(223, 186, 107)')) {
+                tbTextColor.value = 'solid-gold';
+            } else if (textFillColor.includes('rgb(255, 255, 255)') || textFillColor.includes('#ffffff') || textFillColor === 'white') {
+                tbTextColor.value = 'white';
+            } else if (textFillColor.includes('rgb(0, 0, 0)') || textFillColor.includes('#000000') || textFillColor === 'black') {
+                tbTextColor.value = 'black';
+            } else {
+                tbTextColor.value = 'gray';
+            }
+
+            // 4. Sincroniza o estado de Itálico
+            if (computedStyle.fontStyle === 'italic') {
+                tbItalicBtn.classList.add('active');
+            } else {
+                tbItalicBtn.classList.remove('active');
+            }
+
+            // Reposiciona a barra de ferramentas de forma otimizada
+            requestAnimationFrame(() => {
+                positionToolbar(element);
+            });
+        }
+
+        // Observadores globais de clique/toque fora para esconder a barra flutuante
+        document.addEventListener('mousedown', (e) => {
+            if (!textToolbar) return;
+            // Ignora cliques que acontecem dentro do toolbar ou em qualquer elemento editável
+            if (textToolbar.contains(e.target) || (e.target.getAttribute && e.target.getAttribute('contenteditable') === 'true')) {
+                return;
+            }
+            hideToolbar();
+        });
+
+        // Configuração dos ouvintes em todos os elementos editáveis dentro do certificado
+        const initEditableElementsToolbar = () => {
+            const editables = document.querySelectorAll('#cert-box [contenteditable="true"]');
+            editables.forEach(el => {
+                el.addEventListener('focus', (e) => {
+                    showToolbarFor(e.target);
+                });
+                el.addEventListener('click', (e) => {
+                    showToolbarFor(e.target);
+                });
+                el.addEventListener('input', (e) => {
+                    positionToolbar(e.target);
+                    saveStateToLocalStorage();
+                });
+            });
+        };
+
+        // Ouvintes de alteração da própria barra flutuante
+        tbFontFamily.addEventListener('change', (e) => {
+            if (!activeElement) return;
+            activeElement.style.fontFamily = e.target.value;
+            
+            // Kerning e peso ideais para cada categoria tipográfica para polimento
+            if (e.target.value.includes('Montserrat')) {
+                activeElement.style.letterSpacing = '6px';
+            } else if (e.target.value.includes('Great Vibes')) {
+                activeElement.style.letterSpacing = '1px';
+            } else if (e.target.value.includes('Cormorant') || e.target.value.includes('Cinzel')) {
+                activeElement.style.letterSpacing = '3px';
+            }
+            
+            saveStateToLocalStorage();
+            positionToolbar(activeElement);
+        });
+
+        tbTextColor.addEventListener('change', (e) => {
+            if (!activeElement) return;
+            applyTextColor(activeElement, e.target.value);
+            saveStateToLocalStorage();
+        });
+
+        function applyTextColor(element, value) {
+            if (value === 'gold') {
+                element.style.backgroundImage = 'var(--gold-gradient)';
+                element.style.webkitBackgroundClip = 'text';
+                element.style.backgroundClip = 'text';
+                element.style.webkitTextFillColor = 'transparent';
+                element.style.color = 'transparent';
+            } else if (value === 'silver') {
+                element.style.backgroundImage = 'var(--silver-gradient)';
+                element.style.webkitBackgroundClip = 'text';
+                element.style.backgroundClip = 'text';
+                element.style.webkitTextFillColor = 'transparent';
+                element.style.color = 'transparent';
+            } else if (value === 'rose') {
+                element.style.backgroundImage = 'var(--rose-gradient)';
+                element.style.webkitBackgroundClip = 'text';
+                element.style.backgroundClip = 'text';
+                element.style.webkitTextFillColor = 'transparent';
+                element.style.color = 'transparent';
+            } else {
+                element.style.backgroundImage = 'none';
+                element.style.webkitBackgroundClip = 'unset';
+                element.style.backgroundClip = 'unset';
+                
+                let colorHex = '#ffffff';
+                if (value === 'solid-gold') colorHex = 'var(--gold-primary)';
+                else if (value === 'black') colorHex = '#000000';
+                else if (value === 'gray') colorHex = '#4b5563';
+                
+                element.style.webkitTextFillColor = colorHex;
+                element.style.color = colorHex;
+            }
+        }
+
+        // Alteração de tamanho da fonte (numérica, com passos de 2px)
+        document.getElementById('tb-size-decrease').addEventListener('click', () => {
+            adjustSize(-2);
+        });
+        document.getElementById('tb-size-increase').addEventListener('click', () => {
+            adjustSize(2);
+        });
+
+        function adjustSize(delta) {
+            if (!activeElement) return;
+            const currentSize = parseFloat(window.getComputedStyle(activeElement).fontSize);
+            const newSize = Math.max(10, Math.min(150, currentSize + delta));
+            activeElement.style.fontSize = `${newSize}px`;
+            tbSizeInput.value = `${newSize}px`;
+            saveStateToLocalStorage();
+            positionToolbar(activeElement);
+        }
+
+        // Alteração sutil de kerning (espaçamento de letras)
+        document.getElementById('tb-spacing-decrease').addEventListener('click', () => {
+            adjustSpacing(-0.5);
+        });
+        document.getElementById('tb-spacing-increase').addEventListener('click', () => {
+            adjustSpacing(0.5);
+        });
+
+        function adjustSpacing(delta) {
+            if (!activeElement) return;
+            const currentSpacing = window.getComputedStyle(activeElement).letterSpacing;
+            let currentVal = 0;
+            if (currentSpacing !== 'normal') {
+                currentVal = parseFloat(currentSpacing);
+            }
+            const newVal = Math.max(-2, Math.min(20, currentVal + delta));
+            activeElement.style.letterSpacing = `${newVal}px`;
+            saveStateToLocalStorage();
+        }
+
+        // Alternar estilo itálico (itálico vs normal)
+        tbItalicBtn.addEventListener('click', () => {
+            if (!activeElement) return;
+            const currentStyle = window.getComputedStyle(activeElement).fontStyle;
+            if (currentStyle === 'italic') {
+                activeElement.style.fontStyle = 'normal';
+                tbItalicBtn.classList.remove('active');
+            } else {
+                activeElement.style.fontStyle = 'italic';
+                tbItalicBtn.classList.add('active');
+            }
+            saveStateToLocalStorage();
+            positionToolbar(activeElement);
+        });
+
+        // Re-alinhar e reposicionar a barra em redimensionamentos de tela ou zoom
+        window.addEventListener('resize', () => {
+            if (activeElement) positionToolbar(activeElement);
+        });
+
+        // Mapeamento de Seletores de Modelo
+        modelSelector.addEventListener('change', (e) => {
+            const imageName = e.target.value;
+            certImg.style.backgroundImage = `url('${imageName}')`;
+        });
+
+        // Mapeamento de Modelo Secundária (Esquerda)
+        modelSelectorLeft.addEventListener('change', (e) => {
+            const imageName = e.target.value;
+            certImgLeft.style.backgroundImage = `url('${imageName}')`;
+        });
+
+        // Upload de Imagem Própria (Leitor Local Base64)
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    certImg.style.backgroundImage = `url('${event.target.result}')`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Posicionamento da Modelo no Certificado
+        posSelector.addEventListener('change', (e) => {
+            const pos = e.target.value;
+            
+            // Preserva classes de molduras, temas, selo, títulos e QR ao reatribuir posição
+            const frameClass = getFrameClass();
+            const themeClass = getThemeClass();
+            const sealClass = getSealClass();
+            const titleFontClass = getTitleFontClass();
+            const titleColorClass = getTitleColorClass();
+            const qrPosClass = getQrPosClass();
+            const qrSizeClass = getQrSizeClass();
+            
+            certBox.className = 'cert-container'; // Reseta
+            
+            if (pos === 'left') {
+                certBox.classList.add('img-left');
+                secModelGroup.style.display = 'none';
+            } else if (pos === 'bg') {
+                certBox.classList.add('img-bg');
+                secModelGroup.style.display = 'none';
+            } else if (pos === 'dual') {
+                certBox.classList.add('img-dual');
+                secModelGroup.style.display = 'block';
+            } else {
+                // Modo direito padrão
+                secModelGroup.style.display = 'none';
+            }
+            
+            if (frameClass) certBox.classList.add(frameClass);
+            if (themeClass) certBox.classList.add(themeClass);
+            if (sealClass) certBox.classList.add(sealClass);
+            if (titleFontClass) certBox.classList.add(titleFontClass);
+            if (titleColorClass) certBox.classList.add(titleColorClass);
+            if (qrPosClass) certBox.classList.add(qrPosClass);
+            if (qrSizeClass) certBox.classList.add(qrSizeClass);
+            
+            // Preserva efeito degradê
+            if (fadeToggle.value === 'off') {
+                certBox.classList.add('no-fade-image');
+            }
+        });
+
+        // Opacidade da Modelo Direita/Principal
+        opacitySlider.addEventListener('input', (e) => {
+            const opacity = e.target.value;
+            opacityVal.textContent = `${opacity}%`;
+            certImg.style.opacity = opacity / 100;
+        });
+
+        // Toggle do efeito degradê (desvanecer lateral) da modelo
+        fadeToggle.addEventListener('change', (e) => {
+            if (e.target.value === 'off') {
+                certBox.classList.add('no-fade-image');
+            } else {
+                certBox.classList.remove('no-fade-image');
+            }
+        });
+
+        // Opacidade da Modelo Esquerda
+        opacitySliderLeft.addEventListener('input', (e) => {
+            const opacity = e.target.value;
+            opacityValLeft.textContent = `${opacity}%`;
+            certImgLeft.style.opacity = opacity / 100;
+        });
+
+        // Posicionamento Independente do Selo de Ouro
+        sealPosSelector.addEventListener('change', (e) => {
+            const pos = e.target.value;
+            certBox.classList.remove('seal-left', 'seal-right', 'seal-none');
+            certBox.classList.add(`seal-${pos}`);
+        });
+
+        // Auxiliar para pegar classe de Selo ativa
+        function getSealClass() {
+            if (certBox.classList.contains('seal-left')) return 'seal-left';
+            if (certBox.classList.contains('seal-right')) return 'seal-right';
+            if (certBox.classList.contains('seal-none')) return 'seal-none';
+            return 'seal-right'; // Padrão
+        }
+
+        // Customização de Título e QR Code Listeners
+        titleFontSelector.addEventListener('change', (e) => {
+            let font = e.target.value;
+            // Retrocompatibilidade com valores antigos baseados em classes
+            if (font === 'cinzel') font = "'Cinzel', serif";
+            else if (font === 'cormorant') font = "'Cormorant Garamond', serif";
+            else if (font === 'playfair') font = "'Playfair Display', serif";
+            else if (font === 'montserrat') font = "'Montserrat', sans-serif";
+            else if (font === 'prata') font = "'Prata', serif";
+
+            if (titleField) titleField.style.fontFamily = font;
+            if (brandField) brandField.style.fontFamily = font;
+            
+            // Ajustes específicos de espaçamento (kerning) e peso para polimento profissional
+            if (font.includes('Montserrat')) {
+                if (titleField) {
+                    titleField.style.letterSpacing = '6px';
+                    titleField.style.fontWeight = '900';
+                }
+                if (brandField) brandField.style.letterSpacing = '6px';
+            } else if (font.includes('Cormorant')) {
+                if (titleField) {
+                    titleField.style.letterSpacing = '3px';
+                    titleField.style.fontWeight = '700';
+                }
+                if (brandField) brandField.style.letterSpacing = '3px';
+            } else if (font.includes('Great Vibes')) {
+                if (titleField) {
+                    titleField.style.letterSpacing = '1px';
+                    titleField.style.fontWeight = 'normal';
+                }
+                if (brandField) brandField.style.letterSpacing = '1px';
+            } else {
+                // Outras fontes serifadas clássicas
+                if (titleField) {
+                    titleField.style.letterSpacing = '4px';
+                    titleField.style.fontWeight = '900';
+                }
+                if (brandField) brandField.style.letterSpacing = '5px';
+            }
+        });
+
+        titleColorSelector.addEventListener('change', (e) => {
+            const color = e.target.value;
+            certBox.classList.remove('title-color-gold', 'title-color-silver', 'title-color-solid-gold', 'title-color-white');
+            certBox.classList.add(`title-color-${color}`);
+        });
+
+        qrPosSelector.addEventListener('change', (e) => {
+            const pos = e.target.value;
+            certBox.classList.remove('qr-pos-tr', 'qr-pos-tl', 'qr-pos-bl', 'qr-pos-br');
+            certBox.classList.add(`qr-pos-${pos}`);
+        });
+
+        qrSizeSelector.addEventListener('change', (e) => {
+            const size = e.target.value;
+            certBox.classList.remove('qr-size-sm', 'qr-size-md', 'qr-size-lg');
+            certBox.classList.add(`qr-size-${size}`);
+        });
+
+        // Auxiliares para preservar customizações na troca de posicionamento da modelo
+        function getTitleFontClass() {
+            if (certBox.classList.contains('title-font-cinzel')) return 'title-font-cinzel';
+            if (certBox.classList.contains('title-font-playfair')) return 'title-font-playfair';
+            if (certBox.classList.contains('title-font-montserrat')) return 'title-font-montserrat';
+            if (certBox.classList.contains('title-font-prata')) return 'title-font-prata';
+            if (certBox.classList.contains('title-font-cormorant')) return 'title-font-cormorant';
+            return 'title-font-cinzel';
+        }
+
+        function getTitleColorClass() {
+            if (certBox.classList.contains('title-color-gold')) return 'title-color-gold';
+            if (certBox.classList.contains('title-color-silver')) return 'title-color-silver';
+            if (certBox.classList.contains('title-color-solid-gold')) return 'title-color-solid-gold';
+            if (certBox.classList.contains('title-color-white')) return 'title-color-white';
+            return 'title-color-gold';
+        }
+
+        function getQrPosClass() {
+            if (certBox.classList.contains('qr-pos-tr')) return 'qr-pos-tr';
+            if (certBox.classList.contains('qr-pos-tl')) return 'qr-pos-tl';
+            if (certBox.classList.contains('qr-pos-bl')) return 'qr-pos-bl';
+            if (certBox.classList.contains('qr-pos-br')) return 'qr-pos-br';
+            return 'qr-pos-tr';
+        }
+
+        function getQrSizeClass() {
+            if (certBox.classList.contains('qr-size-sm')) return 'qr-size-sm';
+            if (certBox.classList.contains('qr-size-md')) return 'qr-size-md';
+            if (certBox.classList.contains('qr-size-lg')) return 'qr-size-lg';
+            return 'qr-size-md';
+        }
+
+        // Seleção de Fonte Cursiva para o Nome do Aluno
+        fontSelector.addEventListener('change', (e) => {
+            studentName.style.fontFamily = e.target.value;
+        });
+
+        // Cores Gradientes e Efeitos do Nome do Aluno
+        fontColorBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                fontColorBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const colorType = btn.getAttribute('data-color');
+                
+                // Para cores sólidas (preto/cinza/ouro-solido), bypass a técnica de background-clip
+                if (colorType === 'black' || colorType === 'gray' || colorType === 'solid-gold') {
+                    let solidColor;
+                    if (colorType === 'black') {
+                        solidColor = '#000000';
+                    } else if (colorType === 'gray') {
+                        solidColor = '#4b5563';
+                    } else {
+                        solidColor = 'var(--gold-primary)'; // Cor do Ouro Imperial Sólido
+                    }
+                    studentName.style.backgroundImage = 'none';
+                    studentName.style.webkitBackgroundClip = 'unset';
+                    studentName.style.backgroundClip = 'unset';
+                    studentName.style.webkitTextFillColor = solidColor;
+                    studentName.style.color = solidColor;
+                    if (colorType !== 'solid-gold') {
+                        activateLightThemeIfDark();
+                    }
+                } else {
+                    // Para gradientes, restaura a técnica padrão
+                    studentName.style.webkitTextFillColor = 'transparent';
+                    
+                    if (colorType === 'gold') {
+                        studentName.style.backgroundImage = 'var(--student-gold)';
+                        document.documentElement.style.setProperty('--student-color', 'var(--student-gold)');
+                    } else if (colorType === 'silver') {
+                        studentName.style.backgroundImage = 'var(--student-silver)';
+                        document.documentElement.style.setProperty('--student-color', 'var(--student-silver)');
+                    } else if (colorType === 'rose') {
+                        studentName.style.backgroundImage = 'var(--student-rose)';
+                        document.documentElement.style.setProperty('--student-color', 'var(--student-rose)');
+                    } else if (colorType === 'white') {
+                        studentName.style.backgroundImage = 'var(--student-white)';
+                        document.documentElement.style.setProperty('--student-color', 'var(--student-white)');
+                    }
+                    studentName.style.backgroundClip = 'text';
+                    studentName.style.webkitBackgroundClip = 'text';
+                }
+                if (!window.isRestoringState) saveStateToLocalStorage();
+            });
+        });
+
+        // Tamanho da Fonte do Aluno Slider
+        fontSizeSlider.addEventListener('input', (e) => {
+            const size = e.target.value;
+            fontSizeVal.textContent = `${size}px`;
+            studentName.style.fontSize = `${size}px`;
+        });
+
+        // ==========================================================================
+        // CONTROLES DE TIPOGRAFIA DO CURSO / ESPECIALIDADE
+        // ==========================================================================
+
+        // Seleção de Fonte para o Curso
+        courseFontSelector.addEventListener('change', (e) => {
+            courseName.style.fontFamily = e.target.value;
+        });
+
+        // Cores Gradientes e Efeitos do Curso
+        courseColorBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                courseColorBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const colorType = btn.getAttribute('data-color');
+                
+                // Para cores sólidas (preto/cinza/ouro-solido), bypass a técnica de background-clip
+                if (colorType === 'black' || colorType === 'gray' || colorType === 'solid-gold') {
+                    let solidColor;
+                    if (colorType === 'black') {
+                        solidColor = '#000000';
+                    } else if (colorType === 'gray') {
+                        solidColor = '#4b5563';
+                    } else {
+                        solidColor = 'var(--gold-primary)'; // Cor do Ouro Imperial Sólido
+                    }
+                    courseName.style.backgroundImage = 'none';
+                    courseName.style.webkitBackgroundClip = 'unset';
+                    courseName.style.backgroundClip = 'unset';
+                    courseName.style.webkitTextFillColor = solidColor;
+                    courseName.style.color = solidColor;
+                    if (colorType !== 'solid-gold') {
+                        activateLightThemeIfDark();
+                    }
+                } else {
+                    // Para gradientes, restaura a técnica padrão
+                    courseName.style.webkitTextFillColor = 'transparent';
+                    
+                    if (colorType === 'gold') {
+                        courseName.style.backgroundImage = 'var(--course-gold)';
+                        document.documentElement.style.setProperty('--course-color', 'var(--course-gold)');
+                    } else if (colorType === 'silver') {
+                        courseName.style.backgroundImage = 'var(--course-silver)';
+                        document.documentElement.style.setProperty('--course-color', 'var(--course-silver)');
+                    } else if (colorType === 'rose') {
+                        courseName.style.backgroundImage = 'var(--course-rose)';
+                        document.documentElement.style.setProperty('--course-color', 'var(--course-rose)');
+                    } else if (colorType === 'white') {
+                        courseName.style.backgroundImage = 'var(--course-white)';
+                        document.documentElement.style.setProperty('--course-color', 'var(--course-white)');
+                    }
+                    courseName.style.backgroundClip = 'text';
+                    courseName.style.webkitBackgroundClip = 'text';
+                }
+                if (!window.isRestoringState) saveStateToLocalStorage();
+            });
+        });
+
+        // Tamanho da Fonte do Curso Slider
+        courseFontSizeSlider.addEventListener('input', (e) => {
+            const size = e.target.value;
+            courseFontSizeVal.textContent = `${size}px`;
+            courseName.style.fontSize = `${size}px`;
+        });
+
+        // Seletor de Molduras
+        frameSelector.addEventListener('change', (e) => {
+            const frameStyle = e.target.value;
+            
+            // Remove classes anteriores de moldura
+            certBox.classList.remove('frame-minimalist', 'frame-none');
+            
+            if (frameStyle === 'minimalist') {
+                certBox.classList.add('frame-minimalist');
+            } else if (frameStyle === 'none') {
+                certBox.classList.add('frame-none');
+            }
+        });
+
+        // Toggle do QR Code
+        qrToggle.addEventListener('change', (e) => {
+            if (e.target.value === 'off') {
+                qrBox.style.display = 'none';
+            } else {
+                qrBox.style.display = 'flex';
+            }
+        });
+
+        // Toggle do Guilloché (Linhas de Fundo)
+        guillocheToggle.addEventListener('change', (e) => {
+            if (e.target.value === 'off') {
+                guillocheBg.style.opacity = '0';
+            } else {
+                guillocheBg.style.opacity = '0.08';
+            }
+        });
+
+        // Auxiliares para manter classes intactas
+        function getFrameClass() {
+            if (certBox.classList.contains('frame-minimalist')) return 'frame-minimalist';
+            if (certBox.classList.contains('frame-none')) return 'frame-none';
+            return '';
+        }
+
+        function getThemeClass() {
+            if (certBox.classList.contains('theme-emerald')) return 'theme-emerald';
+            if (certBox.classList.contains('theme-ruby')) return 'theme-ruby';
+            if (certBox.classList.contains('theme-obsidian')) return 'theme-obsidian';
+            if (certBox.classList.contains('theme-classic')) return 'theme-classic';
+            if (certBox.classList.contains('theme-light')) return 'theme-light';
+            return '';
+        }
+
+        // ==========================================================================
+        // FUNÇÃO CENTRAL: Aplicar um tema específico (reusável por botões e auto-switch)
+        // ==========================================================================
+        function applyTheme(theme) {
+            // Atualiza botões visuais da sidebar
+            presetBtns.forEach(b => b.classList.remove('active'));
+            const targetBtn = document.querySelector(`.preset-btn[data-theme="${theme}"]`);
+            if (targetBtn) targetBtn.classList.add('active');
+
+            // Reseta classes antigas de tema
+            certBox.classList.remove('theme-emerald', 'theme-ruby', 'theme-obsidian', 'theme-classic', 'theme-light');
+            certBox.classList.add(`theme-${theme}`);
+
+            if (theme === 'obsidian') {
+                certBox.style.backgroundColor = '#090a0d';
+                document.documentElement.style.setProperty('--cert-gold', '#dfba6b');
+                document.documentElement.style.setProperty('--cert-gold-rgb', '223, 186, 107');
+                document.documentElement.style.setProperty('--cert-text', '#ffffff');
+            } else if (theme === 'emerald') {
+                certBox.style.backgroundColor = '#03120d';
+                document.documentElement.style.setProperty('--cert-gold', '#d1b46a');
+                document.documentElement.style.setProperty('--cert-gold-rgb', '209, 180, 106');
+                document.documentElement.style.setProperty('--cert-text', '#f1fcf8');
+            } else if (theme === 'ruby') {
+                certBox.style.backgroundColor = '#130307';
+                document.documentElement.style.setProperty('--cert-gold', '#dfba6b');
+                document.documentElement.style.setProperty('--cert-gold-rgb', '223, 186, 107');
+                document.documentElement.style.setProperty('--cert-text', '#fff0f3');
+            } else if (theme === 'classic') {
+                certBox.style.backgroundColor = '#181310';
+                document.documentElement.style.setProperty('--cert-gold', '#df9c40');
+                document.documentElement.style.setProperty('--cert-gold-rgb', '223, 156, 64');
+                document.documentElement.style.setProperty('--cert-text', '#fffdf9');
+            } else if (theme === 'light') {
+                certBox.style.backgroundColor = '#ffffff';
+                document.documentElement.style.setProperty('--cert-gold', '#b38938');
+                document.documentElement.style.setProperty('--cert-gold-rgb', '179, 137, 56');
+                document.documentElement.style.setProperty('--cert-text', '#1a1a1a');
+            }
+        }
+
+        // Detecta se o tema atual é escuro
+        function isCurrentThemeDark() {
+            return !certBox.classList.contains('theme-light');
+        }
+
+        // Auto-switch para tema Branco se o tema atual for escuro
+        function activateLightThemeIfDark() {
+            if (isCurrentThemeDark()) {
+                applyTheme('light');
+            }
+        }
+
+        // Reseta cores do aluno e curso para defaults seguros em temas escuros
+        function resetColorsToSafeDefaults() {
+            // Verifica se a cor ativa do aluno é preto ou cinza
+            const activeStudentBtn = document.querySelector('.font-color-btn.active');
+            const studentColorType = activeStudentBtn ? activeStudentBtn.getAttribute('data-color') : 'gold';
+            if (studentColorType === 'black' || studentColorType === 'gray') {
+                // Restaura técnica de gradient-clip para ouro
+                studentName.style.webkitTextFillColor = 'transparent';
+                studentName.style.backgroundImage = 'var(--student-gold)';
+                studentName.style.backgroundClip = 'text';
+                studentName.style.webkitBackgroundClip = 'text';
+                document.documentElement.style.setProperty('--student-color', 'var(--student-gold)');
+                fontColorBtns.forEach(b => b.classList.remove('active'));
+                const goldBtn = document.querySelector('.font-color-btn[data-color="gold"]');
+                if (goldBtn) goldBtn.classList.add('active');
+            }
+
+            // Verifica se a cor ativa do curso é preto ou cinza
+            const activeCourseBtn = document.querySelector('.course-color-btn.active');
+            const courseColorType = activeCourseBtn ? activeCourseBtn.getAttribute('data-color') : 'white';
+            if (courseColorType === 'black' || courseColorType === 'gray') {
+                // Restaura técnica de gradient-clip para branco
+                courseName.style.webkitTextFillColor = 'transparent';
+                courseName.style.backgroundImage = 'var(--course-white)';
+                courseName.style.backgroundClip = 'text';
+                courseName.style.webkitBackgroundClip = 'text';
+                document.documentElement.style.setProperty('--course-color', 'var(--course-white)');
+                courseColorBtns.forEach(b => b.classList.remove('active'));
+                const whiteBtn = document.querySelector('.course-color-btn[data-color="white"]');
+                if (whiteBtn) whiteBtn.classList.add('active');
+            }
+        }
+
+        // Mudança de Temas do Fundo (via botões preset)
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.getAttribute('data-theme');
+                applyTheme(theme);
+
+                // Se voltou para tema escuro, reseta cores inseguras automaticamente
+                if (theme !== 'light') {
+                    resetColorsToSafeDefaults();
+                }
+                if (!window.isRestoringState) saveStateToLocalStorage();
+            });
+        });
+
+        // Dica flutuante some após 10 segundos
+        setTimeout(() => {
+            const tooltip = document.querySelector('.edit-tooltip');
+            if (tooltip) {
+                tooltip.style.transition = 'opacity 1.2s';
+                tooltip.style.opacity = '0';
+                setTimeout(() => tooltip.remove(), 1200);
+            }
+        }, 10000);
+
+        // ==========================================================================
+        // EXPORTAÇÃO DA ARTE DO CERTIFICADO EM ALTA RESOLUÇÃO (PNG)
+        // ==========================================================================
+        const btnSavePng = document.getElementById('btn-save-png');
+        btnSavePng.addEventListener('click', () => {
+            const originalContent = btnSavePng.innerHTML;
+            
+            // Garantir que destaques e outlines sejam removidos antes da renderização
+            if (window.clearAllHighlights) window.clearAllHighlights();
+            
+            // Feedback visual elegante de processamento
+            btnSavePng.innerHTML = `
+                <svg class="spin-icon" style="animation: spin 1s linear infinite; margin-right: 8px;" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-1.1 2c-.105.707-.413 1.352-.866 1.879l-1.42-1.42a.5.5 0 0 0-.708.708l1.42 1.42A5.964 5.964 0 0 1 8 12c-1.657 0-3-1.343-3-3a1 1 0 0 0-2 0 5 5 0 0 0 5 5c1.375 0 2.63-.553 3.535-1.45L12.5 13.5a.5.5 0 0 0 .802-.24l1-4A.5.5 0 0 0 13.8 8.7l-4 1a.5.5 0 0 0-.366.3M4.466 9H.534a.25.25 0 0 0-.192.41l1.966 2.36a.25.25 0 0 0 .384 0l1.966-2.36A.25.25 0 0 0 4.466 9z"/>
+                    <path d="M8 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3.535 1.45L12.5 4.5a.5.5 0 0 0-.802-.24l-1 4A.5.5 0 0 0 11.2 8.7l4-1a.5.5 0 0 0 .366-.3m-7.344.429a.5.5 0 0 0-.708-.708l-1.42 1.42A5.964 5.964 0 0 1 8 4c1.657 0 3 1.343 3 3a1 1 0 0 0 2 0 5 5 0 0 0-5-5c-1.375 0-2.63.553-3.535 1.45L3.5 2.5a.5.5 0 0 0-.802.24l-1 4A.5.5 0 0 0 2.2 7.3l4-1a.5.5 0 0 0 .366-.3z"/>
+                </svg>
+                Processando...
+            `;
+            btnSavePng.disabled = true;
+            btnSavePng.style.opacity = '0.7';
+
+            // Usar html2canvas com configurações de altíssima nitidez (scale: 3 = 300% de escala)
+            html2canvas(document.getElementById('cert-box'), {
+                scale: 3, 
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                
+                // Extrair nomes dinamicamente para nomenclatura limpa do arquivo
+                const studentNameVal = studentName.innerText.trim() || 'Maria_Eduarda';
+                const courseNameVal = courseName.innerText.trim() || 'Especializacao';
+                
+                const formattedStudent = studentNameVal.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "_");
+                const formattedCourse = courseNameVal.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "_");
+                
+                link.download = `Certificado_${formattedStudent}_${formattedCourse}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                // Restaurar estado original do botão
+                btnSavePng.innerHTML = originalContent;
+                btnSavePng.disabled = false;
+                btnSavePng.style.opacity = '1';
+            });
+        });
+
+        // ==========================================================================
+        // SINCRONIZAÇÃO BIDIRECIONAL, PERSISTÊNCIA & GERAÇÃO EM LOTE
+        // ==========================================================================
+
+        const inputBrand = document.getElementById('input-brand');
+        const inputStudent = document.getElementById('input-student');
+        const inputCourse = document.getElementById('input-course');
+        const inputDate = document.getElementById('input-date');
+        const inputHours = document.getElementById('input-hours');
+        const inputReg = document.getElementById('input-reg');
+
+        const brandField = document.getElementById('brand-name-field');
+        const studentField = document.getElementById('student-name-field');
+        const courseField = document.getElementById('course-name-field');
+        const dateField = document.getElementById('date-field');
+        const hoursField = document.getElementById('hours-field');
+        const regField = document.getElementById('reg-field');
+        const titleField = document.getElementById('title-field');
+        const bodyField = document.getElementById('body-field');
+        const sig1Name = document.getElementById('sig1-name');
+        const sig1Title = document.getElementById('sig1-title');
+        const sig2Name = document.getElementById('sig2-name');
+        const sig2Title = document.getElementById('sig2-title');
+
+        // Controlar visibilidade do ícone do logotipo dependendo do preenchimento do nome da escola/marca
+        function updateBrandIconVisibility() {
+            const logoIcon = document.querySelector('.cert-logo-icon');
+            if (brandField && logoIcon) {
+                const text = brandField.textContent ? brandField.textContent.trim() : '';
+                if (text === '') {
+                    logoIcon.style.display = 'none';
+                } else {
+                    logoIcon.style.display = ''; // Restaura o estilo de exibição padrão (flex/block)
+                }
+            }
+        }
+
+        // Sincronizar inputs da barra lateral -> certificado em tempo real
+        function setupLiveSync() {
+            inputBrand.addEventListener('input', () => {
+                brandField.innerText = inputBrand.value;
+                updateBrandIconVisibility();
+                saveStateToLocalStorage();
+            });
+            inputStudent.addEventListener('input', () => {
+                studentField.innerText = inputStudent.value;
+                saveStateToLocalStorage();
+            });
+            inputCourse.addEventListener('input', () => {
+                courseField.innerText = inputCourse.value;
+                saveStateToLocalStorage();
+            });
+            inputDate.addEventListener('input', () => {
+                dateField.innerText = inputDate.value;
+                saveStateToLocalStorage();
+            });
+            inputHours.addEventListener('input', () => {
+                hoursField.innerText = inputHours.value;
+                saveStateToLocalStorage();
+            });
+            inputReg.addEventListener('input', () => {
+                regField.innerText = inputReg.value;
+                saveStateToLocalStorage();
+            });
+
+            // Sincronizar certificado -> inputs da barra lateral & salvar quando editar diretamente no certificado
+            const certBoxContent = document.getElementById('cert-content-box');
+            certBoxContent.addEventListener('input', () => {
+                inputBrand.value = brandField.innerText;
+                inputStudent.value = studentField.innerText;
+                inputCourse.value = courseField.innerText;
+                inputDate.value = dateField.innerText;
+                inputHours.value = hoursField.innerText;
+                inputReg.value = regField.innerText;
+                updateBrandIconVisibility();
+                saveStateToLocalStorage();
+            });
+        }
+
+        // Helpers seguros para salvar/carregar estado sem quebrar em elementos nulos ou inexistentes
+        const getElValue = (id, fallback = '') => {
+            const el = document.getElementById(id);
+            return el ? el.value : fallback;
+        };
+
+        // Função para salvar todo o estado atual no LocalStorage de forma robusta e livre de erros de DOM
+        function saveStateToLocalStorage() {
+            try {
+                const state = {
+                    // Conteúdos Textuais do Certificado
+                    brandText: brandField.innerText,
+                    studentText: studentField.innerText,
+                    courseText: courseField.innerText,
+                    dateText: dateField.innerText,
+                    hoursText: hoursField.innerText,
+                    regText: regField.innerText,
+                    titleText: titleField.innerText,
+                    bodyText: bodyField.innerText,
+                    sig1NameText: sig1Name.innerText,
+                    sig1TitleText: sig1Title.innerText,
+                    sig2NameText: sig2Name.innerText,
+                    sig2TitleText: sig2Title.innerText,
+
+                    // Estilos Customizados aplicados via Barra de Ferramentas Flutuante
+                    brandStyle: brandField.style.cssText,
+                    titleStyle: titleField.style.cssText,
+                    studentStyle: studentField.style.cssText,
+                    courseStyle: courseField.style.cssText,
+                    bodyStyle: bodyField.style.cssText,
+                    dateStyle: dateField.style.cssText,
+                    hoursStyle: hoursField.style.cssText,
+                    regStyle: regField.style.cssText,
+                    sig1NameStyle: sig1Name.style.cssText,
+                    sig1TitleStyle: sig1Title.style.cssText,
+                    sig2NameStyle: sig2Name.style.cssText,
+                    sig2TitleStyle: sig2Title.style.cssText,
+
+                    // Conteúdos dos Inputs da Sidebar
+                    inputBrand: getElValue('input-brand'),
+                    inputStudent: getElValue('input-student'),
+                    inputCourse: getElValue('input-course'),
+                    inputDate: getElValue('input-date'),
+                    inputHours: getElValue('input-hours'),
+                    inputReg: getElValue('input-reg'),
+
+                    // Configurações de Imagem/Modelo
+                    modelRight: getElValue('model-selector'),
+                    modelLeft: getElValue('model-selector-left'),
+                    posSelector: getElValue('pos-selector'),
+                    opacityRight: getElValue('opacity-slider'),
+                    opacityLeft: getElValue('opacity-slider-left'),
+                    fadeToggle: getElValue('fade-toggle'),
+
+                    // Molduras, Selos e Guilloché
+                    frameStyle: getElValue('frame-selector'),
+                    sealPos: getElValue('seal-pos-selector'),
+                    guilloche: getElValue('guilloche-toggle'),
+
+                    // QR Code
+                    qrShow: getElValue('qr-toggle'),
+                    qrPos: getElValue('qr-pos-selector'),
+                    qrSize: getElValue('qr-size-selector'),
+
+                    // Customização de Fontes e Tamanhos
+                    titleFont: getElValue('title-font-selector'),
+                    titleEffect: getElValue('title-color-selector'),
+                    studentFont: getElValue('font-selector'),
+                    studentFontSize: getElValue('font-size-slider'),
+                    courseFont: getElValue('course-font-selector'),
+                    courseFontSize: getElValue('course-font-size-slider'),
+
+                    // Cores ativas selecionadas pelos botões
+                    studentColor: document.querySelector('.font-color-btn.active') ? document.querySelector('.font-color-btn.active').getAttribute('data-color') : 'gold',
+                    courseColor: document.querySelector('.course-color-btn.active') ? document.querySelector('.course-color-btn.active').getAttribute('data-color') : 'white',
+
+                    // Tema ativo e lista de lote
+                    activeTheme: document.querySelector('.preset-btn.active') ? document.querySelector('.preset-btn.active').getAttribute('data-theme') : 'obsidian',
+                    batchNames: getElValue('batch-names')
+                };
+                localStorage.setItem('andrea_vargas_cert_state_v2', JSON.stringify(state));
+            } catch (err) {
+                console.error("Erro ao salvar estado no LocalStorage:", err);
+            }
+        }
+
+        // Função para carregar e restaurar o estado salvo no LocalStorage com total resiliência
+        function loadStateFromLocalStorage() {
+            try {
+                let saved = localStorage.getItem('andrea_vargas_cert_state_v2');
+                if (!saved) {
+                    // Tenta migrar o estado do v1 se disponível para não perder alterações prévias
+                    saved = localStorage.getItem('andrea_vargas_cert_state');
+                }
+                if (!saved) return;
+                const state = JSON.parse(saved);
+
+                // Desabilitar o auto-salvamento durante a carga para evitar loops de salvamento redundantes
+                window.isRestoringState = true;
+
+                // Auxiliares seguros de restauração
+                const setElValue = (id, val, eventType = 'change') => {
+                    const el = document.getElementById(id);
+                    if (el && val !== undefined && val !== null) {
+                        el.value = val;
+                        el.dispatchEvent(new Event(eventType));
+                    }
+                };
+
+                const setFieldText = (el, text) => {
+                    if (el && text !== undefined && text !== null) {
+                        el.innerText = text;
+                    }
+                };
+
+                // Restaurar textos no certificado
+                setFieldText(brandField, state.brandText);
+                setFieldText(studentField, state.studentText);
+                setFieldText(courseField, state.courseText);
+                setFieldText(dateField, state.dateText);
+                setFieldText(hoursField, state.hoursText);
+                setFieldText(regField, state.regText);
+                setFieldText(titleField, state.titleText);
+                setFieldText(bodyField, state.bodyText);
+                setFieldText(sig1Name, state.sig1NameText);
+                setFieldText(sig1Title, state.sig1TitleText);
+                setFieldText(sig2Name, state.sig2NameText);
+                setFieldText(sig2Title, state.sig2TitleText);
+
+                // Restaurar estilos inline customizados (com prioridade)
+                if (state.brandStyle) brandField.style.cssText = state.brandStyle;
+                if (state.titleStyle) titleField.style.cssText = state.titleStyle;
+                if (state.studentStyle) studentField.style.cssText = state.studentStyle;
+                if (state.courseStyle) courseField.style.cssText = state.courseStyle;
+                if (state.bodyStyle) bodyField.style.cssText = state.bodyStyle;
+                if (state.dateStyle) dateField.style.cssText = state.dateStyle;
+                if (state.hoursStyle) hoursField.style.cssText = state.hoursStyle;
+                if (state.regStyle) regField.style.cssText = state.regStyle;
+                if (state.sig1NameStyle) sig1Name.style.cssText = state.sig1NameStyle;
+                if (state.sig1TitleStyle) sig1Title.style.cssText = state.sig1TitleStyle;
+                if (state.sig2NameStyle) sig2Name.style.cssText = state.sig2NameStyle;
+                if (state.sig2TitleStyle) sig2Title.style.cssText = state.sig2TitleStyle;
+
+                // Restaurar inputs da barra lateral
+                setElValue('input-brand', state.inputBrand || state.brandText, 'input');
+                setElValue('input-student', state.inputStudent || state.studentText, 'input');
+                setElValue('input-course', state.inputCourse || state.courseText, 'input');
+                setElValue('input-date', state.inputDate || state.dateText, 'input');
+                setElValue('input-hours', state.inputHours || state.hoursText, 'input');
+                setElValue('input-reg', state.inputReg || state.regText, 'input');
+
+                // Restaurar configurações de Imagem/Modelo
+                setElValue('model-selector', state.modelRight);
+                setElValue('model-selector-left', state.modelLeft);
+                setElValue('pos-selector', state.posSelector);
+                setElValue('opacity-slider', state.opacityRight, 'input');
+                setElValue('opacity-slider-left', state.opacityLeft, 'input');
+                setElValue('fade-toggle', state.fadeToggle);
+
+                // Restaurar molduras, selos e Guilloché
+                setElValue('frame-selector', state.frameStyle);
+                setElValue('seal-pos-selector', state.sealPos);
+                setElValue('guilloche-toggle', state.guilloche);
+
+                // Restaurar QR Code
+                setElValue('qr-toggle', state.qrShow);
+                setElValue('qr-pos-selector', state.qrPos);
+                setElValue('qr-size-selector', state.qrSize);
+
+                // Restaurar customizações de Fontes e Tamanhos
+                setElValue('title-font-selector', state.titleFont);
+                setElValue('title-color-selector', state.titleEffect);
+                setElValue('font-selector', state.studentFont);
+                setElValue('font-size-slider', state.studentFontSize, 'input');
+                setElValue('course-font-selector', state.courseFont);
+                setElValue('course-font-size-slider', state.courseFontSize, 'input');
+
+                // Restaurar cores do nome (Botões Ativos)
+                if (state.studentColor) {
+                    const studentBtn = document.querySelector(`.font-color-btn[data-color="${state.studentColor}"]`);
+                    if (studentBtn) {
+                        studentBtn.click();
+                    }
+                }
+
+                // Restaurar cores do curso (Botões Ativos)
+                if (state.courseColor) {
+                    const courseBtn = document.querySelector(`.course-color-btn[data-color="${state.courseColor}"]`);
+                    if (courseBtn) {
+                        courseBtn.click();
+                    }
+                }
+
+                // Restaurar tema ativo clicando no botão correspondente
+                if (state.activeTheme) {
+                    const themeBtn = document.querySelector(`.preset-btn[data-theme="${state.activeTheme}"]`);
+                    if (themeBtn) {
+                        themeBtn.click();
+                    }
+                }
+
+                // Restaurar nomes do lote
+                setElValue('batch-names', state.batchNames, 'input');
+
+                window.isRestoringState = false;
+            } catch (err) {
+                console.error("Erro ao carregar estado do LocalStorage:", err);
+                window.isRestoringState = false;
+            }
+        }
+
+        // Capturar todas as alterações na barra lateral e salvar automaticamente
+        const sidebarContainer = document.querySelector('.sidebar');
+        sidebarContainer.addEventListener('change', () => {
+            if (!window.isRestoringState) saveStateToLocalStorage();
+        });
+        sidebarContainer.addEventListener('input', () => {
+            if (!window.isRestoringState) saveStateToLocalStorage();
+        });
+
+        // ==========================================================================
+        // GERAÇÃO EM LOTE DE ALUNOS COM DOWNLOADS SEQUENCIAIS E PROGRESSO
+        // ==========================================================================
+        const textareaBatch = document.getElementById('batch-names');
+        const batchCountSpan = document.getElementById('batch-count');
+        const btnGenerateBatch = document.getElementById('btn-generate-batch');
+
+        // Monitor de digitação para contar alunos
+        textareaBatch.addEventListener('input', () => {
+            const lines = textareaBatch.value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            
+            if (lines.length > 10) {
+                const limited = lines.slice(0, 10);
+                textareaBatch.value = limited.join('\n');
+                batchCountSpan.innerText = "10 alunos detectados (máximo atingido)";
+                batchCountSpan.style.color = "#ef4444";
+            } else {
+                batchCountSpan.innerText = `${lines.length} aluno${lines.length === 1 ? '' : 's'} detectado${lines.length === 1 ? '' : 's'}`;
+                batchCountSpan.style.color = "var(--gold-primary)";
+            }
+        });
+
+        // Executável da geração em lote
+        btnGenerateBatch.addEventListener('click', async () => {
+            const names = textareaBatch.value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+            if (names.length === 0) {
+                alert("Por favor, digite pelo menos um nome de aluno na lista para gerar o lote.");
+                return;
+            }
+
+            // Garantir que destaques e outlines sejam removidos antes da renderização em lote
+            if (window.clearAllHighlights) window.clearAllHighlights();
+
+            const originalStudentName = studentField.innerText;
+            const originalInputVal = inputStudent.value;
+
+            // Criar e adicionar o overlay de progresso elegante
+            const overlay = document.createElement('div');
+            overlay.id = 'batch-overlay';
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.background = 'rgba(13, 14, 17, 0.95)';
+            overlay.style.backdropFilter = 'blur(10px)';
+            overlay.style.zIndex = '999999';
+            overlay.style.display = 'flex';
+            overlay.style.flexDirection = 'column';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.color = '#fff';
+            overlay.style.fontFamily = 'Montserrat, sans-serif';
+            overlay.style.transition = 'opacity 0.4s';
+            
+            overlay.innerHTML = `
+                <div style="text-align: center; max-width: 450px; width: 90%; padding: 40px 30px; border: 1px solid rgba(223, 186, 107, 0.2); border-radius: 20px; background: rgba(255,255,255,0.02); box-shadow: 0 25px 60px rgba(0,0,0,0.6); box-sizing: border-box;">
+                    <svg class="spin-icon" style="animation: spin 1s linear infinite; color: var(--gold-primary); margin-bottom: 25px;" width="50" height="50" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-1.1 2c-.105.707-.413 1.352-.866 1.879l-1.42-1.42a.5.5 0 0 0-.708.708l1.42 1.42A5.964 5.964 0 0 1 8 12c-1.657 0-3-1.343-3-3a1 1 0 0 0-2 0 5 5 0 0 0 5 5c1.375 0 2.63-.553 3.535-1.45L12.5 13.5a.5.5 0 0 0-.802-.24l1-4A.5.5 0 0 0 13.8 8.7l-4 1a.5.5 0 0 0-.366.3M4.466 9H.534a.25.25 0 0 0-.192.41l1.966 2.36a.25.25 0 0 0 .384 0l1.966-2.36A.25.25 0 0 0 4.466 9z"/>
+                        <path d="M8 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3.535 1.45L12.5 4.5a.5.5 0 0 0-.802-.24l-1 4A.5.5 0 0 0 11.2 8.7l4-1a.5.5 0 0 0 .366-.3m-7.344.429a.5.5 0 0 0-.708-.708l-1.42 1.42A5.964 5.964 0 0 1 8 4c1.657 0 3 1.343 3 3a1 1 0 0 0 2 0 5 5 0 0 0-5-5c-1.375 0-2.63.553-3.535 1.45L3.5 2.5a.5.5 0 0 0-.802.24l-1 4A.5.5 0 0 0 2.2 7.3l4-1a.5.5 0 0 0 .366-.3z"/>
+                    </svg>
+                    <h3 style="color: var(--gold-primary); margin: 0 0 10px 0; font-size: 18px; letter-spacing: 1px; font-weight: bold; text-transform: uppercase;">Geração de Lote Ativa</h3>
+                    <p id="batch-status-text" style="font-size: 13px; margin: 0 0 20px 0; color: #a0a5b5; font-family: sans-serif; line-height: 1.6;">Preparando gerador...</p>
+                    
+                    <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-bottom: 12px;">
+                        <div id="batch-progress-bar" style="width: 0%; height: 100%; background: var(--gold-gradient); border-radius: 3px; transition: width 0.3s ease;"></div>
+                    </div>
+                    <div id="batch-percent" style="font-size: 14px; color: var(--gold-primary); font-weight: bold; font-family: monospace;">0%</div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+
+            // Loop de processamento sequencial
+            try {
+                for (let i = 0; i < names.length; i++) {
+                    const name = names[i];
+
+                    // Atualizar textos e barra de progresso do overlay
+                    document.getElementById('batch-status-text').innerHTML = `Processando aluno:<br><strong style="color:#fff; font-size:15px;">${name}</strong><br><span style="font-size:12px; color:rgba(255,255,255,0.4);">(${i + 1} de ${names.length} certificados)</span>`;
+                    const percent = Math.round(((i + 1) / names.length) * 100);
+                    document.getElementById('batch-progress-bar').style.width = `${percent}%`;
+                    document.getElementById('batch-percent').innerText = `${percent}%`;
+
+                    // Atualizar certificado dinamicamente
+                    studentField.innerText = name;
+                    inputStudent.value = name;
+
+                    // Pausa de segurança de 400ms para permitir a renderização completa do DOM
+                    await new Promise(resolve => setTimeout(resolve, 400));
+
+                    // Executar renderizador html2canvas de altíssima escala
+                    const canvas = await html2canvas(document.getElementById('cert-box'), {
+                        scale: 3,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: null,
+                        logging: false
+                    });
+
+                    // Baixar imagem do aluno corrente
+                    const link = document.createElement('a');
+                    const formattedStudent = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "_");
+                    const courseNameVal = courseField.innerText.trim() || 'Especializacao';
+                    const formattedCourse = courseNameVal.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "_");
+
+                    link.download = `Certificado_${formattedStudent}_${formattedCourse}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+
+                    // Pausa de 600ms entre downloads para não sobrecarregar as threads de download do navegador
+                    await new Promise(resolve => setTimeout(resolve, 600));
+                }
+
+                // Restaurar estado de nome original ao terminar
+                studentField.innerText = originalStudentName;
+                inputStudent.value = originalInputVal;
+                saveStateToLocalStorage();
+
+                // Conclusão com sucesso
+                document.getElementById('batch-status-text').innerHTML = `<span style="color:#10b981; font-weight:bold; font-size:15px;">✓ Concluído com Sucesso!</span><br>Todos os ${names.length} certificados foram baixados.`;
+                document.getElementById('batch-progress-bar').style.background = "#10b981";
+
+                setTimeout(() => {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => overlay.remove(), 400);
+                }, 2000);
+
+            } catch (err) {
+                console.error("Erro na renderização em lote:", err);
+                alert("Ocorreu um erro durante a geração em lote. Alguns arquivos podem não ter sido salvos.");
+                
+                // Restaurar nome original em caso de quebra
+                studentField.innerText = originalStudentName;
+                inputStudent.value = originalInputVal;
+                overlay.remove();
+            }
+        });
+
+        // ==========================================================================
+        // GERENCIADOR DE PROJETOS E MODELOS (BANCO DE DADOS LOCAL & EXPORTAÇÃO JSON)
+        // ==========================================================================
+        const projectNameInput = document.getElementById('project-name-input');
+        const btnSaveProjectAs = document.getElementById('btn-save-project-as');
+        const savedProjectsDropdown = document.getElementById('saved-projects-dropdown');
+        const btnLoadSavedProject = document.getElementById('btn-load-saved-project');
+        const btnDeleteSavedProject = document.getElementById('btn-delete-saved-project');
+        const btnExportProjectFile = document.getElementById('btn-export-project-file');
+        const importProjectFile = document.getElementById('import-project-file');
+
+        // Função para obter o dicionário de projetos salvos no LocalStorage
+        function getSavedProjects() {
+            try {
+                const data = localStorage.getItem('andrea_vargas_saved_projects');
+                return data ? JSON.parse(data) : {};
+            } catch (e) {
+                console.error("Erro ao ler projetos salvos:", e);
+                return {};
+            }
+        }
+
+        // Atualizar o select com os projetos cadastrados
+        function updateSavedProjectsDropdown() {
+            if (!savedProjectsDropdown) return;
+            const projects = getSavedProjects();
+            
+            // Limpa opções anteriores mantendo a padrão
+            savedProjectsDropdown.innerHTML = '<option value="">-- Escolha um Modelo --</option>';
+            
+            const keys = Object.keys(projects).sort();
+            keys.forEach(key => {
+                const opt = document.createElement('option');
+                opt.value = key;
+                opt.textContent = key;
+                savedProjectsDropdown.appendChild(opt);
+            });
+        }
+
+        // Salvar projeto como novo modelo
+        btnSaveProjectAs.addEventListener('click', () => {
+            const name = projectNameInput.value.trim();
+            if (!name) {
+                alert("Por favor, digite um nome para salvar o seu modelo!");
+                projectNameInput.focus();
+                return;
+            }
+
+            // Gera o estado completo chamando a nossa função de salvamento existente (ou gerando o objeto dinamicamente)
+            const state = {
+                // Conteúdos Textuais
+                brandText: brandField.innerText,
+                studentText: studentField.innerText,
+                courseText: courseField.innerText,
+                dateText: dateField.innerText,
+                hoursText: hoursField.innerText,
+                regText: regField.innerText,
+                titleText: titleField.innerText,
+                bodyText: bodyField.innerText,
+                sig1NameText: sig1Name.innerText,
+                sig1TitleText: sig1Title.innerText,
+                sig2NameText: sig2Name.innerText,
+                sig2TitleText: sig2Title.innerText,
+
+                // Estilos Customizados
+                brandStyle: brandField ? brandField.style.cssText : '',
+                titleStyle: titleField ? titleField.style.cssText : '',
+                studentStyle: studentField ? studentField.style.cssText : '',
+                courseStyle: courseField ? courseField.style.cssText : '',
+                bodyStyle: bodyField ? bodyField.style.cssText : '',
+                dateStyle: dateField ? dateField.style.cssText : '',
+                hoursStyle: hoursField ? hoursField.style.cssText : '',
+                regStyle: regField ? regField.style.cssText : '',
+                sig1NameStyle: sig1Name ? sig1Name.style.cssText : '',
+                sig1TitleStyle: sig1Title ? sig1Title.style.cssText : '',
+                sig2NameStyle: sig2Name ? sig2Name.style.cssText : '',
+                sig2TitleStyle: sig2Title ? sig2Title.style.cssText : '',
+
+                // Conteúdos dos Inputs da Sidebar
+                inputBrand: getElValue('input-brand'),
+                inputStudent: getElValue('input-student'),
+                inputCourse: getElValue('input-course'),
+                inputDate: getElValue('input-date'),
+                inputHours: getElValue('input-hours'),
+                inputReg: getElValue('input-reg'),
+
+                // Configurações de Imagem/Modelo
+                modelRight: getElValue('model-selector'),
+                modelLeft: getElValue('model-selector-left'),
+                posSelector: getElValue('pos-selector'),
+                opacityRight: getElValue('opacity-slider'),
+                opacityLeft: getElValue('opacity-slider-left'),
+                fadeToggle: getElValue('fade-toggle'),
+
+                // Molduras, Selos e Guilloché
+                frameStyle: getElValue('frame-selector'),
+                sealPos: getElValue('seal-pos-selector'),
+                guilloche: getElValue('guilloche-toggle'),
+
+                // QR Code
+                qrShow: getElValue('qr-toggle'),
+                qrPos: getElValue('qr-pos-selector'),
+                qrSize: getElValue('qr-size-selector'),
+
+                // Customização de Fontes e Tamanhos
+                titleFont: getElValue('title-font-selector'),
+                titleEffect: getElValue('title-color-selector'),
+                studentFont: getElValue('font-selector'),
+                studentFontSize: getElValue('font-size-slider'),
+                courseFont: getElValue('course-font-selector'),
+                courseFontSize: getElValue('course-font-size-slider'),
+
+                // Cores selecionadas
+                studentColor: document.querySelector('.font-color-btn.active') ? document.querySelector('.font-color-btn.active').getAttribute('data-color') : 'gold',
+                courseColor: document.querySelector('.course-color-btn.active') ? document.querySelector('.course-color-btn.active').getAttribute('data-color') : 'white',
+
+                // Tema ativo
+                activeTheme: document.querySelector('.preset-btn.active') ? document.querySelector('.preset-btn.active').getAttribute('data-theme') : 'obsidian',
+                batchNames: getElValue('batch-names')
+            };
+
+            const projects = getSavedProjects();
+            projects[name] = state;
+            
+            try {
+                localStorage.setItem('andrea_vargas_saved_projects', JSON.stringify(projects));
+                updateSavedProjectsDropdown();
+                savedProjectsDropdown.value = name;
+                projectNameInput.value = '';
+                alert(`✓ Sucesso! O modelo "${name}" foi salvo com todas as suas formatações no Banco de Dados local!`);
+            } catch (e) {
+                alert("Erro ao salvar modelo localmente. O espaço do navegador pode estar cheio.");
+            }
+        });
+
+        // Carregar modelo selecionado
+        btnLoadSavedProject.addEventListener('click', () => {
+            const name = savedProjectsDropdown.value;
+            if (!name) {
+                alert("Por favor, selecione um modelo salvo na lista para carregar!");
+                return;
+            }
+
+            const projects = getSavedProjects();
+            const state = projects[name];
+            if (state) {
+                restoreProjectState(state);
+                alert(`📂 Modelo "${name}" carregado com sucesso!`);
+            }
+        });
+
+        // Excluir modelo
+        btnDeleteSavedProject.addEventListener('click', () => {
+            const name = savedProjectsDropdown.value;
+            if (!name) {
+                alert("Por favor, selecione um modelo na lista para excluir!");
+                return;
+            }
+
+            if (confirm(`Tem certeza de que deseja excluir permanentemente o modelo "${name}" do seu Banco de Dados local?`)) {
+                const projects = getSavedProjects();
+                delete projects[name];
+                localStorage.setItem('andrea_vargas_saved_projects', JSON.stringify(projects));
+                updateSavedProjectsDropdown();
+                alert(`Modelo "${name}" excluído.`);
+            }
+        });
+
+        // Exportar arquivo .json
+        btnExportProjectFile.addEventListener('click', () => {
+            const currentName = savedProjectsDropdown.value || projectNameInput.value.trim() || 'modelo_certificado';
+            const state = {
+                brandText: brandField.innerText,
+                studentText: studentField.innerText,
+                courseText: courseField.innerText,
+                dateText: dateField.innerText,
+                hoursText: hoursField.innerText,
+                regText: regField.innerText,
+                titleText: titleField.innerText,
+                bodyText: bodyField.innerText,
+                sig1NameText: sig1Name.innerText,
+                sig1TitleText: sig1Title.innerText,
+                sig2NameText: sig2Name.innerText,
+                sig2TitleText: sig2Title.innerText,
+                brandStyle: brandField ? brandField.style.cssText : '',
+                titleStyle: titleField ? titleField.style.cssText : '',
+                studentStyle: studentField ? studentField.style.cssText : '',
+                courseStyle: courseField ? courseField.style.cssText : '',
+                bodyStyle: bodyField ? bodyField.style.cssText : '',
+                dateStyle: dateField ? dateField.style.cssText : '',
+                hoursStyle: hoursField ? hoursField.style.cssText : '',
+                regStyle: regField ? regField.style.cssText : '',
+                sig1NameStyle: sig1Name ? sig1Name.style.cssText : '',
+                sig1TitleStyle: sig1Title ? sig1Title.style.cssText : '',
+                sig2NameStyle: sig2Name ? sig2Name.style.cssText : '',
+                sig2TitleStyle: sig2Title ? sig2Title.style.cssText : '',
+                inputBrand: getElValue('input-brand'),
+                inputStudent: getElValue('input-student'),
+                inputCourse: getElValue('input-course'),
+                inputDate: getElValue('input-date'),
+                inputHours: getElValue('input-hours'),
+                inputReg: getElValue('input-reg'),
+                modelRight: getElValue('model-selector'),
+                modelLeft: getElValue('model-selector-left'),
+                posSelector: getElValue('pos-selector'),
+                opacityRight: getElValue('opacity-slider'),
+                opacityLeft: getElValue('opacity-slider-left'),
+                fadeToggle: getElValue('fade-toggle'),
+                frameStyle: getElValue('frame-selector'),
+                sealPos: getElValue('seal-pos-selector'),
+                guilloche: getElValue('guilloche-toggle'),
+                qrShow: getElValue('qr-toggle'),
+                qrPos: getElValue('qr-pos-selector'),
+                qrSize: getElValue('qr-size-selector'),
+                titleFont: getElValue('title-font-selector'),
+                titleEffect: getElValue('title-color-selector'),
+                studentFont: getElValue('font-selector'),
+                studentFontSize: getElValue('font-size-slider'),
+                courseFont: getElValue('course-font-selector'),
+                courseFontSize: getElValue('course-font-size-slider'),
+                studentColor: document.querySelector('.font-color-btn.active') ? document.querySelector('.font-color-btn.active').getAttribute('data-color') : 'gold',
+                courseColor: document.querySelector('.course-color-btn.active') ? document.querySelector('.course-color-btn.active').getAttribute('data-color') : 'white',
+                activeTheme: document.querySelector('.preset-btn.active') ? document.querySelector('.preset-btn.active').getAttribute('data-theme') : 'obsidian',
+                batchNames: getElValue('batch-names')
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            
+            const sanitizedName = currentName.toLowerCase().replace(/[^a-z0-9]/gi, '_');
+            downloadAnchor.setAttribute("download", `certificado_${sanitizedName}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        });
+
+        // Importar arquivo .json
+        importProjectFile.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const state = JSON.parse(event.target.result);
+                    restoreProjectState(state);
+                    alert("✓ Projeto importado do arquivo .json e restaurado com absoluto sucesso!");
+                    
+                    // Sugere salvar no BD local também
+                    const suggestedName = file.name.replace('.json', '').replace('certificado_', '').toUpperCase();
+                    projectNameInput.value = suggestedName;
+                } catch (err) {
+                    alert("Erro ao ler o arquivo JSON. Certifique-se de que é um arquivo válido exportado anteriormente.");
+                }
+            };
+            reader.readAsText(file);
+            importProjectFile.value = ''; // Limpa para permitir upload do mesmo arquivo novamente
+        });
+
+        // Função de restauração genérica robusta usada pelo abridor e pelo importador
+        function restoreProjectState(state) {
+            if (!state) return;
+            window.isRestoringState = true;
+
+            const setElVal = (id, val, eventType = 'change') => {
+                const el = document.getElementById(id);
+                if (el && val !== undefined && val !== null) {
+                    el.value = val;
+                    el.dispatchEvent(new Event(eventType));
+                }
+            };
+
+            const setTxt = (el, text) => {
+                if (el && text !== undefined && text !== null) {
+                    el.innerText = text;
+                }
+            };
+
+            // Restaurar textos no certificado
+            setTxt(brandField, state.brandText);
+            setTxt(studentField, state.studentText);
+            setTxt(courseField, state.courseText);
+            setTxt(dateField, state.dateText);
+            setTxt(hoursField, state.hoursText);
+            setTxt(regField, state.regText);
+            setTxt(titleField, state.titleText);
+            setTxt(bodyField, state.bodyText);
+            setTxt(sig1Name, state.sig1NameText);
+            setTxt(sig1Title, state.sig1TitleText);
+            setTxt(sig2Name, state.sig2NameText);
+            setTxt(sig2Title, state.sig2TitleText);
+
+            // Restaurar estilos inline de texto customizados se houver
+            if (state.brandStyle && brandField) brandField.style.cssText = state.brandStyle;
+            if (state.titleStyle && titleField) titleField.style.cssText = state.titleStyle;
+            if (state.studentStyle && studentField) studentField.style.cssText = state.studentStyle;
+            if (state.courseStyle && courseField) courseField.style.cssText = state.courseStyle;
+            if (state.bodyStyle && bodyField) bodyField.style.cssText = state.bodyStyle;
+            if (state.dateStyle && dateField) dateField.style.cssText = state.dateStyle;
+            if (state.hoursStyle && hoursField) hoursField.style.cssText = state.hoursStyle;
+            if (state.regStyle && regField) regField.style.cssText = state.regStyle;
+            if (state.sig1NameStyle && sig1Name) sig1Name.style.cssText = state.sig1NameStyle;
+            if (state.sig1TitleStyle && sig1Title) sig1Title.style.cssText = state.sig1TitleStyle;
+            if (state.sig2NameStyle && sig2Name) sig2Name.style.cssText = state.sig2NameStyle;
+            if (state.sig2TitleStyle && sig2Title) sig2Title.style.cssText = state.sig2TitleStyle;
+
+            // Restaurar inputs da barra lateral
+            setElVal('input-brand', state.inputBrand || state.brandText, 'input');
+            setElVal('input-student', state.inputStudent || state.studentText, 'input');
+            setElVal('input-course', state.inputCourse || state.courseText, 'input');
+            setElVal('input-date', state.inputDate || state.dateText, 'input');
+            setElVal('input-hours', state.inputHours || state.hoursText, 'input');
+            setElVal('input-reg', state.inputReg || state.regText, 'input');
+
+            // Restaurar configurações de Imagem/Modelo
+            setElVal('model-selector', state.modelRight);
+            setElVal('model-selector-left', state.modelLeft);
+            setElVal('pos-selector', state.posSelector);
+            setElVal('opacity-slider', state.opacityRight, 'input');
+            setElVal('opacity-slider-left', state.opacityLeft, 'input');
+            setElVal('fade-toggle', state.fadeToggle);
+
+            // Restaurar molduras, selos e Guilloché
+            setElVal('frame-selector', state.frameStyle);
+            setElVal('seal-pos-selector', state.sealPos);
+            setElVal('guilloche-toggle', state.guilloche);
+
+            // Restaurar QR Code
+            setElVal('qr-toggle', state.qrShow);
+            setElVal('qr-pos-selector', state.qrPos);
+            setElVal('qr-size-selector', state.qrSize);
+
+            // Restaurar customizações de Fontes e Tamanhos
+            setElVal('title-font-selector', state.titleFont);
+            setElVal('title-color-selector', state.titleEffect);
+            setElVal('font-selector', state.studentFont);
+            setElVal('font-size-slider', state.studentFontSize, 'input');
+            setElVal('course-font-selector', state.courseFont);
+            setElVal('course-font-size-slider', state.courseFontSize, 'input');
+
+            // Restaurar cores do nome (Botões Ativos)
+            if (state.studentColor) {
+                const studentBtn = document.querySelector(`.font-color-btn[data-color="${state.studentColor}"]`);
+                if (studentBtn) {
+                    document.querySelectorAll('.font-color-btn').forEach(b => b.classList.remove('active'));
+                    studentBtn.classList.add('active');
+                }
+            }
+
+            // Restaurar cores do curso (Botões Ativos)
+            if (state.courseColor) {
+                const courseBtn = document.querySelector(`.course-color-btn[data-color="${state.courseColor}"]`);
+                if (courseBtn) {
+                    document.querySelectorAll('.course-color-btn').forEach(b => b.classList.remove('active'));
+                    courseBtn.classList.add('active');
+                }
+            }
+
+            // Restaurar Tema
+            if (state.activeTheme) {
+                applyTheme(state.activeTheme);
+                const themeBtn = document.querySelector(`.preset-btn[data-theme="${state.activeTheme}"]`);
+                if (themeBtn) {
+                    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                    themeBtn.classList.add('active');
+                }
+            }
+
+            setElVal('batch-names', state.batchNames);
+
+            window.isRestoringState = false;
+            updateBrandIconVisibility();
+            
+            // Força o salvamento na chave de estado ativa para manter o último estado persistido
+            saveStateToLocalStorage();
+        }
+
+        // Inicializar sincronização ativa, carregar arte persistida e banco de projetos
+        setupLiveSync();
+        loadStateFromLocalStorage();
+        initEditableElementsToolbar();
+        updateSavedProjectsDropdown();
+        
+        // Forçar aplicação de fontes padrão do título e curso se não houver nenhum estado salvo (v1 ou v2)
+        if (!localStorage.getItem('andrea_vargas_cert_state_v2') && !localStorage.getItem('andrea_vargas_cert_state')) {
+            titleFontSelector.dispatchEvent(new Event('change'));
+            courseFontSelector.dispatchEvent(new Event('change'));
+        }
+        
+        updateBrandIconVisibility();
+
+        // ==========================================
+        // VINCULAÇÃO VISUAL E CORES DAS SEÇÕES (UX/UI PRO MAX)
+        // ==========================================
+        function setupVisualMapping() {
+            const menuSections = document.querySelectorAll('.menu-section');
+            const certBox = document.getElementById('cert-box');
+            
+            // Mapeador de Elementos do Certificado correspondentes a cada Seção
+            const sectionTargets = {
+                'conteudo': [
+                    document.getElementById('brand-name-field'),
+                    document.getElementById('body-field'),
+                    document.getElementById('date-field'),
+                    document.getElementById('hours-field'),
+                    document.getElementById('reg-field'),
+                    document.getElementById('sig1-name'),
+                    document.getElementById('sig1-title'),
+                    document.getElementById('sig2-name'),
+                    document.getElementById('sig2-title')
+                ],
+                'lote': [
+                    document.getElementById('student-name-field')
+                ],
+                'imagem': [
+                    document.getElementById('cert-img-element'),
+                    document.getElementById('cert-img-element-left')
+                ],
+                'tema': [
+                    certBox
+                ],
+                'aluno': [
+                    document.getElementById('student-name-field')
+                ],
+                'curso': [
+                    document.getElementById('course-name-field')
+                ],
+                'moldura': [
+                    document.getElementById('main-border'),
+                    document.getElementById('seal-container')
+                ],
+                'titulo': [
+                    document.getElementById('title-field'),
+                    document.getElementById('qr-box')
+                ]
+            };
+
+            // Mapeador de Cores em Formato RGB para o Glow (box-shadow)
+            const sectionColors = {
+                'conteudo': { hex: '#38bdf8', rgb: '56, 189, 248' },
+                'lote': { hex: '#0d9488', rgb: '13, 148, 136' },
+                'imagem': { hex: '#10b981', rgb: '16, 185, 129' },
+                'tema': { hex: '#f43f5e', rgb: '244, 63, 94' },
+                'aluno': { hex: '#ec4899', rgb: '236, 72, 153' },
+                'curso': { hex: '#a855f7', rgb: '168, 85, 247' },
+                'moldura': { hex: '#f59e0b', rgb: '245, 158, 11' },
+                'titulo': { hex: '#eab308', rgb: '234, 179, 8' }
+            };
+
+            // Adiciona classe auxiliar para transições no certificado
+            // NÃO adicionar transition em elementos de imagem para não sobrescrever seus estilos
+            const imageElements = new Set(sectionTargets['imagem'] || []);
+            Object.values(sectionTargets).flat().forEach(el => {
+                if (el && el !== certBox && !imageElements.has(el)) {
+                    el.style.transition = 'outline 0.3s, outline-offset 0.3s, box-shadow 0.3s, transform 0.3s';
+                }
+            });
+
+            // Ativa o destaque da seção e seus elementos do certificado correspondentes
+            function activateHighlight(sectionId) {
+                const targets = sectionTargets[sectionId];
+                const colors = sectionColors[sectionId];
+                
+                if (!targets || !colors) return;
+
+                // Destaca os alvos no certificado
+                targets.forEach(target => {
+                    if (!target) return;
+                    
+                    if (target === certBox) {
+                        target.style.borderColor = colors.hex;
+                        target.style.boxShadow = `0 0 30px rgba(${colors.rgb}, 0.45), 0 35px 80px rgba(0,0,0,0.8)`;
+                        target.style.transform = 'scale(1.006)';
+                    } else if (imageElements.has(target)) {
+                        // Para imagens: APENAS outline, NUNCA tocar em background
+                        target.style.outline = `2px dashed ${colors.hex}`;
+                        target.style.outlineOffset = '4px';
+                    } else {
+                        target.style.outline = `2px dashed ${colors.hex}`;
+                        target.style.outlineOffset = '6px';
+                        target.style.boxShadow = `0 0 15px rgba(${colors.rgb}, 0.35)`;
+                        target.style.background = `rgba(${colors.rgb}, 0.04)`;
+                        target.style.borderRadius = '4px';
+                        target.style.transform = 'scale(1.015)';
+                    }
+                });
+
+                // Destaca o card correspondente na sidebar
+                const sectionCard = document.querySelector(`.menu-section[data-section="${sectionId}"]`);
+                if (sectionCard) {
+                    sectionCard.classList.add('focused-section');
+                    sectionCard.style.setProperty('--section-accent-rgb', colors.rgb);
+                }
+            }
+
+            // Remove todos os destaques de seção
+            window.clearAllHighlights = function() {
+                Object.keys(sectionTargets).forEach(sId => deactivateHighlight(sId));
+            };
+
+            function deactivateHighlight(sectionId) {
+                const targets = sectionTargets[sectionId];
+                if (!targets) return;
+
+                targets.forEach(target => {
+                    if (!target) return;
+
+                    if (target === certBox) {
+                        target.style.borderColor = '';
+                        target.style.boxShadow = '';
+                        target.style.transform = '';
+                    } else if (imageElements.has(target)) {
+                        // Para imagens: APENAS remover outline, NUNCA tocar em background
+                        target.style.outline = '';
+                        target.style.outlineOffset = '';
+                    } else {
+                        target.style.outline = '';
+                        target.style.outlineOffset = '';
+                        target.style.boxShadow = '';
+                        target.style.background = '';
+                        target.style.borderRadius = '';
+                        target.style.transform = '';
+                    }
+                });
+
+                const sectionCard = document.querySelector(`.menu-section[data-section="${sectionId}"]`);
+                if (sectionCard) {
+                    sectionCard.classList.remove('focused-section');
+                }
+            }
+
+            // Registrar os listeners para cada Seção do Menu
+            menuSections.forEach(section => {
+                const sectionId = section.getAttribute('data-section');
+                if (!sectionId) return;
+
+                // Ao passar o mouse (Hover) na seção da sidebar
+                section.addEventListener('mouseenter', () => activateHighlight(sectionId));
+                section.addEventListener('mouseleave', () => deactivateHighlight(sectionId));
+
+                // Ao focar (Focus) em qualquer controle (input/select/textarea) dentro da seção
+                const controls = section.querySelectorAll('input, select, textarea, button');
+                controls.forEach(control => {
+                    control.addEventListener('focus', () => {
+                        // Limpa qualquer outro destaque ativo
+                        menuSections.forEach(s => deactivateHighlight(s.getAttribute('data-section')));
+                        activateHighlight(sectionId);
+                    });
+                    
+                    control.addEventListener('blur', () => {
+                        deactivateHighlight(sectionId);
+                    });
+                });
+            });
+
+            // Registrar listeners inversos: ao focar elementos editáveis diretamente no certificado
+            const editableFields = [
+                { id: 'brand-name-field', section: 'conteudo' },
+                { id: 'title-field', section: 'titulo' },
+                { id: 'body-field', section: 'conteudo' },
+                { id: 'student-name-field', section: 'aluno' },
+                { id: 'course-name-field', section: 'curso' },
+                { id: 'date-field', section: 'conteudo' },
+                { id: 'hours-field', section: 'conteudo' },
+                { id: 'reg-field', section: 'conteudo' },
+                { id: 'sig1-name', section: 'conteudo' },
+                { id: 'sig1-title', section: 'conteudo' },
+                { id: 'sig2-name', section: 'conteudo' },
+                { id: 'sig2-title', section: 'conteudo' }
+            ];
+
+            editableFields.forEach(field => {
+                const el = document.getElementById(field.id);
+                if (!el) return;
+
+                el.addEventListener('focus', () => {
+                    activateHighlight(field.section);
+                    // Rola suavemente o card da sidebar correspondente para visibilidade
+                    const sectionCard = document.querySelector(`.menu-section[data-section="${field.section}"]`);
+                    if (sectionCard) {
+                        sectionCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+
+                el.addEventListener('blur', () => {
+                    deactivateHighlight(field.section);
+                });
+
+                el.addEventListener('mouseenter', () => {
+                    activateHighlight(field.section);
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    deactivateHighlight(field.section);
+                });
+            });
+        }
+
+        // Inicializar vinculação de blocos
+        setupVisualMapping();
+    </script>
+</body>
+</html>

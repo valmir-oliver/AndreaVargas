@@ -310,5 +310,224 @@
     // Inicializa
     generateLink();
   </script>
+
+  <!-- ═══════════════════════════════════════════════════════
+       GESTÃO DE ALUNOS — Firebase Authentication
+       ═══════════════════════════════════════════════════════ -->
+  <style>
+    .alunos-section {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+    .alunos-title {
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .alunos-sub {
+      font-size: 0.75rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .aluno-form .form-group {
+      margin-bottom: 0.75rem;
+    }
+    .aluno-form label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.3rem;
+    }
+    .aluno-form input {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 0.88rem;
+      border-radius: 4px;
+      outline: none;
+      font-family: var(--ff-sans);
+      transition: border-color 0.2s;
+    }
+    .aluno-form input:focus { border-color: rgba(201,169,110,0.5); }
+    .aluno-form input::placeholder { color: #555; }
+    .create-btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-family: var(--ff-serif);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.25rem;
+      transition: opacity 0.2s;
+    }
+    .create-btn:hover:not(:disabled) { opacity: 0.85; }
+    .create-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .aluno-result {
+      margin-top: 1rem;
+      padding: 0.85rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+    .aluno-result.success {
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: #6ee7b7;
+    }
+    .aluno-result.error {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #fca5a5;
+    }
+    .copy-creds-btn {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(201,169,110,0.15);
+      border: 1px solid rgba(201,169,110,0.3);
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .copy-creds-btn:hover { background: rgba(201,169,110,0.25); }
+    .firebase-link {
+      display: block;
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #555;
+    }
+    .firebase-link a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .firebase-link a:hover { text-decoration: underline; }
+  </style>
+
+  <div style="max-width:500px;margin:2rem auto;padding:0 15px 3rem">
+    <div class="alunos-section">
+      <h2 class="alunos-title">👩‍🎓 Gestão de Alunos</h2>
+      <p class="alunos-sub">Cadastre uma nova aluna na Área de Membros. Ela receberá o acesso por e-mail + senha que você define.</p>
+
+      <form class="aluno-form" id="aluno-form" novalidate>
+        <div class="form-group">
+          <label for="aluno-email">E-mail da Aluna</label>
+          <input id="aluno-email" type="email" placeholder="aluna@email.com" autocomplete="off" required />
+        </div>
+        <div class="form-group">
+          <label for="aluno-senha">Senha Temporária (mín. 6 caracteres)</label>
+          <input id="aluno-senha" type="text" placeholder="Ex: Imersao2024" autocomplete="off" required />
+        </div>
+        <button type="submit" class="create-btn" id="create-btn">Criar Conta da Aluna</button>
+      </form>
+
+      <div id="aluno-result" class="aluno-result" style="display:none"></div>
+
+      <p class="firebase-link">
+        Ver todas as alunas cadastradas:
+        <a href="https://console.firebase.google.com/project/andrea-vargas-hair/authentication/users" target="_blank" rel="noopener">
+          Abrir Firebase Console →
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signOut
+    } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey:            'AIzaSyCIxpbi3upHVYpPCutkVjPl0hTLAc1bLjU',
+      authDomain:        'andrea-vargas-hair.firebaseapp.com',
+      projectId:         'andrea-vargas-hair',
+      storageBucket:     'andrea-vargas-hair.firebasestorage.app',
+      messagingSenderId: '216407492425',
+      appId:             '1:216407492425:web:7053aefb1d75db6cf37c98'
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const alunoForm   = document.getElementById('aluno-form');
+    const createBtn   = document.getElementById('create-btn');
+    const alunoResult = document.getElementById('aluno-result');
+    const emailInput  = document.getElementById('aluno-email');
+    const senhaInput  = document.getElementById('aluno-senha');
+
+    alunoForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      const senha = senhaInput.value.trim();
+
+      if (!email || !senha) {
+        showResult('Preencha e-mail e senha.', 'error');
+        return;
+      }
+      if (senha.length < 6) {
+        showResult('A senha deve ter pelo menos 6 caracteres.', 'error');
+        return;
+      }
+
+      createBtn.disabled    = true;
+      createBtn.textContent = 'Criando...';
+      alunoResult.style.display = 'none';
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, senha);
+        // Sign out immediately — admin doesn't stay as the student
+        await signOut(auth);
+
+        const whatsappMsg = `Olá! Seu acesso à Área de Membros da Imersão O Poder da Cor está pronto 🎉%0A%0A🔗 Link: https://andreavargas.hair/area-membros.html%0A📧 E-mail: ${email}%0A🔑 Senha: ${senha}%0A%0A_Você pode alterar a senha a qualquer momento no link acima._`;
+
+        showResult(
+          `✅ Conta criada com sucesso!<br><br>` +
+          `<strong>E-mail:</strong> ${email}<br>` +
+          `<strong>Senha:</strong> ${senha}<br><br>` +
+          `<button class="copy-creds-btn" onclick="navigator.clipboard.writeText('E-mail: ${email}\\nSenha: ${senha}\\nLink: https://andreavargas.hair/area-membros.html').then(()=>alert('Copiado!'))">📋 Copiar Credenciais</button>` +
+          `&nbsp;&nbsp;<a class="copy-creds-btn" href="https://wa.me/?text=${whatsappMsg}" target="_blank" rel="noopener">📲 Enviar via WhatsApp</a>`,
+          'success'
+        );
+
+        emailInput.value = '';
+        senhaInput.value = '';
+      } catch (err) {
+        const erros = {
+          'auth/email-already-in-use': 'Este e-mail já está cadastrado.',
+          'auth/invalid-email':        'Endereço de e-mail inválido.',
+          'auth/weak-password':        'Senha muito fraca. Use pelo menos 6 caracteres.',
+        };
+        showResult(erros[err.code] || 'Erro ao criar conta: ' + err.message, 'error');
+      } finally {
+        createBtn.disabled    = false;
+        createBtn.textContent = 'Criar Conta da Aluna';
+      }
+    });
+
+    function showResult(html, type) {
+      alunoResult.innerHTML       = html;
+      alunoResult.className       = 'aluno-result ' + type;
+      alunoResult.style.display   = 'block';
+    }
+  </script>
+
 </body>
 </html>

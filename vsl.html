@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>O Poder da Cor — Mão na Massa | Andrea Vargas</title>
+  <meta name="description" content="Assista ao vídeo e descubra como dominar o diagnóstico de cor com Andrea Vargas na 2ª Edição da Imersão Presencial em São José dos Campos.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="O Poder da Cor — Mão na Massa | 2ª Edição com Andrea Vargas">
+  <meta property="og:description" content="18 e 19 de Outubro | São José dos Campos — SP. Vagas limitadas.">
+  <meta property="og:image" content="https://andreavargas.hair/images/andrea-perfil.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4146363175653679');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'VSL - O Poder da Cor Mao na Massa 2a Edicao',
+      content_category: 'Imersao Presencial'
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4146363175653679&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    /* ─── CONFIG ─────────────────────────────────── */
+    :root {
+      --bg:          #0a0b0e;
+      --gold:        #e6c887;
+      --gold-dark:   #c5a059;
+      --text:        #f4ede4;
+      --text-muted:  #8a8070;
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── VIDEO PROGRESS BAR ──────────────────────── */
+    #video-progress-track {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: rgba(255,255,255,0.04);
+      z-index: 1000;
+    }
+    #video-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+      transition: width 1s linear;
+    }
+
+    /* ─── PAGE LAYOUT ─────────────────────────────── */
+    .vsl-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 3rem 1rem 0;
+    }
+
+    /* ─── BRAND MARK ──────────────────────────────── */
+    .brand-mark {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+
+    /* ─── VIDEO WRAPPER ───────────────────────────── */
+    .video-wrapper {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .video-aspect {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-aspect iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ─── VIDEO CAPTION ───────────────────────────── */
+    .video-caption {
+      margin-top: 1.25rem;
+      text-align: center;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .video-caption.hidden {
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+    }
+    .caption-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .caption-line::before,
+    .caption-line::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--gold-dark);
+      opacity: 0.4;
+    }
+    .caption-text {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+    }
+    .caption-sub {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── CTA SECTION ─────────────────────────────── */
+    #cta-section {
+      width: 100%;
+      max-width: 900px;
+      margin-top: 0;
+      padding: 2.5rem 1.5rem 3rem;
+      border-top: 1px solid rgba(230, 200, 135, 0.25);
+      transform: translateY(60px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.5s ease;
+    }
+    #cta-section.visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .cta-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+    .cta-headline span { color: var(--gold); }
+
+    /* ─── EVENT DETAILS ───────────────────────────── */
+    .event-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .event-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .event-item strong { color: var(--text); font-weight: 500; }
+
+    /* ─── SCARCITY BAR ────────────────────────────── */
+    .scarcity-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      background: rgba(230, 200, 135, 0.06);
+      border: 1px solid rgba(230, 200, 135, 0.15);
+      margin-bottom: 1.5rem;
+    }
+    .scarcity-dot {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: blink 1.2s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.1; }
+    }
+    .scarcity-text {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ─── CTA BUTTON ──────────────────────────────── */
+    .cta-btn-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    #cta-btn {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      padding: 1.1rem 2rem;
+      background: var(--gold);
+      color: #0a0b0e;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+      animation: pulse-gold 2.5s ease-in-out infinite;
+    }
+    #cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    #cta-btn:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(230, 200, 135, 0.35);
+      animation: none;
+    }
+    #cta-btn:hover::before { transform: translateX(100%); }
+    #cta-btn:active { transform: translateY(0); }
+
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0); }
+      50%       { box-shadow: 0 0 0 10px rgba(230, 200, 135, 0.2); }
+    }
+
+    .cta-guarantee {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    .vsl-footer {
+      width: 100%;
+      max-width: 900px;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: auto;
+    }
+    .vsl-footer a {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .vsl-footer a:hover { color: var(--text); }
+
+    /* ─── REDUCE MOTION ───────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      #cta-section { transition: none; transform: none; opacity: 1; }
+      #cta-btn, .scarcity-dot { animation: none; }
+    }
+
+    /* ─── MOBILE ──────────────────────────────────── */
+    @media (max-width: 480px) {
+      .vsl-page { padding: 2rem 0.75rem 0; }
+      #cta-btn { font-size: 0.78rem; padding: 1rem 1.25rem; }
+      .event-item { font-size: 0.8rem; }
+      .scarcity-text { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Gold Progress Bar -->
+  <div id="video-progress-track" aria-hidden="true">
+    <div id="video-progress-fill"></div>
+  </div>
+
+  <main class="vsl-page">
+
+    <!-- Brand -->
+    <p class="brand-mark">Andrea Vargas &middot; O Poder da Cor</p>
+
+    <!-- Video -->
+    <section class="video-wrapper" aria-label="Vídeo da imersão">
+      <div class="video-aspect">
+        <div id="yt-player"></div>
+      </div>
+
+      <div class="video-caption" id="video-caption">
+        <div class="caption-line">
+          <span class="caption-text">Assista até o final</span>
+        </div>
+        <p class="caption-sub">Há uma condição especial esperando por você.</p>
+      </div>
+    </section>
+
+    <!-- CTA (reveals after 85% of video) -->
+    <section id="cta-section" aria-live="polite" aria-label="Oferta especial">
+      <p class="cta-eyebrow">Oferta Exclusiva &middot; Vagas Limitadas</p>
+
+      <h1 class="cta-headline">
+        As vagas são limitadas.<br>
+        <span>Esta é a sua vez.</span>
+      </h1>
+
+      <div class="scarcity-bar" role="status">
+        <span class="scarcity-dot" aria-hidden="true"></span>
+        <span class="scarcity-text">Vagas estritamente limitadas para acompanhamento individual</span>
+      </div>
+
+      <div class="event-details">
+        <div class="event-item">
+          <span aria-hidden="true">🗓️</span>
+          <span><strong>18 e 19 de Outubro</strong> &mdash; Dom e Seg</span>
+        </div>
+        <div class="event-item">
+          <span aria-hidden="true">📍</span>
+          <span><strong>São José dos Campos</strong> · SP</span>
+        </div>
+        <div class="event-item">
+          <span aria-hidden="true">🎯</span>
+          <span><strong>2 dias presenciais</strong> + 5 aulas online + 2 meses suporte</span>
+        </div>
+        <div class="event-item">
+          <span aria-hidden="true">💳</span>
+          <span>Até <strong>4x sem juros</strong> no cartão</span>
+        </div>
+      </div>
+
+      <div class="cta-btn-wrap">
+        <a id="cta-btn" href="#" role="button" target="_blank" rel="noopener noreferrer">
+          Garantir Minha Vaga Agora
+        </a>
+        <p class="cta-guarantee">
+          ⚠️ Vagas limitadas para que a Andrea acompanhe cada aluno individualmente na bancada
+        </p>
+      </div>
+    </section>
+
+    <footer class="vsl-footer">
+      <a href="/privacidade.html">Privacidade</a>
+      <a href="/termos.html">Termos de Uso</a>
+    </footer>
+
+  </main>
+
+  <!-- YouTube IFrame API -->
+  <script>
+    // ═══════════════════════════════════════════════
+    //  CONFIG — edite aqui quando necessário
+    // ═══════════════════════════════════════════════
+    var VIDEO_ID     = 'RpOh2ooZblw';
+    var CHECKOUT_URL = 'https://checkout.infinitepay.io/avargas_sjc/dsZApMCdkH';
+    var CTA_THRESHOLD = 0.85; // 85% do vídeo
+    // ═══════════════════════════════════════════════
+
+    var ctaBtn        = document.getElementById('cta-btn');
+    var ctaSection    = document.getElementById('cta-section');
+    var caption       = document.getElementById('video-caption');
+    var progressFill  = document.getElementById('video-progress-fill');
+
+    var player;
+    var ctaShown        = false;
+    var progressInterval = null;
+
+    // Patch checkout URL
+    ctaBtn.href = CHECKOUT_URL;
+
+    // Load YouTube IFrame API
+    (function () {
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    })();
+
+    // Called by YouTube API
+    window.onYouTubeIframeAPIReady = function () {
+      player = new YT.Player('yt-player', {
+        videoId: VIDEO_ID,
+        playerVars: {
+          rel:            0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+          fs:             1,
+          playsinline:    1,
+          origin:         window.location.origin
+        },
+        events: {
+          onStateChange: onPlayerStateChange
+        }
+      });
+    };
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        startTracking();
+      } else {
+        stopTracking();
+      }
+    }
+
+    function startTracking() {
+      stopTracking();
+      progressInterval = setInterval(tick, 1000);
+    }
+
+    function stopTracking() {
+      if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
+      }
+    }
+
+    function tick() {
+      if (!player || typeof player.getCurrentTime !== 'function') return;
+
+      var current  = player.getCurrentTime();
+      var duration = player.getDuration();
+      if (!duration || duration === 0) return;
+
+      var pct = current / duration;
+
+      // Update gold progress bar
+      progressFill.style.width = (Math.min(pct, 1) * 100).toFixed(1) + '%';
+
+      // Reveal CTA at threshold
+      if (!ctaShown && pct >= CTA_THRESHOLD) {
+        revealCTA();
+      }
+    }
+
+    function revealCTA() {
+      ctaShown = true;
+      stopTracking();
+
+      // Hide caption
+      caption.classList.add('hidden');
+
+      // Show CTA with spring animation
+      ctaSection.classList.add('visible');
+
+      // Scroll to CTA
+      setTimeout(function () {
+        ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 350);
+
+      // Pixel: Lead (viu o CTA)
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'VSL 85pct - CTA Revealed',
+          content_category: 'Imersao Presencial'
+        });
+      }
+    }
+
+    // Pixel: InitiateCheckout ao clicar
+    ctaBtn.addEventListener('click', function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'VSL CTA Click - Garantir Vaga',
+          content_category: 'Imersao Presencial',
+          currency: 'BRL',
+          value: 1300
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

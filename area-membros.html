@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Área de Membros | O Poder da Cor — Andrea Vargas</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────── */
+    :root {
+      --bg:           #0a0b0e;
+      --card-bg:      #111318;
+      --border:       rgba(230, 200, 135, 0.15);
+      --gold:         #e6c887;
+      --gold-dark:    #c5a059;
+      --text:         #f4ede4;
+      --text-muted:   #8a8070;
+      --red:          #ef4444;
+      --green:        #10b981;
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .hidden { display: none !important; }
+
+    /* ─── LOADING ────────────────────────────────── */
+    #loading-screen {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999;
+    }
+    .spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(230,200,135,0.15);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── LOGIN SCREEN ───────────────────────────── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+    }
+    .login-brand {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .login-brand-name {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-top: 0.5rem;
+    }
+    .login-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Form */
+    .form-group { margin-bottom: 1rem; }
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .form-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border-radius: 0;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      border-color: rgba(230,200,135,0.4);
+    }
+    .form-input::placeholder { color: var(--text-muted); opacity: 0.5; }
+
+    /* Error message */
+    .auth-error {
+      font-size: 0.78rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+      padding: 0.6rem 0.75rem;
+      background: rgba(239,68,68,0.08);
+      border-left: 2px solid var(--red);
+    }
+    .auth-success {
+      font-size: 0.78rem;
+      color: var(--green);
+      margin-bottom: 1rem;
+      padding: 0.6rem 0.75rem;
+      background: rgba(16,185,129,0.08);
+      border-left: 2px solid var(--green);
+    }
+
+    /* Login button */
+    .login-btn {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--gold);
+      color: #0a0b0e;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.2s, transform 0.15s;
+      margin-bottom: 1rem;
+    }
+    .login-btn:hover:not(:disabled) {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+    .login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Forgot password */
+    .forgot-link {
+      display: block;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .forgot-link:hover { color: var(--gold); }
+
+    /* ─── DASHBOARD ──────────────────────────────── */
+    #dashboard { min-height: 100vh; }
+
+    /* Header */
+    .dash-header {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 11, 14, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    .dash-header-brand {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+    }
+    .dash-header-user {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .user-email {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .logout-btn {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .logout-btn:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    /* Dashboard content */
+    .dash-content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .dash-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
+    }
+    .dash-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .dash-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── AULAS GRID ─────────────────────────────── */
+    .aulas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Aula Card */
+    .aula-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .aula-card:hover { border-color: rgba(230,200,135,0.3); }
+
+    /* Video player */
+    .video-aspect {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+    }
+    .video-aspect iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Em breve placeholder */
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: rgba(0,0,0,0.6);
+    }
+    .placeholder-icon {
+      font-size: 2rem;
+      opacity: 0.4;
+    }
+    .placeholder-text {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Card info */
+    .aula-info {
+      padding: 1.1rem 1.25rem;
+    }
+    .aula-num {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-bottom: 0.3rem;
+    }
+    .aula-titulo {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .aula-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── EVENT REMINDER ─────────────────────────── */
+    .event-reminder {
+      margin-top: 3rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(230,200,135,0.03);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
+    }
+    .reminder-title {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      width: 100%;
+      margin-bottom: 0.25rem;
+    }
+    .reminder-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .reminder-item strong { color: var(--text); }
+
+    /* ─── MOBILE ─────────────────────────────────── */
+    @media (max-width: 500px) {
+      .aulas-grid { grid-template-columns: 1fr; }
+      .login-card { padding: 2rem 1.25rem; }
+      .dash-header { padding: 0.75rem 1rem; }
+      .user-email { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spinner { animation: none; }
+      .aula-card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading -->
+  <div id="loading-screen" aria-label="Carregando...">
+    <div class="spinner" role="status"></div>
+  </div>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="hidden">
+    <div class="login-card">
+      <div class="login-brand">
+        <p class="login-brand-name">Andrea Vargas</p>
+        <h1 class="login-title">Área de Membros</h1>
+        <p class="login-subtitle">Acesso exclusivo para alunos da Imersão O Poder da Cor</p>
+      </div>
+
+      <div id="auth-error"   class="auth-error   hidden" role="alert"></div>
+      <div id="auth-success" class="auth-success  hidden" role="status"></div>
+
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email-input">E-mail</label>
+          <input
+            id="email-input"
+            type="email"
+            class="form-input"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password-input">Senha</label>
+          <input
+            id="password-input"
+            type="password"
+            class="form-input"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+        <button type="submit" class="login-btn" id="login-btn">Entrar</button>
+      </form>
+
+      <button class="forgot-link" id="forgot-btn" type="button">
+        Esqueci minha senha
+      </button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD (shown when authenticated) -->
+  <div id="dashboard" class="hidden">
+
+    <header class="dash-header">
+      <span class="dash-header-brand">O Poder da Cor &middot; Membros</span>
+      <div class="dash-header-user">
+        <span class="user-email" id="user-email-display"></span>
+        <button class="logout-btn" id="logout-btn">Sair</button>
+      </div>
+    </header>
+
+    <main class="dash-content">
+      <p class="dash-eyebrow">Imersão O Poder da Cor &middot; 2ª Edição</p>
+      <h2 class="dash-title">Suas Aulas Preparatórias</h2>
+      <p class="dash-subtitle">
+        5 aulas teóricas online para você chegar preparada para os 2 dias intensivos.
+      </p>
+
+      <div class="aulas-grid" id="aulas-grid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="event-reminder" role="complementary" aria-label="Detalhes do evento presencial">
+        <p class="reminder-title">Evento presencial</p>
+        <div class="reminder-item"><span>🗓️</span><span><strong>18 e 19 de Outubro</strong> &mdash; Dom e Seg</span></div>
+        <div class="reminder-item"><span>📍</span><span><strong>São José dos Campos</strong> · SP</span></div>
+        <div class="reminder-item"><span>🎯</span><span>Prática com <strong>modelos reais</strong> + acompanhamento individual</span></div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Firebase SDK (Modular) -->
+  <script type="module">
+    import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      signOut,
+      onAuthStateChanged
+    } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+
+    // ═══════════════════════════════════════════════════════
+    //  CONFIGURAÇÃO DO FIREBASE — não altere
+    // ═══════════════════════════════════════════════════════
+    const firebaseConfig = {
+      apiKey:            'AIzaSyCIxpbi3upHVYpPCutkVjPl0hTLAc1bLjU',
+      authDomain:        'andrea-vargas-hair.firebaseapp.com',
+      projectId:         'andrea-vargas-hair',
+      storageBucket:     'andrea-vargas-hair.firebasestorage.app',
+      messagingSenderId: '216407492425',
+      appId:             '1:216407492425:web:7053aefb1d75db6cf37c98'
+    };
+
+    // ═══════════════════════════════════════════════════════
+    //  AULAS — adicione o videoId do YouTube quando gravar
+    //  Deixe videoId: '' para exibir "Em breve"
+    // ═══════════════════════════════════════════════════════
+    const AULAS = [
+      {
+        numero: 1,
+        titulo: 'Fundamentos da Colorimetria',
+        descricao: 'Teoria das cores, roda cromática e como ela guia o diagnóstico no dia a dia do salão.',
+        videoId: '' // ← Substituir pelo ID do YouTube
+      },
+      {
+        numero: 2,
+        titulo: 'Diagnóstico de Cor',
+        descricao: 'Como identificar o tom natural, histórico químico e definir o tratamento ideal para cada cabelo.',
+        videoId: ''
+      },
+      {
+        numero: 3,
+        titulo: 'Técnicas de Aplicação',
+        descricao: 'Sequência e métodos de aplicação para garantir uniformidade e resultado profissional.',
+        videoId: ''
+      },
+      {
+        numero: 4,
+        titulo: 'Correção e Neutralização',
+        descricao: 'Como identificar e corrigir tons indesejados usando a roda de cores a seu favor.',
+        videoId: ''
+      },
+      {
+        numero: 5,
+        titulo: 'Preparação para a Imersão',
+        descricao: 'O que trazer, o que esperar e como aproveitar ao máximo os 2 dias presenciais com modelos reais.',
+        videoId: ''
+      }
+    ];
+    // ═══════════════════════════════════════════════════════
+
+    // Init Firebase
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // DOM refs
+    const loadingScreen  = document.getElementById('loading-screen');
+    const loginScreen    = document.getElementById('login-screen');
+    const dashboard      = document.getElementById('dashboard');
+    const loginForm      = document.getElementById('login-form');
+    const loginBtn       = document.getElementById('login-btn');
+    const emailInput     = document.getElementById('email-input');
+    const passwordInput  = document.getElementById('password-input');
+    const forgotBtn      = document.getElementById('forgot-btn');
+    const logoutBtn      = document.getElementById('logout-btn');
+    const userEmailEl    = document.getElementById('user-email-display');
+    const authError      = document.getElementById('auth-error');
+    const authSuccess    = document.getElementById('auth-success');
+    const aulasGrid      = document.getElementById('aulas-grid');
+
+    // ─── STATE MANAGEMENT ─────────────────────────────────
+    function showLoading()   { loadingScreen.classList.remove('hidden'); loginScreen.classList.add('hidden'); dashboard.classList.add('hidden'); }
+    function showLogin()     { loadingScreen.classList.add('hidden');    loginScreen.classList.remove('hidden'); dashboard.classList.add('hidden'); }
+    function showDashboard() { loadingScreen.classList.add('hidden');    loginScreen.classList.add('hidden'); dashboard.classList.remove('hidden'); }
+
+    function showError(msg)   { authError.textContent = msg;   authError.classList.remove('hidden');   authSuccess.classList.add('hidden'); }
+    function showSuccess(msg) { authSuccess.textContent = msg; authSuccess.classList.remove('hidden'); authError.classList.add('hidden'); }
+    function clearMessages()  { authError.classList.add('hidden'); authSuccess.classList.add('hidden'); }
+
+    // ─── AUTH STATE LISTENER ───────────────────────────────
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        userEmailEl.textContent = user.email;
+        renderAulas();
+        showDashboard();
+      } else {
+        showLogin();
+      }
+    });
+
+    // ─── LOGIN FORM ────────────────────────────────────────
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearMessages();
+
+      const email    = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showError('Preencha e-mail e senha.');
+        return;
+      }
+
+      loginBtn.disabled    = true;
+      loginBtn.textContent = 'Entrando...';
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // onAuthStateChanged will handle the redirect
+      } catch (err) {
+        loginBtn.disabled    = false;
+        loginBtn.textContent = 'Entrar';
+
+        const codes = {
+          'auth/user-not-found':    'E-mail não encontrado. Verifique seus dados.',
+          'auth/wrong-password':    'Senha incorreta. Tente novamente.',
+          'auth/invalid-credential':'E-mail ou senha incorretos.',
+          'auth/too-many-requests': 'Muitas tentativas. Aguarde alguns minutos.',
+          'auth/invalid-email':     'Endereço de e-mail inválido.',
+        };
+        showError(codes[err.code] || 'Erro ao entrar. Tente novamente.');
+      }
+    });
+
+    // ─── FORGOT PASSWORD ───────────────────────────────────
+    forgotBtn.addEventListener('click', async () => {
+      clearMessages();
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        showError('Digite seu e-mail acima antes de recuperar a senha.');
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showSuccess('E-mail de recuperação enviado! Verifique sua caixa de entrada.');
+      } catch (err) {
+        showError('Não foi possível enviar o e-mail. Verifique o endereço digitado.');
+      }
+    });
+
+    // ─── LOGOUT ────────────────────────────────────────────
+    logoutBtn.addEventListener('click', () => signOut(auth));
+
+    // ─── RENDER AULAS ──────────────────────────────────────
+    function renderAulas() {
+      aulasGrid.innerHTML = AULAS.map(aula => `
+        <article class="aula-card" aria-label="Aula ${aula.numero}: ${aula.titulo}">
+          <div class="video-aspect">
+            ${aula.videoId
+              ? `<iframe
+                   src="https://www.youtube.com/embed/${aula.videoId}?rel=0&modestbranding=1"
+                   title="Aula ${aula.numero} - ${aula.titulo}"
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                   allowfullscreen
+                   loading="lazy">
+                 </iframe>`
+              : `<div class="video-placeholder" aria-label="Aula em breve">
+                   <span class="placeholder-icon" aria-hidden="true">🔒</span>
+                   <span class="placeholder-text">Em breve</span>
+                 </div>`
+            }
+          </div>
+          <div class="aula-info">
+            <p class="aula-num">Aula ${String(aula.numero).padStart(2, '0')}</p>
+            <h3 class="aula-titulo">${aula.titulo}</h3>
+            <p class="aula-desc">${aula.descricao}</p>
+          </div>
+        </article>
+      `).join('');
+    }
+  </script>
+
+</body>
+</html>

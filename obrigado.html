@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Vaga Garantida! | Imersão O Poder da Cor — Andrea Vargas</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4146363175653679');
+    fbq('track', 'PageView');
+    fbq('track', 'Purchase', {
+      value: 1300.00,
+      currency: 'BRL',
+      content_name: 'Imersao O Poder da Cor Mao na Massa 2a Edicao',
+      content_type: 'product'
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4146363175653679&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    :root {
+      --bg:          #0a0b0e;
+      --gold:        #e6c887;
+      --gold-dark:   #c5a059;
+      --text:        #f4ede4;
+      --text-muted:  #8a8070;
+      --green:       #10b981;
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── CARD ─── */
+    .card {
+      width: 100%;
+      max-width: 580px;
+      text-align: center;
+    }
+
+    /* ─── CHECK ANIMATION ─── */
+    .check-wrap {
+      margin: 0 auto 2rem;
+      width: 80px; height: 80px;
+    }
+    .check-circle {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: rgba(16, 185, 129, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pop-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes pop-in {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .check-path {
+      stroke: var(--green);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: draw-check 0.4s 0.45s ease forwards;
+    }
+    @keyframes draw-check { to { stroke-dashoffset: 0; } }
+
+    /* ─── TYPOGRAPHY ─── */
+    .brand-mark {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-bottom: 0.75rem;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .subline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .divider {
+      width: 50px; height: 1px;
+      background: var(--gold-dark);
+      opacity: 0.25;
+      margin: 0 auto 2rem;
+    }
+
+    /* ─── STEPS ─── */
+    .steps-label {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-bottom: 1rem;
+    }
+    .steps {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+    .steps li {
+      display: flex;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .steps li:last-child { border-bottom: none; }
+    .step-n {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      color: var(--gold);
+      opacity: 0.8;
+      min-width: 22px;
+      padding-top: 3px;
+    }
+    .steps strong { color: var(--text); }
+
+    /* ─── COUNTDOWN ─── */
+    .countdown-wrap { margin-bottom: 1.25rem; }
+    .countdown-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+    .countdown-label b { color: var(--gold); }
+    .ctrack {
+      width: 100%; height: 2px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .cfill {
+      height: 100%;
+      background: var(--gold);
+      width: 100%;
+      transition: width 1s linear;
+    }
+
+    /* ─── BUTTON ─── */
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 1.1rem 2rem;
+      background: var(--gold);
+      color: #0a0b0e;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+      animation: pulse-gold 2.5s ease-in-out infinite;
+    }
+    .cta-btn:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(230,200,135,0.3);
+      animation: none;
+    }
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230,200,135,0); }
+      50%       { box-shadow: 0 0 0 8px rgba(230,200,135,0.2); }
+    }
+
+    /* ─── FOOTER ─── */
+    .pg-footer {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .pg-footer a {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .pg-footer a:hover { color: var(--text); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .check-circle { animation: none; transform: scale(1); opacity: 1; }
+      .check-path   { animation: none; stroke-dashoffset: 0; }
+      .cta-btn      { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="card" role="main">
+
+    <!-- Checkmark -->
+    <div class="check-wrap" aria-hidden="true">
+      <div class="check-circle">
+        <svg width="36" height="36" viewBox="0 0 36 36">
+          <polyline class="check-path" points="6,18 15,26 30,10" />
+        </svg>
+      </div>
+    </div>
+
+    <p class="brand-mark">Andrea Vargas &middot; O Poder da Cor</p>
+    <h1 class="headline">Sua vaga está garantida!</h1>
+    <p class="subline">
+      Bem-vinda à 2ª Edição da Imersão Presencial.<br>
+      Nos vemos em São José dos Campos, dias 18 e 19 de Outubro. ✨
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="steps-label">Próximos passos</p>
+    <ol class="steps" role="list">
+      <li>
+        <span class="step-n">01</span>
+        <span>Verifique seu <strong>e-mail e WhatsApp</strong> — a equipe enviará a confirmação da inscrição em breve.</span>
+      </li>
+      <li>
+        <span class="step-n">02</span>
+        <span>Você receberá os <strong>dados de acesso à Área de Membros</strong> (e-mail + senha) para as 5 aulas teóricas online.</span>
+      </li>
+      <li>
+        <span class="step-n">03</span>
+        <span>Reserve os dias <strong>18 e 19 de Outubro</strong> na agenda. Chegue preparada para 2 dias intensivos com modelos reais.</span>
+      </li>
+    </ol>
+
+    <!-- Countdown -->
+    <div class="countdown-wrap" aria-live="polite">
+      <p class="countdown-label">
+        Redirecionando para a Área de Membros em <b id="count">5</b>s...
+      </p>
+      <div class="ctrack" aria-hidden="true">
+        <div class="cfill" id="cfill"></div>
+      </div>
+    </div>
+
+    <a href="/area-membros.html" class="cta-btn" id="cta-btn">
+      Acessar Área de Membros Agora
+    </a>
+
+    <footer class="pg-footer">
+      <a href="/privacidade.html">Privacidade</a>
+      <a href="/termos.html">Termos de Uso</a>
+    </footer>
+
+  </main>
+
+  <script>
+    var REDIRECT = '/area-membros.html';
+    var TOTAL    = 5;
+    var remaining = TOTAL;
+
+    var countEl = document.getElementById('count');
+    var fillEl  = document.getElementById('cfill');
+    var ctaBtn  = document.getElementById('cta-btn');
+
+    var timer = setInterval(function () {
+      remaining--;
+      countEl.textContent = remaining;
+      fillEl.style.width = (remaining / TOTAL * 100) + '%';
+      if (remaining <= 0) {
+        clearInterval(timer);
+        window.location.href = REDIRECT;
+      }
+    }, 1000);
+
+    ctaBtn.addEventListener('click', function () {
+      clearInterval(timer);
+    });
+  </script>
+
+</body>
+</html>
