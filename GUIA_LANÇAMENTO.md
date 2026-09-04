@@ -126,6 +126,7 @@ Fiquem atentos às notificações! 🚀
 | Finalidade | URL |
 |---|---|
 | **Página VSL com Vídeo** | `https://andreavargas.hair/vsl.html` |
+| **Página da Live / Reprise** | `https://andreavargas.hair/live.html` |
 | **Checkout InfinitePay (R$ 1.300)** | `https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb` |
 | **Página de Obrigado (Redirecionamento)** | `https://andreavargas.hair/obrigado.html` |
 | **Área de Membros EAD** | `https://andreavargas.hair/area-membros.html` |

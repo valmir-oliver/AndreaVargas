@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Masterclass Ao Vivo &middot; O Poder da Cor | Andrea Vargas</title>
+  <meta name="description" content="Assista à gravação exclusiva da Masterclass com Andrea Vargas e garanta sua vaga na 2ª Edição da Imersão Presencial O Poder da Cor em São José dos Campos.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4146363175653679');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Reprise Live Masterclass - Andrea Vargas',
+      content_category: 'Educacao Profissional'
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=4146363175653679&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    /* ─── TOKENS ──────────────────────────────────── */
+    :root {
+      --bg:           #0a0b0e;
+      --card-bg:      #111318;
+      --gold:         #e6c887;
+      --gold-dark:    #c5a059;
+      --gold-glow:    rgba(230, 200, 135, 0.28);
+      --text:         #f4ede4;
+      --text-muted:   #8a8070;
+      --border:       rgba(230, 200, 135, 0.15);
+      --red-live:     #ef4444;
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Plus Jakarta Sans', sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(230,200,135,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── TOP NOTICE BAR (INSCRIÇÕES ABERTAS) ──────── */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(17, 19, 24, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(230, 200, 135, 0.25);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      z-index: 100;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .top-bar:hover {
+      background: rgba(23, 26, 33, 0.98);
+      border-color: rgba(230, 200, 135, 0.45);
+    }
+    .live-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--red-live);
+      box-shadow: 0 0 10px var(--red-live);
+      animation: pulse-red 1.5s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.85); }
+    }
+    .top-bar-text {
+      font-size: 0.8rem;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .top-bar-text strong {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .top-bar-pill {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: var(--gold);
+      color: #0a0b0e;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+    .top-bar:hover .top-bar-pill {
+      transform: scale(1.05);
+    }
+
+    /* ─── PAGE LAYOUT ─────────────────────────────── */
+    .live-page {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Brand Header */
+    .brand-mark {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+    .live-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .live-headline span {
+      color: var(--gold);
+    }
+    .live-subhead {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2rem;
+      max-width: 650px;
+      line-height: 1.5;
+    }
+
+    /* ─── VIDEO CONTAINER ─────────────────────────── */
+    .video-wrapper {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .video-aspect {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 standard */
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-aspect iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Play Overlay */
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(10, 11, 14, 0.45) 0%, rgba(10, 11, 14, 0.9) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      padding: 1.5rem;
+      text-align: center;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .video-overlay.playing {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .play-btn-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0a0b0e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 0 30px rgba(230, 200, 135, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulse-play 2s infinite ease-in-out;
+    }
+    .play-btn-circle svg { margin-left: 4px; }
+    .video-overlay:hover .play-btn-circle {
+      transform: scale(1.1);
+      box-shadow: 0 0 45px rgba(230, 200, 135, 0.7);
+    }
+    @keyframes pulse-play {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0.4); }
+      50%       { box-shadow: 0 0 0 16px rgba(230, 200, 135, 0); }
+    }
+
+    .overlay-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .overlay-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+
+    /* Caption below video */
+    .video-footer-strip {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.25);
+    }
+    .strip-left {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .strip-left strong { color: var(--gold); }
+    .jump-to-offer {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    .jump-to-offer:hover { opacity: 0.8; }
+
+    /* ─── OFFER / CTA SECTION ─────────────────────── */
+    #offer-section {
+      width: 100%;
+      margin-top: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(230, 200, 135, 0.35);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      padding: 2.5rem 1.75rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle top glow bar */
+    #offer-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .offer-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .offer-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .offer-title span { color: var(--gold); }
+    .offer-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+    }
+
+    /* Event Details Grid */
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .event-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 1.1rem;
+      border-radius: 4px;
+    }
+    .box-icon { font-size: 1.2rem; margin-bottom: 0.35rem; display: block; }
+    .box-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .box-val {
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Price Card */
+    .price-box {
+      background: rgba(230, 200, 135, 0.04);
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .price-tag-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .price-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .price-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .price-sub strong { color: var(--text); }
+
+    /* CTA Button */
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 1.25rem 2rem;
+      background: var(--gold);
+      color: #0a0b0e;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+      animation: pulse-cta 2.5s infinite ease-in-out;
+      box-shadow: 0 4px 20px rgba(230, 200, 135, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(230, 200, 135, 0.5);
+    }
+    @keyframes pulse-cta {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0); }
+      50%       { box-shadow: 0 0 0 10px rgba(230, 200, 135, 0.25); }
+    }
+
+    .scarcity-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+    .scarcity-note strong { color: var(--red-live); }
+
+    /* WhatsApp Doubt Support */
+    .whatsapp-support {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #25d366;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .whatsapp-link:hover {
+      background: rgba(37, 211, 102, 0.1);
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .page-footer a { color: var(--text-muted); text-decoration: none; }
+    .page-footer a:hover { color: var(--text); }
+
+    /* ─── MOBILE ──────────────────────────────────── */
+    @media (max-width: 600px) {
+      .top-bar { padding: 0.6rem 0.8rem; }
+      .top-bar-text { font-size: 0.72rem; }
+      .live-page { padding: 1.5rem 1rem 4rem; }
+      #offer-section { padding: 2rem 1.25rem; }
+      .event-grid { grid-template-columns: 1fr 1fr; }
+      .price-number { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR: INSCRIÇÕES ABERTAS -->
+  <div class="top-bar" id="top-bar" onclick="scrollToOffer()">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span class="top-bar-text">
+      <strong>INSCRIÇÕES ABERTAS:</strong> 2ª Edição Imersão Presencial &middot; 18 e 19 Outubro em SJC
+    </span>
+    <span class="top-bar-pill">Garantir Vaga &rarr;</span>
+  </div>
+
+  <main class="live-page">
+
+    <!-- Brand -->
+    <p class="brand-mark">Andrea Vargas &middot; O Poder da Cor</p>
+    <h1 class="live-headline">Masterclass Exclusiva <span>Mão na Massa</span></h1>
+    <p class="live-subhead">
+      Assista à gravação completa da aula e descubra como dominar o diagnóstico de colorimetria com segurança no salão.
+    </p>
+
+    <!-- VIDEO -->
+    <div class="video-wrapper">
+      <div class="video-aspect">
+        <div id="yt-player"></div>
+
+        <!-- Custom Play Overlay -->
+        <div class="video-overlay" id="video-overlay" role="button" aria-label="Assistir com som">
+          <div class="play-btn-circle">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+          <p class="overlay-title">Clique para Assistir com Som</p>
+          <p class="overlay-sub">Gravação da Masterclass &middot; Andrea Vargas</p>
+        </div>
+      </div>
+
+      <div class="video-footer-strip">
+        <span class="strip-left">
+          <strong>25 Bancadas Exclusivas</strong> &middot; Vagas limitadas para acompanhamento individual
+        </span>
+        <button class="jump-to-offer" onclick="scrollToOffer()">Ver detalhes da imersão &darr;</button>
+      </div>
+    </div>
+
+    <!-- OFFER / CTA SECTION -->
+    <section id="offer-section" aria-label="Oferta Especial da Imersão">
+      <p class="offer-eyebrow">2ª Edição Oficial &middot; Vagas Limitadas</p>
+      <h2 class="offer-title">Imersão Presencial <span>O Poder da Cor</span></h2>
+      <p class="offer-subtitle">
+        2 dias inteiros de bancada com modelos reais em São José dos Campos, acompanhada de perto pela Andrea Vargas.
+      </p>
+
+      <!-- Event Details Grid -->
+      <div class="event-grid">
+        <div class="event-box">
+          <span class="box-icon">🗓️</span>
+          <p class="box-label">Quando</p>
+          <p class="box-val">18 e 19 de Outubro<br><small style="font-weight:400;color:var(--text-muted)">Domingo e Segunda</small></p>
+        </div>
+        <div class="event-box">
+          <span class="box-icon">📍</span>
+          <p class="box-label">Onde</p>
+          <p class="box-val">São José dos Campos<br><small style="font-weight:400;color:var(--text-muted)">Espaço Andrea Vargas</small></p>
+        </div>
+        <div class="event-box">
+          <span class="box-icon">🎯</span>
+          <p class="box-label">Formato</p>
+          <p class="box-val">Prática Mão na Massa<br><small style="font-weight:400;color:var(--text-muted)">Modelos reais na bancada</small></p>
+        </div>
+        <div class="event-box">
+          <span class="box-icon">🎓</span>
+          <p class="box-label">Bônus Incluso</p>
+          <p class="box-val">5 Aulas Online EAD<br><small style="font-weight:400;color:var(--text-muted)">+ 2 meses de suporte</small></p>
+        </div>
+      </div>
+
+      <!-- Price Box -->
+      <div class="price-box">
+        <p class="price-tag-label">Investimento com Condição Facilitada</p>
+        <p class="price-number">R$ 1.300,00</p>
+        <p class="price-sub">Em até <strong>4x sem juros</strong> no cartão ou em até 12x via InfinitePay</p>
+      </div>
+
+      <!-- Button -->
+      <a id="cta-btn" class="cta-btn" href="https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb" target="_blank" rel="noopener noreferrer">
+        Garantir Minha Vaga Agora
+      </a>
+
+      <p class="scarcity-note">
+        <strong>⚠️ APENAS 25 VAGAS:</strong> Para garantir que a Andrea atenda cada aluna individualmente na bancada.
+      </p>
+
+      <!-- WhatsApp doubt -->
+      <div class="whatsapp-support">
+        <a class="whatsapp-link" href="https://wa.me/5512982887640?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20Imersão%20O%20Poder%20da%20Cor" target="_blank" rel="noopener noreferrer">
+          💬 Ficou com alguma dúvida? Fale com a nossa equipe no WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <a href="/privacidade.html">Privacidade</a>
+      <span>&middot;</span>
+      <a href="/termos.html">Termos de Uso</a>
+      <span>&middot;</span>
+      <span>Andrea Vargas &copy; 2026</span>
+    </footer>
+
+  </main>
+
+  <!-- YouTube IFrame API -->
+  <script>
+    // ═══════════════════════════════════════════════
+    //  CONFIGURAÇÃO — aceita ?v=ID_DO_YOUTUBE na URL
+    // ═══════════════════════════════════════════════
+    var urlParams    = new URLSearchParams(window.location.search);
+    var VIDEO_ID     = urlParams.get('v') || 'RpOh2ooZblw'; // Substituiremos pela Live quando subir
+    var CHECKOUT_URL = 'https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb';
+
+    var ctaBtn       = document.getElementById('cta-btn');
+    var overlay      = document.getElementById('video-overlay');
+    var player;
+
+    ctaBtn.href = CHECKOUT_URL;
+
+    // Dispara Pixel InitiateCheckout ao clicar
+    ctaBtn.addEventListener('click', function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          value: 1300.00,
+          currency: 'BRL',
+          content_name: 'Imersão O Poder da Cor'
+        });
+      }
+    });
+
+    // Rolagem suave até a oferta
+    function scrollToOffer() {
+      var offer = document.getElementById('offer-section');
+      if (offer) {
+        offer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Carrega API do YouTube
+    (function () {
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    })();
+
+    window.onYouTubeIframeAPIReady = function () {
+      player = new YT.Player('yt-player', {
+        videoId: VIDEO_ID,
+        playerVars: {
+          controls:       0, // Sem controles do YouTube
+          disablekb:      1, // Teclado desativado
+          fs:             0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+          rel:            0,
+          playsinline:    1,
+          origin:         window.location.origin
+        },
+        events: {
+          onStateChange: function (event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              overlay.classList.add('playing');
+            }
+          }
+        }
+      });
+    };
+
+    overlay.addEventListener('click', function () {
+      if (player && typeof player.playVideo === 'function') {
+        player.playVideo();
+        overlay.classList.add('playing');
+      }
+    });
+  </script>
+
+</body>
+</html>
