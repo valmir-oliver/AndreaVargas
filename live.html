@@ -790,70 +790,67 @@
       gap: 1.25rem;
     }
     .social-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(230, 200, 135, 0.18);
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(230, 200, 135, 0.2);
       border-radius: 8px;
-      overflow: hidden;
+      padding: 1.6rem 1.4rem;
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .social-card:hover {
-      border-color: rgba(230, 200, 135, 0.4);
-      transform: translateY(-2px);
+      border-color: rgba(230, 200, 135, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
-    .social-card-media {
-      position: relative;
-      width: 100%;
-      height: 210px;
-      background: #000;
-      overflow: hidden;
-    }
-    .social-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .social-card:hover .social-card-media img {
-      transform: scale(1.04);
+    .social-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
     }
     .social-stars {
-      position: absolute;
-      bottom: 0.75rem;
-      right: 0.75rem;
-      background: rgba(10, 11, 14, 0.85);
-      border: 1px solid rgba(230, 200, 135, 0.3);
-      backdrop-filter: blur(8px);
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
       color: var(--gold);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
     }
-    .social-card-body {
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
+    .social-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(230, 200, 135, 0.1);
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
     }
     .social-quote {
-      font-size: 0.86rem;
-      line-height: 1.55;
-      color: var(--text);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: #e5dfd7;
       font-style: italic;
-      margin-bottom: 1rem;
+      margin-bottom: 1.4rem;
+      flex-grow: 1;
+    }
+    .social-author {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
     .social-author strong {
       display: block;
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       color: var(--gold);
       font-weight: 700;
+      font-family: var(--font-display);
     }
     .social-author span {
       font-size: 0.76rem;
       color: var(--text-muted);
+      margin-top: 0.2rem;
+      display: block;
     }
 
     /* CTA Button */
@@ -935,7 +932,6 @@
     /* ─── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 960px) {
       .social-grid { grid-template-columns: 1fr; }
-      .social-card-media { height: 220px; }
       .inclusions-list { grid-template-columns: 1fr; }
       .before-after-grid { grid-template-columns: 1fr; }
       .ba-grid-3 { grid-template-columns: 1fr; }
@@ -1250,55 +1246,49 @@
         </div>
       </div>
 
-      <!-- SOCIAL PROOF SECTION (Ponto 3: Prova Social) -->
+      <!-- SOCIAL PROOF SECTION: DEPOIMENTO DE ALUNAS -->
       <div class="social-proof-section">
-        <p class="social-eyebrow">RESULTADOS REAIS DE QUEM VIVEU A EXPERIÊNCIA</p>
-        <h3 class="social-title">Cabeleireiras Que Transformaram Seus Resultados</h3>
-        <p class="social-sub">Veja transformações reais e o que dizem as profissionais que aprenderam diretamente na bancada.</p>
+        <p class="social-eyebrow">EXPERIÊNCIA REAL NA BANCADA</p>
+        <h3 class="social-title">Depoimento de Alunas</h3>
+        <p class="social-sub">O que dizem as profissionais que viveram a prática mão na massa e transformaram seus resultados com Andrea Vargas e Elen Lima.</p>
 
         <div class="social-grid">
           <!-- Depoimento 1: Valmira Dantas -->
           <div class="social-card">
-            <div class="social-card-media">
-              <img src="images/andrea-course.jpg" alt="Alunas no Workshop Mão na Massa com Andrea Vargas e Elen Lima" loading="lazy">
-              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            <div class="social-card-header">
+              <span class="social-stars" aria-label="5 estrelas">★★★★★</span>
+              <span class="social-tag">Aluna Verificada</span>
             </div>
-            <div class="social-card-body">
-              <p class="social-quote">"No Workshop Mão na Massa – O Poder da Cor, temos o privilégio de aprender com profissionais que realmente entendem de beleza e compartilham conhecimento com propriedade. A Andrea Vargas com explicação clara e prática sobre o poder da cor, mostrando que entender a técnica é o que faz toda a diferença no resultado. E a Elen Lima especializada em cachos e colorimetria, mostrando a importância de respeitar a identidade de cada fio. Entrega segurança, técnica e resultado real. O conhecimento liberta!"</p>
-              <div class="social-author">
-                <strong>Valmira Dantas</strong>
-                <span>Aluna da 1ª Edição &middot; Workshop Mão na Massa</span>
-              </div>
+            <p class="social-quote">"No Workshop Mão na Massa – O Poder da Cor, temos o privilégio de aprender com profissionais que realmente entendem de beleza e compartilham conhecimento com propriedade. A Andrea Vargas com explicação clara e prática sobre o poder da cor, mostrando que entender a técnica é o que faz toda a diferença no resultado. E a Elen Lima especializada em cachos e colorimetria, mostrando a importância de respeitar a identidade de cada fio. Entrega segurança, técnica e resultado real. O conhecimento liberta!"</p>
+            <div class="social-author">
+              <strong>Valmira Dantas</strong>
+              <span>Aluna da 1ª Edição &middot; Workshop Mão na Massa</span>
             </div>
           </div>
 
           <!-- Depoimento 2: Edmara -->
           <div class="social-card">
-            <div class="social-card-media">
-              <img src="images/caramel_honey_curls.png" alt="Colorimetria em cabelo cacheado na prática" loading="lazy">
-              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            <div class="social-card-header">
+              <span class="social-stars" aria-label="5 estrelas">★★★★★</span>
+              <span class="social-tag">Aluna Verificada</span>
             </div>
-            <div class="social-card-body">
-              <p class="social-quote">"Fazer o curso O Poder da Cor foi uma experiência incrível na minha vida profissional. O conteúdo de colorimetria e o mão na massa fazendo uma cacheada me trouxe muito mais conhecimento, segurança e precisão para realizar meus trabalhos. Hoje consigo compreender melhor a cor e aplicar na prática para alcançar resultados personalizados para minhas clientes. Foi um investimento que transformou a minha carreira e elevou o meu trabalho a outro nível. A Andrea e a Elen são profissionais incríveis que passam todo conhecimento possível!"</p>
-              <div class="social-author">
-                <strong>Edmara</strong>
-                <span>Aluna da 1ª Edição &middot; Cabeleireira & Colorista</span>
-              </div>
+            <p class="social-quote">"Fazer o curso O Poder da Cor foi uma experiência incrível na minha vida profissional. O conteúdo de colorimetria e o mão na massa fazendo uma cacheada me trouxe muito mais conhecimento, segurança e precisão para realizar meus trabalhos. Hoje consigo compreender melhor a cor e aplicar na prática para alcançar resultados personalizados para minhas clientes. Foi um investimento que transformou a minha carreira e elevou o meu trabalho a outro nível. A Andrea e a Elen são profissionais incríveis que passam todo conhecimento possível!"</p>
+            <div class="social-author">
+              <strong>Edmara</strong>
+              <span>Aluna da 1ª Edição &middot; Cabeleireira & Colorista</span>
             </div>
           </div>
 
           <!-- Depoimento 3: Gabriela Tavares -->
           <div class="social-card">
-            <div class="social-card-media">
-              <img src="images/voluminous_blonde_mechas.png" alt="Diagnóstico e fundo de clareamento com segurança" loading="lazy">
-              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            <div class="social-card-header">
+              <span class="social-stars" aria-label="5 estrelas">★★★★★</span>
+              <span class="social-tag">Aluna Verificada</span>
             </div>
-            <div class="social-card-body">
-              <p class="social-quote">"Depois do curso senti muita segurança em ver o tom de clareamento que antes me confundia bastante, em misturar as cores, saber o tom que abriu e conseguir utilizar a tintura correta. Simplesmente amei, vale muito a pena meninas!"</p>
-              <div class="social-author">
-                <strong>Gabriela Tavares</strong>
-                <span>Aluna da 1ª Edição &middot; Colorista</span>
-              </div>
+            <p class="social-quote">"Depois do curso senti muita segurança em ver o tom de clareamento que antes me confundia bastante, em misturar as cores, saber o tom que abriu e conseguir utilizar a tintura correta. Simplesmente amei, vale muito a pena meninas!"</p>
+            <div class="social-author">
+              <strong>Gabriela Tavares</strong>
+              <span>Aluna da 1ª Edição &middot; Colorista</span>
             </div>
           </div>
         </div>
