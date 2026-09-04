@@ -127,6 +127,68 @@
       border: 0;
     }
 
+    /* ─── VIDEO PLAY OVERLAY ──────────────────────── */
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(10, 11, 14, 0.45) 0%, rgba(10, 11, 14, 0.88) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .video-overlay.playing {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .play-btn-circle {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0a0b0e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 25px rgba(230, 200, 135, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulse-play 2s infinite ease-in-out;
+    }
+    .play-btn-circle svg {
+      margin-left: 4px;
+    }
+    .video-overlay:hover .play-btn-circle {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px rgba(230, 200, 135, 0.65);
+    }
+    @keyframes pulse-play {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0.4); }
+      50%       { box-shadow: 0 0 0 14px rgba(230, 200, 135, 0); }
+    }
+    .overlay-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .overlay-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.85;
+      text-transform: uppercase;
+    }
+
     /* ─── VIDEO CAPTION ───────────────────────────── */
     .video-caption {
       margin-top: 1.25rem;
@@ -359,6 +421,15 @@
     <section class="video-wrapper" aria-label="Vídeo da imersão">
       <div class="video-aspect">
         <div id="yt-player"></div>
+        <div class="video-overlay" id="video-overlay" role="button" aria-label="Assistir com som">
+          <div class="play-btn-circle">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+          <p class="overlay-title">Clique para Assistir com Som</p>
+          <p class="overlay-sub">Masterclass Exclusiva &middot; Andrea Vargas</p>
+        </div>
       </div>
 
       <div class="video-caption" id="video-caption">
@@ -453,10 +524,12 @@
       player = new YT.Player('yt-player', {
         videoId: VIDEO_ID,
         playerVars: {
-          rel:            0,
+          controls:       0, // Esconde barra de tempo e botões de avançar
+          disablekb:      1, // Desativa atalhos de teclado (setas, espaço)
+          fs:             0, // Sem tela cheia do YouTube
           modestbranding: 1,
           iv_load_policy: 3,
-          fs:             1,
+          rel:            0,
           playsinline:    1,
           origin:         window.location.origin
         },
@@ -466,8 +539,19 @@
       });
     };
 
+    var overlay = document.getElementById('video-overlay');
+    var maxTimeWatched = 0;
+
+    overlay.addEventListener('click', function () {
+      if (player && typeof player.playVideo === 'function') {
+        player.playVideo();
+        overlay.classList.add('playing');
+      }
+    });
+
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
+        overlay.classList.add('playing');
         startTracking();
       } else {
         stopTracking();
@@ -492,6 +576,14 @@
       var current  = player.getCurrentTime();
       var duration = player.getDuration();
       if (!duration || duration === 0) return;
+
+      // Trava anti-avanço: impede pular para a frente além do assistido
+      if (current > maxTimeWatched + 2.5) {
+        player.seekTo(maxTimeWatched, true);
+        current = maxTimeWatched;
+      } else {
+        maxTimeWatched = Math.max(maxTimeWatched, current);
+      }
 
       var pct = current / duration;
 
