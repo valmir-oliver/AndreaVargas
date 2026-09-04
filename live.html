@@ -431,18 +431,20 @@
       line-height: 1.5;
     }
 
-    /* Event Details Grid */
+    /* Event Details Grid - 4 colunas estritas para nunca deixar lacuna */
     .event-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.1rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
       margin-bottom: 2.2rem;
     }
     .event-box {
       background: rgba(255, 255, 255, 0.025);
       border: 1px solid rgba(230, 200, 135, 0.2);
-      padding: 1.4rem 1.25rem;
+      padding: 1.3rem 1.05rem;
       border-radius: 6px;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
     .event-box:hover {
@@ -451,19 +453,19 @@
       transform: translateY(-2px);
     }
     .box-icon {
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       background: rgba(230, 200, 135, 0.12);
       border: 1px solid rgba(230, 200, 135, 0.35);
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       margin-bottom: 0.75rem;
     }
     .box-label {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
@@ -471,17 +473,18 @@
       margin-bottom: 0.35rem;
     }
     .box-val {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       color: #ffffff;
       font-weight: 600;
-      line-height: 1.35;
+      line-height: 1.3;
     }
     .box-val small {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 400;
       color: var(--text-muted);
       display: block;
-      margin-top: 0.25rem;
+      margin-top: 0.3rem;
+      line-height: 1.35;
     }
 
     /* ─── BEFORE & AFTER SECTION (ANDRESSA) ────────── */
@@ -938,6 +941,10 @@
       .ba-img-wrap { height: 420px; }
     }
 
+    @media (max-width: 860px) {
+      .event-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+    }
+
     @media (max-width: 600px) {
       .top-bar { padding: 0.75rem 0.9rem; gap: 0.6rem; }
       .top-bar-text { font-size: 0.88rem; line-height: 1.35; }
@@ -952,11 +959,18 @@
       .timer-label { font-size: 0.58rem; }
       .timer-sep { font-size: 1.2rem; }
       #offer-section { padding: 2rem 1.15rem; }
-      .event-grid { grid-template-columns: 1fr 1fr; }
+      .event-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .event-box { padding: 1.1rem 0.85rem; }
+      .box-val { font-size: 0.95rem; }
+      .box-val small { font-size: 0.76rem; }
       .price-number { font-size: 2rem; }
       .inclusions-card { padding: 1.5rem 1rem; }
       .ba-img-wrap { height: 360px; }
       .before-after-section { padding: 1.5rem 1rem; }
+    }
+
+    @media (max-width: 380px) {
+      .event-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
