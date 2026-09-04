@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>O Poder da Cor — Mão na Massa | Andrea Vargas</title>
-  <meta name="description" content="Assista ao vídeo e descubra como dominar o diagnóstico de cor com Andrea Vargas na 2ª Edição da Imersão Presencial em São José dos Campos.">
+  <title>Vídeo Exclusivo &middot; O Poder da Cor | Andrea Vargas &amp; Elen Lima</title>
+  <meta name="description" content="Assista ao vídeo exclusivo e descubra como dominar o diagnóstico de cor e mechas com Andrea Vargas e Elen Lima na 2ª Edição da Imersão Presencial em São José dos Campos.">
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="O Poder da Cor — Mão na Massa | 2ª Edição com Andrea Vargas">
-  <meta property="og:description" content="18 e 19 de Outubro | São José dos Campos — SP. Vagas limitadas.">
+  <meta property="og:title" content="O Poder da Cor — Mão na Massa | Andrea Vargas & Elen Lima">
+  <meta property="og:description" content="18 e 19 de Outubro | São José dos Campos — SP. Turma reduzida (25 vagas).">
   <meta property="og:image" content="https://andreavargas.hair/images/andrea-perfil.jpg">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Meta Pixel -->
+  <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -34,46 +34,63 @@
     fbq('init', '4146363175653679');
     fbq('track', 'PageView');
     fbq('track', 'ViewContent', {
-      content_name: 'VSL - O Poder da Cor Mao na Massa 2a Edicao',
-      content_category: 'Imersao Presencial'
+      content_name: 'VSL - O Poder da Cor (Vídeo Exclusivo)',
+      content_category: 'Educacao Profissional'
     });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4146363175653679&ev=PageView&noscript=1" />
+         src="https://www.facebook.com/tr?id=4146363175653679&ev=PageView&noscript=1"/>
   </noscript>
+  <!-- End Meta Pixel Code -->
 
   <style>
-    /* ─── CONFIG ─────────────────────────────────── */
+    /* ─── TOKENS ──────────────────────────────────── */
     :root {
-      --bg:          #0a0b0e;
-      --gold:        #e6c887;
-      --gold-dark:   #c5a059;
-      --text:        #f4ede4;
-      --text-muted:  #8a8070;
-      --font-display: 'Cinzel', serif;
-      --font-body:    'Plus Jakarta Sans', -apple-system, sans-serif;
+      --bg:           #0a0b0e;
+      --card-bg:      #111318;
+      --gold:         #e6c887;
+      --gold-dark:    #c5a059;
+      --gold-glow:    rgba(230, 200, 135, 0.28);
+      --text:         #f4ede4;
+      --text-muted:   #8a8070;
+      --border:       rgba(230, 200, 135, 0.15);
+      --red-live:     #ef4444;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body:    'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     }
 
     /* ─── RESET ──────────────────────────────────── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { height: 100%; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-body);
-      -webkit-font-smoothing: antialiased;
-      min-height: 100%;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       overflow-x: hidden;
     }
-    a { color: inherit; text-decoration: none; }
 
-    /* ─── VIDEO PROGRESS BAR ──────────────────────── */
+    /* ─── VIDEO PROGRESS BAR (TOP) ───────────────── */
     #video-progress-track {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: rgba(255,255,255,0.04);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.04);
       z-index: 1000;
     }
     #video-progress-fill {
@@ -84,41 +101,103 @@
       transition: width 1s linear;
     }
 
+    /* ─── STICKY TOP BAR: INSCRIÇÕES ABERTAS ───────── */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 99;
+      background: rgba(14, 15, 20, 0.95);
+      border-bottom: 1px solid rgba(230, 200, 135, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .top-bar:hover {
+      background: rgba(22, 24, 32, 0.98);
+    }
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(230, 200, 135, 0.7);
+      animation: pulse-gold 2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-gold {
+      0%   { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0.7); }
+      70%  { box-shadow: 0 0 0 8px rgba(230, 200, 135, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0); }
+    }
+    .top-bar-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .top-bar-text strong {
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .top-bar-pill {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: var(--gold);
+      color: #0a0b0e;
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .top-bar:hover .top-bar-pill {
+      transform: scale(1.05);
+    }
+
     /* ─── PAGE LAYOUT ─────────────────────────────── */
-    .vsl-page {
+    .live-page {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding: 3rem 1rem 0;
+      width: 100%;
     }
 
-    /* ─── BRAND MARK ──────────────────────────────── */
-    .brand-mark {
-      font-family: var(--font-display);
-      font-size: 0.65rem;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      opacity: 0.6;
-    }
-
-    /* ─── VIDEO WRAPPER ───────────────────────────── */
+    /* ─── VIDEO PLAYER ────────────────────────────── */
     .video-wrapper {
       width: 100%;
-      max-width: 900px;
+      box-shadow:
+        0 0 0 1px rgba(230, 200, 135, 0.25),
+        0 24px 64px rgba(0, 0, 0, 0.75),
+        0 0 60px rgba(230, 200, 135, 0.08);
       position: relative;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
     }
-
     .video-aspect {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;
+      padding-bottom: 56.25%; /* 16:9 standard */
       background: #000;
       overflow: hidden;
     }
-
     .video-aspect iframe {
       position: absolute;
       inset: 0;
@@ -127,20 +206,20 @@
       border: 0;
     }
 
-    /* ─── VIDEO PLAY OVERLAY ──────────────────────── */
+    /* Video Play Overlay */
     .video-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(10, 11, 14, 0.45) 0%, rgba(10, 11, 14, 0.88) 100%);
+      background: radial-gradient(circle at center, rgba(10, 11, 14, 0.45) 0%, rgba(10, 11, 14, 0.9) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 10;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
       padding: 1.5rem;
       text-align: center;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
     }
     .video-overlay.playing {
       opacity: 0;
@@ -148,386 +227,1320 @@
       pointer-events: none;
     }
     .play-btn-circle {
-      width: 68px;
-      height: 68px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: var(--gold);
       color: #0a0b0e;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 25px rgba(230, 200, 135, 0.45);
+      margin-bottom: 1.1rem;
+      box-shadow: 0 0 28px rgba(230, 200, 135, 0.55);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      animation: pulse-play 2s infinite ease-in-out;
+      animation: pulse-gold-btn 2.2s infinite ease-in-out;
     }
     .play-btn-circle svg {
-      margin-left: 4px;
+      margin-left: 3px;
     }
     .video-overlay:hover .play-btn-circle {
       transform: scale(1.08);
-      box-shadow: 0 0 35px rgba(230, 200, 135, 0.65);
+      box-shadow: 0 0 38px rgba(230, 200, 135, 0.8);
     }
-    @keyframes pulse-play {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0.4); }
-      50%       { box-shadow: 0 0 0 14px rgba(230, 200, 135, 0); }
+    @keyframes pulse-gold-btn {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0.5); }
+      50%      { box-shadow: 0 0 0 16px rgba(230, 200, 135, 0); }
     }
     .overlay-title {
       font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 0.35rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
-    .overlay-sub {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+    .overlay-urgency-badge {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 600;
       color: var(--gold);
-      opacity: 0.85;
-      text-transform: uppercase;
+      background: rgba(230, 200, 135, 0.12);
+      border: 1px solid rgba(230, 200, 135, 0.35);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
     }
 
-    /* ─── VIDEO CAPTION ───────────────────────────── */
+    /* Video Caption: Aparece enquanto a oferta estiver oculta */
     .video-caption {
-      margin-top: 1.25rem;
+      margin-top: 1.2rem;
       text-align: center;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .video-caption.hidden {
-      opacity: 0;
-      transform: translateY(-8px);
-      pointer-events: none;
-    }
-    .caption-line {
+      font-size: 0.86rem;
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      transition: opacity 0.5s ease;
     }
-    .caption-line::before,
-    .caption-line::after {
-      content: '';
-      width: 40px; height: 1px;
-      background: var(--gold-dark);
-      opacity: 0.4;
-    }
-    .caption-text {
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.85;
-    }
-    .caption-sub {
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .sound-icon {
+      font-size: 1rem;
     }
 
-    /* ─── CTA SECTION ─────────────────────────────── */
-    #cta-section {
+    /* ─── VSL DELAYED CONTENT (70% THRESHOLD) ──────── */
+    .vsl-delayed-content {
+      display: none;
+      opacity: 0;
       width: 100%;
-      max-width: 900px;
-      margin-top: 0;
-      padding: 2.5rem 1.5rem 3rem;
-      border-top: 1px solid rgba(230, 200, 135, 0.25);
-      transform: translateY(60px);
-      opacity: 0;
-      pointer-events: none;
-      transition:
-        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
-        opacity 0.5s ease;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    #cta-section.visible {
-      transform: translateY(0);
+    .vsl-delayed-content.visible {
+      display: block;
       opacity: 1;
-      pointer-events: all;
+      transform: translateY(0);
+      animation: vslFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes vslFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .cta-eyebrow {
-      font-family: var(--font-display);
-      font-size: 0.6rem;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.7;
-      margin-bottom: 0.75rem;
-      text-align: center;
-    }
-    .cta-headline {
-      font-family: var(--font-display);
-      font-size: clamp(1.3rem, 4vw, 2rem);
-      font-weight: 600;
-      color: var(--text);
-      text-align: center;
-      line-height: 1.3;
-      margin-bottom: 1.5rem;
-    }
-    .cta-headline span { color: var(--gold); }
-
-    /* ─── EVENT DETAILS ───────────────────────────── */
-    .event-details {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .event-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .event-item strong { color: var(--text); font-weight: 500; }
-
-    /* ─── SCARCITY BAR ────────────────────────────── */
-    .scarcity-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.25rem;
-      background: rgba(230, 200, 135, 0.06);
-      border: 1px solid rgba(230, 200, 135, 0.15);
-      margin-bottom: 1.5rem;
-    }
-    .scarcity-dot {
-      width: 7px; height: 7px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: blink 1.2s step-end infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.1; }
-    }
-    .scarcity-text {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    /* ─── CTA BUTTON ──────────────────────────────── */
-    .cta-btn-wrap {
+    /* ─── HERO ACTION BLOCK: COUNTDOWN & HERO CTA ──── */
+    .hero-action-block {
+      width: 100%;
+      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
     }
-    #cta-btn {
+
+    /* Countdown Card */
+    .countdown-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      border-radius: 6px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .countdown-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+    }
+    .countdown-timer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .timer-unit {
+      background: #08090b;
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      border-radius: 4px;
+      padding: 0.5rem 0.65rem;
+      min-width: 62px;
+      text-align: center;
+    }
+    .timer-num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .timer-label {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 0.25rem;
+      font-weight: 600;
+    }
+    .timer-sep {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-weight: 600;
+      opacity: 0.7;
+    }
+    .countdown-expired {
+      color: #ff6b6b;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero CTA Button */
+    .hero-cta-btn {
+      margin-top: 0.25rem;
+    }
+    .hero-cta-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+    .hero-cta-sub button {
+      background: none;
+      border: none;
+      color: var(--gold);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: inherit;
+      font-family: inherit;
+      padding: 0;
+    }
+
+    /* ─── OFFER / CTA SECTION ─────────────────────── */
+    #offer-section {
+      width: 100%;
+      margin-top: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(230, 200, 135, 0.35);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      padding: 2.75rem 1.75rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #offer-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .offer-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .offer-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .offer-title span { color: var(--gold); }
+    .offer-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+    }
+
+    /* Event Details Grid - 4 colunas estritas */
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+    }
+    .event-box {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(230, 200, 135, 0.2);
+      padding: 1.3rem 1.05rem;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .event-box:hover {
+      background: rgba(230, 200, 135, 0.04);
+      border-color: rgba(230, 200, 135, 0.45);
+      transform: translateY(-2px);
+    }
+    .box-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(230, 200, 135, 0.12);
+      border: 1px solid rgba(230, 200, 135, 0.35);
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .box-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .box-val {
+      font-size: 1.02rem;
+      color: #ffffff;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .box-val small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 0.3rem;
+      line-height: 1.35;
+    }
+
+    /* ─── BEFORE & AFTER SECTION (CASOS REAIS) ────── */
+    .before-after-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      border-radius: 8px;
+      padding: 2.2rem 1.75rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .before-after-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .before-after-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3.2vw, 1.8rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .before-after-title span { color: var(--gold); }
+    .before-after-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+    }
+    .ba-case-block {
+      margin-top: 2.25rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ba-case-header {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+    .ba-case-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .ba-case-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(230, 200, 135, 0.12);
+      border: 1px solid rgba(230, 200, 135, 0.3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .ba-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .ba-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .ba-card.after-card {
+      border-color: rgba(230, 200, 135, 0.4);
+      box-shadow: 0 8px 30px rgba(230, 200, 135, 0.12);
+    }
+    .ba-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      background: #07080a;
+      overflow: hidden;
+    }
+    .ba-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.4s ease;
+    }
+    .ba-card:hover .ba-img-wrap img {
+      transform: scale(1.03);
+    }
+    .ba-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    .ba-badge.badge-before {
+      background: rgba(20, 22, 28, 0.85);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .ba-badge.badge-after {
+      background: var(--gold);
+      color: #0a0b0e;
+      box-shadow: 0 0 15px rgba(230, 200, 135, 0.5);
+    }
+    .ba-info {
+      padding: 1.25rem 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .ba-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .ba-card.after-card .ba-info h4 {
+      color: var(--gold);
+    }
+    .ba-info p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .before-after-highlight {
+      margin-top: 1.75rem;
+      padding: 1.1rem 1.25rem;
+      background: rgba(230, 200, 135, 0.05);
+      border: 1px solid rgba(230, 200, 135, 0.2);
+      border-radius: 6px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    .before-after-highlight strong {
+      color: var(--gold);
+    }
+
+    /* Price Card */
+    .price-box {
+      text-align: center;
+      background: rgba(230, 200, 135, 0.05);
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      position: relative;
+      border-radius: 4px;
+    }
+    .price-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .price-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .price-installments {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    /* ─── INCLUSIONS CARD (O QUE ESTÁ INCLUSO) ────── */
+    .inclusions-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(230, 200, 135, 0.2);
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .inclusions-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .inclusions-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .inclusions-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 3vw, 1.5rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .inclusions-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .inclusions-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .inclusion-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      transition: border-color 0.2s;
+    }
+    .inclusion-item:hover {
+      border-color: rgba(230, 200, 135, 0.3);
+    }
+    .inclusion-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(230, 200, 135, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .inclusion-content h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .inclusion-content p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ─── DEPOIMENTO DE ALUNAS ────────────────────── */
+    .social-proof-section {
+      margin-bottom: 2.5rem;
+    }
+    .social-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .social-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3.2vw, 1.8rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .social-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.5;
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .social-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(230, 200, 135, 0.2);
+      border-radius: 8px;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .social-card:hover {
+      border-color: rgba(230, 200, 135, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .social-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
+    }
+    .social-stars {
+      color: var(--gold);
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+    }
+    .social-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(230, 200, 135, 0.1);
+      border: 1px solid rgba(230, 200, 135, 0.25);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .social-quote {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: #e5dfd7;
+      font-style: italic;
+      margin-bottom: 1.4rem;
+      flex-grow: 1;
+    }
+    .social-author {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .social-author strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 700;
+      font-family: var(--font-display);
+    }
+    .social-author span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    /* ─── CTA BUTTON ──────────────────────────────── */
+    .cta-btn {
       display: block;
       width: 100%;
-      max-width: 480px;
-      padding: 1.1rem 2rem;
+      padding: 1.25rem 2rem;
       background: var(--gold);
       color: #0a0b0e;
       font-family: var(--font-display);
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       text-align: center;
+      text-decoration: none;
       border: none;
       cursor: pointer;
-      border-radius: 0;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
-      animation: pulse-gold 2.5s ease-in-out infinite;
+      box-shadow: 0 4px 25px rgba(230, 200, 135, 0.35);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      border-radius: 2px;
     }
-    #cta-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.15);
-      transform: translateX(-100%);
-      transition: transform 0.4s ease;
-    }
-    #cta-btn:hover {
-      background: var(--gold-dark);
+    .cta-btn:hover {
+      background: #eed59e;
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(230, 200, 135, 0.35);
-      animation: none;
+      box-shadow: 0 6px 30px rgba(230, 200, 135, 0.55);
     }
-    #cta-btn:hover::before { transform: translateX(100%); }
-    #cta-btn:active { transform: translateY(0); }
-
-    @keyframes pulse-gold {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(230, 200, 135, 0); }
-      50%       { box-shadow: 0 0 0 10px rgba(230, 200, 135, 0.2); }
+    .cta-btn:active {
+      transform: translateY(0);
     }
 
-    .cta-guarantee {
-      font-size: 0.75rem;
+    .scarcity-note {
+      text-align: center;
+      font-size: 0.8rem;
       color: var(--text-muted);
+      margin-top: 1.25rem;
+      line-height: 1.4;
+    }
+    .scarcity-note strong {
+      color: var(--gold);
+    }
+
+    /* WhatsApp Support */
+    .whatsapp-support {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       text-align: center;
     }
-
-    /* ─── FOOTER ──────────────────────────────────── */
-    .vsl-footer {
-      width: 100%;
-      max-width: 900px;
-      padding: 2rem 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: auto;
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #25d366;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: 4px;
+      transition: background 0.2s;
     }
-    .vsl-footer a {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
+    .whatsapp-link:hover {
+      background: rgba(37, 211, 102, 0.1);
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      text-transform: uppercase;
-      transition: color 0.2s;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
     }
-    .vsl-footer a:hover { color: var(--text); }
+    .page-footer a { color: var(--text-muted); text-decoration: none; }
+    .page-footer a:hover { color: var(--text); }
 
-    /* ─── REDUCE MOTION ───────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      #cta-section { transition: none; transform: none; opacity: 1; }
-      #cta-btn, .scarcity-dot { animation: none; }
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 960px) {
+      .social-grid { grid-template-columns: 1fr; }
+      .inclusions-list { grid-template-columns: 1fr; }
+      .before-after-grid { grid-template-columns: 1fr; }
+      .ba-grid-3 { grid-template-columns: 1fr; }
+      .ba-img-wrap { height: 420px; }
     }
 
-    /* ─── MOBILE ──────────────────────────────────── */
-    @media (max-width: 480px) {
-      .vsl-page { padding: 2rem 0.75rem 0; }
-      #cta-btn { font-size: 0.78rem; padding: 1rem 1.25rem; }
-      .event-item { font-size: 0.8rem; }
-      .scarcity-text { font-size: 0.7rem; }
+    @media (max-width: 860px) {
+      .event-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+    }
+
+    @media (max-width: 600px) {
+      .top-bar { padding: 0.75rem 0.9rem; gap: 0.6rem; }
+      .top-bar-text { font-size: 0.88rem; line-height: 1.35; }
+      .top-bar-text strong { font-size: 0.95rem; }
+      .top-bar-pill { font-size: 0.7rem; padding: 0.3rem 0.65rem; }
+      .live-page { padding: 1.25rem 0.85rem 4rem; }
+      .overlay-title { font-size: 1.05rem; letter-spacing: 0.08em; }
+      .overlay-urgency-badge { font-size: 0.78rem; padding: 0.3rem 0.75rem; }
+      .countdown-card { padding: 1rem 0.75rem; }
+      .timer-unit { min-width: 52px; padding: 0.45rem 0.35rem; }
+      .timer-num { font-size: 1.45rem; }
+      .timer-label { font-size: 0.58rem; }
+      .timer-sep { font-size: 1.2rem; }
+      #offer-section { padding: 2rem 1.15rem; }
+      .event-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .event-box { padding: 1.1rem 0.85rem; }
+      .box-val { font-size: 0.95rem; }
+      .box-val small { font-size: 0.76rem; }
+      .price-number { font-size: 2rem; }
+      .inclusions-card { padding: 1.5rem 1rem; }
+      .ba-img-wrap { height: 360px; }
+      .before-after-section { padding: 1.5rem 1rem; }
+    }
+
+    @media (max-width: 380px) {
+      .event-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Gold Progress Bar -->
-  <div id="video-progress-track" aria-hidden="true">
+  <!-- Video Top Progress Bar -->
+  <div id="video-progress-track">
     <div id="video-progress-fill"></div>
   </div>
 
-  <main class="vsl-page">
+  <!-- TOP BAR: INSCRIÇÕES ABERTAS -->
+  <div class="top-bar" id="top-bar" onclick="handleTopBarClick()">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span class="top-bar-text">
+      <strong>INSCRIÇÕES ABERTAS:</strong> 2ª Edição Imersão Presencial &middot; 18 e 19 Outubro em SJC
+    </span>
+    <span class="top-bar-pill">Garantir Vaga &rarr;</span>
+  </div>
 
-    <!-- Brand -->
-    <p class="brand-mark">Andrea Vargas &middot; O Poder da Cor</p>
+  <main class="live-page">
 
-    <!-- Video -->
-    <section class="video-wrapper" aria-label="Vídeo da imersão">
+    <!-- VIDEO PLAYER -->
+    <div class="video-wrapper">
       <div class="video-aspect">
         <div id="yt-player"></div>
-        <div class="video-overlay" id="video-overlay" role="button" aria-label="Assistir com som">
+
+        <!-- Custom Play Overlay (VSL Copy de Alta Conversão) -->
+        <div class="video-overlay" id="video-overlay" role="button" aria-label="ASSISTA AGORA — CONDIÇÃO ESPECIAL POR TEMPO LIMITADO">
           <div class="play-btn-circle">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </div>
-          <p class="overlay-title">Clique para Assistir com Som</p>
-          <p class="overlay-sub">Masterclass Exclusiva &middot; Andrea Vargas</p>
+          <p class="overlay-title">ASSISTA AGORA &middot; CONDIÇÃO ESPECIAL POR TEMPO LIMITADO</p>
+          <span class="overlay-urgency-badge">Assista até o final para garantir sua condição especial</span>
         </div>
       </div>
+    </div>
 
-      <div class="video-caption" id="video-caption">
-        <div class="caption-line">
-          <span class="caption-text">Assista até o final</span>
+    <!-- Audio Caption: visível enquanto a oferta não foi revelada -->
+    <div class="video-caption" id="video-caption">
+      <span class="sound-icon" aria-hidden="true">🔊</span>
+      <span>Certifique-se de que seu som está ligado &middot; Assista com atenção até o final</span>
+    </div>
+
+    <!-- VSL DELAYED CONTENT (LIBERADO AUTOMATICAMENTE AOS 70% DO VÍDEO) -->
+    <div class="vsl-delayed-content" id="vsl-delayed-content">
+
+      <!-- HERO ACTION: COUNTDOWN & HERO CTA -->
+      <div class="hero-action-block" id="hero-action-block">
+        <div class="countdown-card" id="countdown-wrapper" data-expira="2026-09-10T23:59:59">
+          <p class="countdown-eyebrow">⚠️ Condição especial e vagas da 2ª Edição encerram em:</p>
+          <div class="countdown-timer">
+            <div class="timer-unit">
+              <span class="timer-num" id="cd-days">00</span>
+              <span class="timer-label">Dias</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-unit">
+              <span class="timer-num" id="cd-hours">00</span>
+              <span class="timer-label">Horas</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-unit">
+              <span class="timer-num" id="cd-mins">00</span>
+              <span class="timer-label">Min</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-unit">
+              <span class="timer-num" id="cd-secs">00</span>
+              <span class="timer-label">Seg</span>
+            </div>
+          </div>
         </div>
-        <p class="caption-sub">Há uma condição especial esperando por você.</p>
-      </div>
-    </section>
 
-    <!-- CTA (reveals after 85% of video) -->
-    <section id="cta-section" aria-live="polite" aria-label="Oferta especial">
-      <p class="cta-eyebrow">Oferta Exclusiva &middot; Vagas Limitadas</p>
-
-      <h1 class="cta-headline">
-        As vagas são limitadas.<br>
-        <span>Esta é a sua vez.</span>
-      </h1>
-
-      <div class="scarcity-bar" role="status">
-        <span class="scarcity-dot" aria-hidden="true"></span>
-        <span class="scarcity-text">Vagas estritamente limitadas para acompanhamento individual</span>
-      </div>
-
-      <div class="event-details">
-        <div class="event-item">
-          <span aria-hidden="true">🗓️</span>
-          <span><strong>18 e 19 de Outubro</strong> &mdash; Dom e Seg</span>
-        </div>
-        <div class="event-item">
-          <span aria-hidden="true">📍</span>
-          <span><strong>São José dos Campos</strong> · SP</span>
-        </div>
-        <div class="event-item">
-          <span aria-hidden="true">🎯</span>
-          <span><strong>2 dias presenciais</strong> + 5 aulas online + 2 meses suporte</span>
-        </div>
-        <div class="event-item">
-          <span aria-hidden="true">💳</span>
-          <span>Até <strong>4x sem juros</strong> no cartão</span>
-        </div>
-      </div>
-
-      <div class="cta-btn-wrap">
-        <a id="cta-btn" href="#" role="button" target="_blank" rel="noopener noreferrer">
+        <!-- CTA Duplicado -->
+        <a id="hero-cta-btn" class="cta-btn hero-cta-btn" href="https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb" target="_blank" rel="noopener noreferrer">
           Garantir Minha Vaga Agora
         </a>
-        <p class="cta-guarantee">
-          ⚠️ Vagas limitadas para que a Andrea acompanhe cada aluno individualmente na bancada
+        <p class="hero-cta-sub">
+          Apenas 25 vagas: acompanhamento próximo de Andrea e Elen &middot; <button type="button" class="jump-to-offer" onclick="scrollToOffer()">Ver detalhes completos da imersão &darr;</button>
         </p>
       </div>
-    </section>
 
-    <footer class="vsl-footer">
-      <a href="/privacidade.html">Privacidade</a>
-      <a href="/termos.html">Termos de Uso</a>
-    </footer>
+      <!-- OFFER / CTA SECTION -->
+      <section id="offer-section" aria-label="Oferta Especial da Imersão">
+        <p class="offer-eyebrow">2ª Edição Oficial &middot; Vagas Limitadas</p>
+        <h2 class="offer-title">Imersão Presencial <span>O Poder da Cor</span></h2>
+        <p class="offer-subtitle">
+          2 dias inteiros de bancada com modelos reais em São José dos Campos, acompanhada de perto por Andrea Vargas e Elen Lima.
+        </p>
+
+        <!-- Event Details Grid - 4 colunas estritas -->
+        <div class="event-grid">
+          <div class="event-box">
+            <span class="box-icon" aria-hidden="true">🗓️</span>
+            <p class="box-label">Quando</p>
+            <p class="box-val">18 e 19 de Outubro<small>Domingo e Segunda-feira</small></p>
+          </div>
+          <div class="event-box">
+            <span class="box-icon" aria-hidden="true">📍</span>
+            <p class="box-label">Onde</p>
+            <p class="box-val">São José dos Campos<small>Espaço Doce Vita &middot; Rua Icatu, 160, Parque Industrial</small></p>
+          </div>
+          <div class="event-box">
+            <span class="box-icon" aria-hidden="true">🎯</span>
+            <p class="box-label">Formato</p>
+            <p class="box-val">Prática Mão na Massa<small>Modelos reais na bancada</small></p>
+          </div>
+          <div class="event-box">
+            <span class="box-icon" aria-hidden="true">🎓</span>
+            <p class="box-label">Bônus Incluso</p>
+            <p class="box-val">5 Aulas Online EAD<small>+ 2 meses de suporte VIP</small></p>
+          </div>
+        </div>
+
+        <!-- BEFORE & AFTER SECTION: MODELOS MÃO NA MASSA (ANDRESSA & JULIANA) -->
+        <div class="before-after-section">
+          <p class="before-after-eyebrow">TRANSFORMAÇÕES REAIS FEITAS NA BANCADA</p>
+          <h3 class="before-after-title">Modelos Reais da Imersão <span>Mão na Massa</span></h3>
+          <p class="before-after-sub">Resultados práticos executados pelas alunas durante o workshop, aplicando técnicas avançadas de colorimetria, fundo de clareamento e curvatura sem danificar os fios.</p>
+
+          <!-- CASO 1: ANDRESSA -->
+          <div class="ba-case-header" style="margin-top: 0.5rem;">
+            <h4 class="ba-case-title">Andressa &middot; <span>Modelo Mão na Massa</span></h4>
+            <span class="ba-case-tag">Caso 01 &middot; Diagnóstico & Mechas</span>
+          </div>
+
+          <div class="before-after-grid">
+            <!-- Card Antes -->
+            <div class="ba-card">
+              <div class="ba-img-wrap">
+                <span class="ba-badge badge-before">ANTES</span>
+                <img src="images/andressa-antes.jpg" alt="Andressa antes da transformação - Modelo Mão na Massa" loading="lazy">
+              </div>
+              <div class="ba-info">
+                <div>
+                  <h4>Diagnóstico Inicial</h4>
+                  <p>Cabelo com comprimento escuro e pontas desbotadas com tonalidade acobreada irregular, sem luminosidade e sem definição de mechas.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Depois -->
+            <div class="ba-card after-card">
+              <div class="ba-img-wrap">
+                <span class="ba-badge badge-after">DEPOIS</span>
+                <img src="images/andressa-depois.jpg" alt="Andressa depois da transformação - Loiro radiante saudável" loading="lazy">
+              </div>
+              <div class="ba-info">
+                <div>
+                  <h4>Resultado na Prática</h4>
+                  <p>Loiro dourado luminoso com transição suave da raiz às pontas, mechas perfeitamente neutralizadas e integridade total da fibra capilar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CASO 2: JULIANA -->
+          <div class="ba-case-block">
+            <div class="ba-case-header">
+              <h4 class="ba-case-title">Juliana &middot; <span>Modelo Mão na Massa</span></h4>
+              <span class="ba-case-tag">Caso 02 &middot; Mechas com Coloração "Superclareadora" em Cabelos Naturais</span>
+            </div>
+
+            <div class="ba-grid-3">
+              <!-- Card 1: Antes -->
+              <div class="ba-card">
+                <div class="ba-img-wrap">
+                  <span class="ba-badge badge-before">ANTES</span>
+                  <img src="images/marialucia-antes.jpg" alt="Juliana antes - Cabelo natural escuro cacheado" loading="lazy">
+                </div>
+                <div class="ba-info">
+                  <div>
+                    <h4>Cabelo Natural Escuro</h4>
+                    <p>Cachos naturais sem químicas prévias. O desafio foi criar iluminação e contraste sofisticado sem agredir a curvatura dos fios.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2: Depois Frente -->
+              <div class="ba-card after-card">
+                <div class="ba-img-wrap">
+                  <span class="ba-badge badge-after">DEPOIS (FRENTE)</span>
+                  <img src="images/marialucia-depois-frente.jpg" alt="Juliana depois - Mechas com superclareadora" loading="lazy">
+                </div>
+                <div class="ba-info">
+                  <div>
+                    <h4>Coloração Superclareadora</h4>
+                    <p>Mechas em tom caramelo iluminado sem pó descolorante agressivo, valorizando os traços e trazendo brilho intenso e naturalidade.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3: Depois Costas (Resultado 360°) -->
+              <div class="ba-card after-card">
+                <div class="ba-img-wrap">
+                  <span class="ba-badge badge-after">RESULTADO 360°</span>
+                  <img src="images/marialucia-depois-costas.jpg" alt="Juliana - Definição dos cachos preservada" loading="lazy">
+                </div>
+                <div class="ba-info">
+                  <div>
+                    <h4>Curvatura & Saúde Preservadas</h4>
+                    <p>Definição impecável dos cachos da raiz às pontas, comprovando que com o método correto é possível clarear mantendo o cacho perfeito.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="before-after-highlight">
+            <strong>✓ 100% Executado na Bancada pelas Alunas:</strong> Casos reais com modelos vivas sob supervisão individual direta de <strong>Andrea Vargas</strong> e <strong>Elen Lima</strong>.
+          </div>
+        </div>
+
+        <!-- Price Box -->
+        <div class="price-box">
+          <p class="price-label">Investimento com Condição Facilitada</p>
+          <div class="price-number">R$ 1.300,00</div>
+          <p class="price-installments">Em até 4x sem juros no cartão ou em até 12x via InfinitePay</p>
+        </div>
+
+        <!-- INCLUSIONS CARD: O QUE ESTÁ INCLUSO -->
+        <div class="inclusions-card">
+          <div class="inclusions-header">
+            <p class="inclusions-eyebrow">TUDO PREPARADO PARA SEU SUCESSO</p>
+            <h3 class="inclusions-title">O Que Está Incluso na Sua Vaga Presencial</h3>
+            <p class="inclusions-sub">Uma estrutura pensada em cada detalhe para você focar 100% no aprendizado prático e dominar a colorimetria.</p>
+          </div>
+
+          <div class="inclusions-list">
+            <div class="inclusion-item">
+              <div class="inclusion-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="inclusion-content">
+                <h4>2 Dias Inteiros de Bancada com Modelos Reais</h4>
+                <p>Prática intensiva direto no cabelo da cliente. Andrea e Elen ao seu lado corrigindo aplicação, postura e velocidade.</p>
+              </div>
+            </div>
+
+            <div class="inclusion-item">
+              <div class="inclusion-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="inclusion-content">
+                <h4>Todos os Produtos e Descolorantes Fornecidos</h4>
+                <p>Linhas completas de alta performance disponibilizadas para você executar as mechas sem economizar material.</p>
+              </div>
+            </div>
+
+            <div class="inclusion-item">
+              <div class="inclusion-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="inclusion-content">
+                <h4>Método Exclusivo de Diagnóstico Blindado</h4>
+                <p>O roteiro exato para ler o fundo de clareamento sem chumbamento, sem manchas e sem corte químico no salão.</p>
+              </div>
+            </div>
+
+            <div class="inclusion-item">
+              <div class="inclusion-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="inclusion-content">
+                <h4>Certificado Oficial de Especialista (Andrea Vargas & Elen Lima)</h4>
+                <p>Certificado oficial assinado por Andrea Vargas e Elen Lima para certificar sua capacitação avançada diante das clientes.</p>
+              </div>
+            </div>
+
+            <div class="inclusion-item">
+              <div class="inclusion-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="inclusion-content">
+                <h4>Bônus: 5 Aulas Teóricas Online (EAD)</h4>
+                <p>Acesso prévio na plataforma para chegar nivelada e aproveitar cada minuto da prática presencial.</p>
+              </div>
+            </div>
+
+            <div class="inclusion-item">
+              <div class="inclusion-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="inclusion-content">
+                <h4>2 Meses de Acompanhamento no Grupo VIP</h4>
+                <p>Canal direto com Andrea Vargas e Elen Lima para tirar dúvidas de casos reais que surgirem na sua bancada.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL PROOF SECTION: DEPOIMENTO DE ALUNAS -->
+        <div class="social-proof-section">
+          <p class="social-eyebrow">EXPERIÊNCIA REAL NA BANCADA</p>
+          <h3 class="social-title">Depoimento de Alunas</h3>
+          <p class="social-sub">O que dizem as profissionais que viveram a prática mão na massa e transformaram seus resultados com Andrea Vargas e Elen Lima.</p>
+
+          <div class="social-grid">
+            <!-- Depoimento 1: Valmira Dantas -->
+            <div class="social-card">
+              <div class="social-card-header">
+                <span class="social-stars" aria-label="5 estrelas">★★★★★</span>
+                <span class="social-tag">Aluna Verificada</span>
+              </div>
+              <p class="social-quote">"No Workshop Mão na Massa – O Poder da Cor, temos o privilégio de aprender com profissionais que realmente entendem de beleza e compartilham conhecimento com propriedade. A Andrea Vargas com explicação clara e prática sobre o poder da cor, mostrando que entender a técnica é o que faz toda a diferença no resultado. E a Elen Lima especializada em cachos e colorimetria, mostrando a importância de respeitar a identidade de cada fio. Entrega segurança, técnica e resultado real. O conhecimento liberta!"</p>
+              <div class="social-author">
+                <strong>Valmira Dantas</strong>
+                <span>Aluna da 1ª Edição &middot; Workshop Mão na Massa</span>
+              </div>
+            </div>
+
+            <!-- Depoimento 2: Edmara -->
+            <div class="social-card">
+              <div class="social-card-header">
+                <span class="social-stars" aria-label="5 estrelas">★★★★★</span>
+                <span class="social-tag">Aluna Verificada</span>
+              </div>
+              <p class="social-quote">"Fazer o curso O Poder da Cor foi uma experiência incrível na minha vida profissional. O conteúdo de colorimetria e o mão na massa fazendo uma cacheada me trouxe muito mais conhecimento, segurança e precisão para realizar meus trabalhos. Hoje consigo compreender melhor a cor e aplicar na prática para alcançar resultados personalizados para minhas clientes. Foi um investimento que transformou a minha carreira e elevou o meu trabalho a outro nível. A Andrea e a Elen são profissionais incríveis que passam todo conhecimento possível!"</p>
+              <div class="social-author">
+                <strong>Edmara</strong>
+                <span>Aluna da 1ª Edição &middot; Cabeleireira & Colorista</span>
+              </div>
+            </div>
+
+            <!-- Depoimento 3: Gabriela Tavares -->
+            <div class="social-card">
+              <div class="social-card-header">
+                <span class="social-stars" aria-label="5 estrelas">★★★★★</span>
+                <span class="social-tag">Aluna Verificada</span>
+              </div>
+              <p class="social-quote">"Depois do curso senti muita segurança em ver o tom de clareamento que antes me confundia bastante, em misturar as cores, saber o tom que abriu e conseguir utilizar a tintura correta. Simplesmente amei, vale muito a pena meninas!"</p>
+              <div class="social-author">
+                <strong>Gabriela Tavares</strong>
+                <span>Aluna da 1ª Edição &middot; Colorista</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button Principal -->
+        <a id="cta-btn" class="cta-btn" href="https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb" target="_blank" rel="noopener noreferrer">
+          Garantir Minha Vaga Agora
+        </a>
+
+        <p class="scarcity-note">
+          <strong>⚠️ APENAS 25 VAGAS:</strong> Turma reduzida para acompanhamento próximo de Andrea e Elen durante toda a imersão.
+        </p>
+
+        <!-- WhatsApp doubt -->
+        <div class="whatsapp-support">
+          <a class="whatsapp-link" href="https://wa.me/5512996023596?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20Imersão%20O%20Poder%20da%20Cor" target="_blank" rel="noopener noreferrer">
+            💬 Ficou com alguma dúvida? Fale com a nossa equipe no WhatsApp
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="page-footer">
+        <a href="/privacidade.html">Privacidade</a>
+        <span>&middot;</span>
+        <a href="/termos.html">Termos de Uso</a>
+        <span>&middot;</span>
+        <span>Andrea Vargas &copy; 2026</span>
+      </footer>
+
+    </div>
+    <!-- /vsl-delayed-content -->
 
   </main>
 
-  <!-- YouTube IFrame API -->
+  <!-- YouTube IFrame API & Delay Reveal Logic -->
   <script>
     // ═══════════════════════════════════════════════
-    //  CONFIG — edite aqui quando necessário
-    // Permite trocar o vídeo dinamicamente via link (?v=ID_DO_YOUTUBE)
-    var urlParams    = new URLSearchParams(window.location.search);
-    var VIDEO_ID     = urlParams.get('v') || 'RpOh2ooZblw';
-    var CHECKOUT_URL = 'https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb';
-    var CTA_THRESHOLD = 0.85; // 85% do vídeo
+    //  CONFIGURAÇÃO DA VSL
     // ═══════════════════════════════════════════════
+    var urlParams      = new URLSearchParams(window.location.search);
+    var VIDEO_ID       = urlParams.get('v') || 'RpOh2ooZblw'; // Substitua pelo ID do YouTube do vídeo editado
+    var CHECKOUT_URL   = 'https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb';
+    var CTA_THRESHOLD  = 0.70; // Libera o restante aos 70% do vídeo
 
-    var ctaBtn        = document.getElementById('cta-btn');
-    var ctaSection    = document.getElementById('cta-section');
-    var caption       = document.getElementById('video-caption');
-    var progressFill  = document.getElementById('video-progress-fill');
+    var ctaBtn         = document.getElementById('cta-btn');
+    var heroCtaBtn     = document.getElementById('hero-cta-btn');
+    var overlay        = document.getElementById('video-overlay');
+    var delayedContent = document.getElementById('vsl-delayed-content');
+    var caption        = document.getElementById('video-caption');
+    var progressFill   = document.getElementById('video-progress-fill');
 
     var player;
-    var ctaShown        = false;
+    var ctaShown       = false;
+    var maxTimeWatched = 0;
     var progressInterval = null;
 
-    // Patch checkout URL
-    ctaBtn.href = CHECKOUT_URL;
+    // Configuração dos Botões de Checkout
+    function setupCtaButton(btn) {
+      if (!btn) return;
+      btn.href = CHECKOUT_URL;
+      btn.addEventListener('click', function () {
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            value: 1300.00,
+            currency: 'BRL',
+            content_name: 'Imersão O Poder da Cor (VSL)'
+          });
+        }
+      });
+    }
+    setupCtaButton(ctaBtn);
+    setupCtaButton(heroCtaBtn);
 
-    // Load YouTube IFrame API
+    // Rolagem suave até a oferta
+    function scrollToOffer() {
+      var offer = document.getElementById('offer-section');
+      if (offer) {
+        offer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Clique na Top Bar
+    function handleTopBarClick() {
+      if (!ctaShown) {
+        revealOffer(true);
+      } else {
+        scrollToOffer();
+      }
+    }
+
+    // Revelar restante da página
+    function revealOffer(shouldScroll) {
+      if (ctaShown) return;
+      ctaShown = true;
+      stopTracking();
+
+      if (caption) {
+        caption.style.opacity = '0';
+        setTimeout(function () {
+          caption.style.display = 'none';
+        }, 500);
+      }
+
+      if (delayedContent) {
+        delayedContent.classList.add('visible');
+      }
+
+      // Persistir no navegador para não sumir caso o lead recarregue
+      try {
+        localStorage.setItem('vsl_70_unlocked', '1');
+      } catch (e) {}
+
+      // Scroll suave quando liberado durante a reprodução
+      if (shouldScroll) {
+        setTimeout(function () {
+          var target = document.getElementById('offer-section') || delayedContent;
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 350);
+      }
+
+      // Pixel Meta: Lead (viu a oferta)
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'VSL 70pct - Oferta Liberada',
+          content_category: 'Imersao Presencial'
+        });
+      }
+    }
+
+    // Se o lead já assistiu antes ou passar ?unlock=1 / ?show=1 na URL, revela de imediato
+    var isUnlocked = false;
+    try {
+      isUnlocked = localStorage.getItem('vsl_70_unlocked') === '1' ||
+                   urlParams.get('unlock') === '1' ||
+                   urlParams.get('show') === '1';
+    } catch (e) {}
+
+    if (isUnlocked) {
+      revealOffer(false);
+    }
+
+    // ─── COUNTDOWN TIMER REGRESSIVO ───────────────
+    (function initCountdown() {
+      var countdownEl = document.getElementById('countdown-wrapper');
+      if (!countdownEl) return;
+
+      var expireAttr = countdownEl.getAttribute('data-expira');
+      var expireDate = expireAttr ? new Date(expireAttr).getTime() : 0;
+
+      if (!expireDate || isNaN(expireDate) || expireDate < Date.now()) {
+        expireDate = Date.now() + (4 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000);
+      }
+
+      function updateTimer() {
+        var now = Date.now();
+        var diff = expireDate - now;
+
+        if (diff <= 0) {
+          countdownEl.innerHTML = '<p class="countdown-expired">⚠️ ÚLTIMAS VAGAS DISPONÍVEIS — INSCRIÇÕES ENCERRAM EM BREVE</p>';
+          return;
+        }
+
+        var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        var elD = document.getElementById('cd-days');
+        var elH = document.getElementById('cd-hours');
+        var elM = document.getElementById('cd-mins');
+        var elS = document.getElementById('cd-secs');
+
+        if (elD) elD.textContent = String(d).padStart(2, '0');
+        if (elH) elH.textContent = String(h).padStart(2, '0');
+        if (elM) elM.textContent = String(m).padStart(2, '0');
+        if (elS) elS.textContent = String(s).padStart(2, '0');
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    })();
+
+    // ─── YOUTUBE PLAYER & TRACKING ────────────────
     (function () {
       var tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(tag);
     })();
 
-    // Called by YouTube API
     window.onYouTubeIframeAPIReady = function () {
       player = new YT.Player('yt-player', {
         videoId: VIDEO_ID,
         playerVars: {
-          controls:       0, // Esconde barra de tempo e botões de avançar
-          disablekb:      1, // Desativa atalhos de teclado (setas, espaço)
-          fs:             0, // Sem tela cheia do YouTube
+          controls:       0, // Sem controles para foco total no vídeo
+          disablekb:      1, // Sem atalhos de teclado
+          fs:             0,
           modestbranding: 1,
           iv_load_policy: 3,
           rel:            0,
@@ -540,19 +1553,9 @@
       });
     };
 
-    var overlay = document.getElementById('video-overlay');
-    var maxTimeWatched = 0;
-
-    overlay.addEventListener('click', function () {
-      if (player && typeof player.playVideo === 'function') {
-        player.playVideo();
-        overlay.classList.add('playing');
-      }
-    });
-
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
-        overlay.classList.add('playing');
+        if (overlay) overlay.classList.add('playing');
         startTracking();
       } else {
         stopTracking();
@@ -578,8 +1581,8 @@
       var duration = player.getDuration();
       if (!duration || duration === 0) return;
 
-      // Trava anti-avanço: impede pular para a frente além do assistido
-      if (current > maxTimeWatched + 2.5) {
+      // Trava anti-avanço moderada (impede pular mais de 3s à frente do assistido)
+      if (current > maxTimeWatched + 3.0) {
         player.seekTo(maxTimeWatched, true);
         current = maxTimeWatched;
       } else {
@@ -588,50 +1591,25 @@
 
       var pct = current / duration;
 
-      // Update gold progress bar
-      progressFill.style.width = (Math.min(pct, 1) * 100).toFixed(1) + '%';
+      // Atualiza barra dourada no topo
+      if (progressFill) {
+        progressFill.style.width = (Math.min(pct, 1) * 100).toFixed(1) + '%';
+      }
 
-      // Reveal CTA at threshold
+      // Libera aos 70%
       if (!ctaShown && pct >= CTA_THRESHOLD) {
-        revealCTA();
+        revealOffer(true);
       }
     }
 
-    function revealCTA() {
-      ctaShown = true;
-      stopTracking();
-
-      // Hide caption
-      caption.classList.add('hidden');
-
-      // Show CTA with spring animation
-      ctaSection.classList.add('visible');
-
-      // Scroll to CTA
-      setTimeout(function () {
-        ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 350);
-
-      // Pixel: Lead (viu o CTA)
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_name: 'VSL 85pct - CTA Revealed',
-          content_category: 'Imersao Presencial'
-        });
-      }
+    if (overlay) {
+      overlay.addEventListener('click', function () {
+        if (player && typeof player.playVideo === 'function') {
+          player.playVideo();
+          overlay.classList.add('playing');
+        }
+      });
     }
-
-    // Pixel: InitiateCheckout ao clicar
-    ctaBtn.addEventListener('click', function () {
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: 'VSL CTA Click - Garantir Vaga',
-          content_category: 'Imersao Presencial',
-          currency: 'BRL',
-          value: 1300
-        });
-      }
-    });
   </script>
 
 </body>
