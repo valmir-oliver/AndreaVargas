@@ -130,4 +130,5 @@ Fiquem atentos às notificações! 🚀
 | **Página de Obrigado (Redirecionamento)** | `https://andreavargas.hair/obrigado.html` |
 | **Área de Membros EAD** | `https://andreavargas.hair/area-membros.html` |
 | **Painel de Controle Admin** | `https://andreavargas.hair/admin.html` |
+| **URL do Webhook InfinitePay** | `https://andreavargas.hair/api/webhook` |
 
