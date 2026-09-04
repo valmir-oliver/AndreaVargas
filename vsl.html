@@ -494,8 +494,9 @@
   <script>
     // ═══════════════════════════════════════════════
     //  CONFIG — edite aqui quando necessário
-    // ═══════════════════════════════════════════════
-    var VIDEO_ID     = 'RpOh2ooZblw';
+    // Permite trocar o vídeo dinamicamente via link (?v=ID_DO_YOUTUBE)
+    var urlParams    = new URLSearchParams(window.location.search);
+    var VIDEO_ID     = urlParams.get('v') || 'RpOh2ooZblw';
     var CHECKOUT_URL = 'https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb';
     var CTA_THRESHOLD = 0.85; // 85% do vídeo
     // ═══════════════════════════════════════════════
