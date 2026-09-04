@@ -603,8 +603,8 @@
       line-height: 1.45;
     }
     .before-after-highlight {
-      margin-top: 1.5rem;
-      padding: 1rem 1.25rem;
+      margin-top: 1.75rem;
+      padding: 1.1rem 1.25rem;
       background: rgba(230, 200, 135, 0.05);
       border: 1px solid rgba(230, 200, 135, 0.2);
       border-radius: 6px;
@@ -614,6 +614,41 @@
     }
     .before-after-highlight strong {
       color: var(--gold);
+    }
+    .ba-case-block {
+      margin-top: 2.25rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ba-case-header {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+    .ba-case-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .ba-case-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(230, 200, 135, 0.12);
+      border: 1px solid rgba(230, 200, 135, 0.3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+    .ba-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
     }
 
     /* Price Card */
@@ -903,6 +938,7 @@
       .social-card-media { height: 220px; }
       .inclusions-list { grid-template-columns: 1fr; }
       .before-after-grid { grid-template-columns: 1fr; }
+      .ba-grid-3 { grid-template-columns: 1fr; }
       .ba-img-wrap { height: 420px; }
     }
 
@@ -1027,11 +1063,17 @@
         </div>
       </div>
 
-      <!-- BEFORE & AFTER SECTION: ANDRESSA (MODELO MÃO NA MASSA) -->
+      <!-- BEFORE & AFTER SECTION: MODELOS MÃO NA MASSA (ANDRESSA & MARIA LUCIA) -->
       <div class="before-after-section">
-        <p class="before-after-eyebrow">TRANSFORMAÇÃO REAL FEITA NA BANCADA</p>
-        <h3 class="before-after-title">Andressa <span>(Modelo Mão na Massa)</span></h3>
-        <p class="before-after-sub">Veja na prática a transformação real realizada durante a 1ª Edição do Workshop Mão na Massa, aplicando o diagnóstico de colorimetria e fundo de clareamento sem danificar os fios.</p>
+        <p class="before-after-eyebrow">TRANSFORMAÇÕES REAIS FEITAS NA BANCADA</p>
+        <h3 class="before-after-title">Modelos Reais da Imersão <span>Mão na Massa</span></h3>
+        <p class="before-after-sub">Resultados práticos executados pelas alunas durante o workshop, aplicando técnicas avançadas de colorimetria, fundo de clareamento e curvatura sem danificar os fios.</p>
+
+        <!-- CASO 1: ANDRESSA -->
+        <div class="ba-case-header" style="margin-top: 0.5rem;">
+          <h4 class="ba-case-title">Andressa &middot; <span>Modelo Mão na Massa</span></h4>
+          <span class="ba-case-tag">Caso 01 &middot; Diagnóstico & Mechas</span>
+        </div>
 
         <div class="before-after-grid">
           <!-- Card Antes -->
@@ -1063,8 +1105,60 @@
           </div>
         </div>
 
+        <!-- CASO 2: MARIA LUCIA -->
+        <div class="ba-case-block">
+          <div class="ba-case-header">
+            <h4 class="ba-case-title">Maria Lucia &middot; <span>Modelo Mão na Massa</span></h4>
+            <span class="ba-case-tag">Caso 02 &middot; Mechas com Coloração "Superclareadora" em Cabelos Naturais</span>
+          </div>
+
+          <div class="ba-grid-3">
+            <!-- Card 1: Antes -->
+            <div class="ba-card">
+              <div class="ba-img-wrap">
+                <span class="ba-badge badge-before">ANTES</span>
+                <img src="images/marialucia-antes.jpg" alt="Maria Lucia antes - Cabelo natural escuro cacheado" loading="lazy">
+              </div>
+              <div class="ba-info">
+                <div>
+                  <h4>Cabelo Natural Escuro</h4>
+                  <p>Cachos naturais sem químicas prévias. O desafio foi criar iluminação e contraste sofisticado sem agredir a curvatura dos fios.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Depois Frente -->
+            <div class="ba-card after-card">
+              <div class="ba-img-wrap">
+                <span class="ba-badge badge-after">DEPOIS (FRENTE)</span>
+                <img src="images/marialucia-depois-frente.jpg" alt="Maria Lucia depois - Mechas com superclareadora" loading="lazy">
+              </div>
+              <div class="ba-info">
+                <div>
+                  <h4>Coloração Superclareadora</h4>
+                  <p>Mechas em tom caramelo iluminado sem pó descolorante agressivo, valorizando os traços e trazendo brilho intenso e naturalidade.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Depois Costas (Resultado 360°) -->
+            <div class="ba-card after-card">
+              <div class="ba-img-wrap">
+                <span class="ba-badge badge-after">RESULTADO 360°</span>
+                <img src="images/marialucia-depois-costas.jpg" alt="Maria Lucia - Definição dos cachos preservada" loading="lazy">
+              </div>
+              <div class="ba-info">
+                <div>
+                  <h4>Curvatura & Saúde Preservadas</h4>
+                  <p>Definição impecável dos cachos da raiz às pontas, comprovando que com o método correto é possível clarear mantendo o cacho perfeito.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="before-after-highlight">
-          <strong>✓ 100% Executado na Bancada:</strong> Procedimento feito em modelo real pelas alunas sob acompanhamento direto e instrução de <strong>Andrea Vargas</strong> e <strong>Elen Lima</strong>.
+          <strong>✓ 100% Executado na Bancada pelas Alunas:</strong> Casos reais com modelos vivas sob supervisão individual direta de <strong>Andrea Vargas</strong> e <strong>Elen Lima</strong>.
         </div>
       </div>
 
