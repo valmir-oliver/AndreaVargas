@@ -120,15 +120,16 @@
       50%       { opacity: 0.4; transform: scale(0.85); }
     }
     .top-bar-text {
-      font-size: 0.8rem;
-      color: var(--text);
-      letter-spacing: 0.03em;
-    }
-    .top-bar-text strong {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
+       font-size: 1rem;
+       color: var(--text);
+       letter-spacing: 0.04em;
+     }
+     .top-bar-text strong {
+       color: var(--gold);
+       text-transform: uppercase;
+       letter-spacing: 0.08em;
+       font-size: 1.1rem;
+     }
     .top-bar-pill {
       font-family: var(--font-display);
       font-size: 0.65rem;
@@ -152,7 +153,7 @@
       z-index: 1;
       max-width: 920px;
       margin: 0 auto;
-      padding: 2.5rem 1.25rem 5rem;
+      padding: 1.75rem 1.25rem 5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -262,37 +263,114 @@
 
     .overlay-title {
       font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 0.35rem;
-    }
-    .overlay-sub {
-      font-size: 0.75rem;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 700;
       letter-spacing: 0.1em;
-      color: var(--gold);
-      opacity: 0.9;
       text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+      margin: 0;
+    }
+    .overlay-urgency-badge {
+      display: inline-block;
+      margin-top: 0.65rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      background: rgba(230, 200, 135, 0.12);
+      border: 1px solid rgba(230, 200, 135, 0.35);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
     }
 
-    /* Caption below video */
-    .video-footer-strip {
-      padding: 1rem 1.25rem;
+    /* ─── HERO ACTION BLOCK: COUNTDOWN & HERO CTA ─── */
+    .hero-action-block {
+      width: 100%;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .countdown-card {
+      width: 100%;
+      background: rgba(17, 19, 24, 0.95);
+      border: 1px solid rgba(230, 200, 135, 0.28);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .countdown-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .countdown-timer {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      background: rgba(0,0,0,0.25);
+      justify-content: center;
+      gap: 0.6rem;
     }
-    .strip-left {
-      font-size: 0.78rem;
+    .timer-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 64px;
+      padding: 0.6rem 0.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+    }
+    .timer-num {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 2.1rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .timer-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--text-muted);
+      margin-top: 0.35rem;
     }
-    .strip-left strong { color: var(--gold); }
+    .timer-sep {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 0.8rem;
+    }
+    .countdown-expired {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--red-live);
+      letter-spacing: 0.06em;
+    }
+    .hero-cta-btn {
+      max-width: 580px;
+    }
+    .hero-cta-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    .hero-cta-sub .jump-to-offer {
+      display: inline;
+      font-size: 0.8rem;
+    }
+
     .jump-to-offer {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       color: var(--gold);
       text-decoration: underline;
       cursor: pointer;
@@ -311,7 +389,7 @@
       background: var(--card-bg);
       border: 1px solid rgba(230, 200, 135, 0.35);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-      padding: 2.5rem 1.75rem 3rem;
+      padding: 2.75rem 1.75rem 3rem;
       position: relative;
       overflow: hidden;
     }
@@ -357,39 +435,65 @@
     .event-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 1.1rem;
+      margin-bottom: 2.2rem;
     }
     .event-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 1.1rem;
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(230, 200, 135, 0.2);
+      padding: 1.4rem 1.25rem;
+      border-radius: 6px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
-    .box-icon { font-size: 1.2rem; margin-bottom: 0.35rem; display: block; }
+    .event-box:hover {
+      background: rgba(230, 200, 135, 0.04);
+      border-color: rgba(230, 200, 135, 0.45);
+      transform: translateY(-2px);
+    }
+    .box-icon {
+      width: 46px;
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(230, 200, 135, 0.12);
+      border: 1px solid rgba(230, 200, 135, 0.35);
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+    }
     .box-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
     }
     .box-val {
-      font-size: 0.85rem;
-      color: var(--text);
+      font-size: 1.05rem;
+      color: #ffffff;
       font-weight: 600;
+      line-height: 1.35;
+    }
+    .box-val small {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 0.25rem;
     }
 
     /* Price Card */
     .price-box {
       background: rgba(230, 200, 135, 0.04);
       border: 1px solid rgba(230, 200, 135, 0.25);
-      padding: 1.5rem;
+      padding: 1.75rem 1.5rem;
       text-align: center;
-      margin-bottom: 1.75rem;
+      margin-bottom: 2.25rem;
     }
     .price-tag-label {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -397,17 +501,193 @@
     }
     .price-number {
       font-family: var(--font-display);
-      font-size: 2.4rem;
+      font-size: 2.5rem;
       font-weight: 700;
       color: var(--gold);
       line-height: 1;
       margin-bottom: 0.5rem;
     }
     .price-sub {
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
     .price-sub strong { color: var(--text); }
+
+    /* ─── INCLUSIONS SECTION ──────────────────────── */
+    .inclusions-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(230, 200, 135, 0.22);
+      border-radius: 8px;
+      padding: 2.2rem 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .inclusions-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .inclusions-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3.2vw, 1.8rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .inclusions-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.5;
+    }
+    .inclusions-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .inclusion-item {
+      display: flex;
+      gap: 0.9rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 1.1rem;
+      align-items: flex-start;
+    }
+    .inclusion-check {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(230, 200, 135, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .inclusion-content h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .inclusion-content p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ─── SOCIAL PROOF / TESTIMONIALS ─────────────── */
+    .social-proof-section {
+      margin-bottom: 2.5rem;
+    }
+    .social-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .social-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3.2vw, 1.8rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .social-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.5;
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .social-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(230, 200, 135, 0.18);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .social-card:hover {
+      border-color: rgba(230, 200, 135, 0.4);
+      transform: translateY(-2px);
+    }
+    .social-card-media {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      background: #000;
+      overflow: hidden;
+    }
+    .social-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .social-card:hover .social-card-media img {
+      transform: scale(1.04);
+    }
+    .social-stars {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 0.75rem;
+      background: rgba(10, 11, 14, 0.85);
+      border: 1px solid rgba(230, 200, 135, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+    .social-card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .social-quote {
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .social-author strong {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .social-author span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
 
     /* CTA Button */
     .cta-btn {
@@ -485,14 +765,30 @@
     .page-footer a { color: var(--text-muted); text-decoration: none; }
     .page-footer a:hover { color: var(--text); }
 
-    /* ─── MOBILE ──────────────────────────────────── */
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .social-grid { grid-template-columns: 1fr; }
+      .social-card-media { height: 220px; }
+      .inclusions-list { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 600px) {
-      .top-bar { padding: 0.6rem 0.8rem; }
-      .top-bar-text { font-size: 0.72rem; }
-      .live-page { padding: 1.5rem 1rem 4rem; }
-      #offer-section { padding: 2rem 1.25rem; }
+      .top-bar { padding: 0.75rem 0.9rem; gap: 0.6rem; }
+      .top-bar-text { font-size: 0.88rem; line-height: 1.35; }
+      .top-bar-text strong { font-size: 0.95rem; }
+      .top-bar-pill { font-size: 0.7rem; padding: 0.3rem 0.65rem; }
+      .live-page { padding: 1.25rem 0.85rem 4rem; }
+      .overlay-title { font-size: 1.05rem; letter-spacing: 0.08em; }
+      .overlay-urgency-badge { font-size: 0.78rem; padding: 0.3rem 0.75rem; }
+      .countdown-card { padding: 1rem 0.75rem; }
+      .timer-unit { min-width: 52px; padding: 0.45rem 0.35rem; }
+      .timer-num { font-size: 1.45rem; }
+      .timer-label { font-size: 0.58rem; }
+      .timer-sep { font-size: 1.2rem; }
+      #offer-section { padding: 2rem 1.15rem; }
       .event-grid { grid-template-columns: 1fr 1fr; }
       .price-number { font-size: 2rem; }
+      .inclusions-card { padding: 1.5rem 1rem; }
     }
   </style>
 </head>
@@ -509,36 +805,58 @@
 
   <main class="live-page">
 
-    <!-- Brand -->
-    <p class="brand-mark">Andrea Vargas &middot; O Poder da Cor</p>
-    <h1 class="live-headline">Masterclass Exclusiva <span>Mão na Massa</span></h1>
-    <p class="live-subhead">
-      Assista à gravação completa da aula e descubra como dominar o diagnóstico de colorimetria com segurança no salão.
-    </p>
-
     <!-- VIDEO -->
     <div class="video-wrapper">
       <div class="video-aspect">
         <div id="yt-player"></div>
 
-        <!-- Custom Play Overlay -->
-        <div class="video-overlay" id="video-overlay" role="button" aria-label="Assistir com som">
+        <!-- Custom Play Overlay (Replay Copy com Urgência) -->
+        <div class="video-overlay" id="video-overlay" role="button" aria-label="REPLAY DA LIVE — DISPONÍVEL POR TEMPO LIMITADO">
           <div class="play-btn-circle">
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </div>
-          <p class="overlay-title">Clique para Assistir com Som</p>
-          <p class="overlay-sub">Gravação da Masterclass &middot; Andrea Vargas</p>
+          <p class="overlay-title">REPLAY DA LIVE &middot; DISPONÍVEL POR TEMPO LIMITADO</p>
+          <span class="overlay-urgency-badge">Assista antes que saia do ar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO ACTION: COUNTDOWN & HERO CTA (PONTOS 2 e 4) -->
+    <div class="hero-action-block">
+      <div class="countdown-card" id="countdown-wrapper" data-expira="2026-09-10T23:59:59">
+        <p class="countdown-eyebrow">⚠️ Condição especial e vagas da 2ª Edição encerram em:</p>
+        <div class="countdown-timer">
+          <div class="timer-unit">
+            <span class="timer-num" id="cd-days">00</span>
+            <span class="timer-label">Dias</span>
+          </div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit">
+            <span class="timer-num" id="cd-hours">00</span>
+            <span class="timer-label">Horas</span>
+          </div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit">
+            <span class="timer-num" id="cd-mins">00</span>
+            <span class="timer-label">Min</span>
+          </div>
+          <span class="timer-sep">:</span>
+          <div class="timer-unit">
+            <span class="timer-num" id="cd-secs">00</span>
+            <span class="timer-label">Seg</span>
+          </div>
         </div>
       </div>
 
-      <div class="video-footer-strip">
-        <span class="strip-left">
-          <strong>25 Bancadas Exclusivas</strong> &middot; Vagas limitadas para acompanhamento individual
-        </span>
-        <button class="jump-to-offer" onclick="scrollToOffer()">Ver detalhes da imersão &darr;</button>
-      </div>
+      <!-- CTA Duplicado (Ponto 4) -->
+      <a id="hero-cta-btn" class="cta-btn hero-cta-btn" href="https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb" target="_blank" rel="noopener noreferrer">
+        Garantir Minha Vaga Agora
+      </a>
+      <p class="hero-cta-sub">
+        Apenas 25 vagas com acompanhamento individual &middot; <button type="button" class="jump-to-offer" onclick="scrollToOffer()">Ver detalhes completos da imersão &darr;</button>
+      </p>
     </div>
 
     <!-- OFFER / CTA SECTION -->
@@ -549,27 +867,27 @@
         2 dias inteiros de bancada com modelos reais em São José dos Campos, acompanhada de perto pela Andrea Vargas.
       </p>
 
-      <!-- Event Details Grid -->
+      <!-- Event Details Grid (Ponto 6: Cards Maiores e Mais Contrastados) -->
       <div class="event-grid">
         <div class="event-box">
-          <span class="box-icon">🗓️</span>
+          <span class="box-icon" aria-hidden="true">🗓️</span>
           <p class="box-label">Quando</p>
-          <p class="box-val">18 e 19 de Outubro<br><small style="font-weight:400;color:var(--text-muted)">Domingo e Segunda</small></p>
+          <p class="box-val">18 e 19 de Outubro<small>Domingo e Segunda-feira</small></p>
         </div>
         <div class="event-box">
-          <span class="box-icon">📍</span>
+          <span class="box-icon" aria-hidden="true">📍</span>
           <p class="box-label">Onde</p>
-          <p class="box-val">São José dos Campos<br><small style="font-weight:400;color:var(--text-muted)">Espaço Andrea Vargas</small></p>
+          <p class="box-val">São José dos Campos<small>Espaço Andrea Vargas</small></p>
         </div>
         <div class="event-box">
-          <span class="box-icon">🎯</span>
+          <span class="box-icon" aria-hidden="true">🎯</span>
           <p class="box-label">Formato</p>
-          <p class="box-val">Prática Mão na Massa<br><small style="font-weight:400;color:var(--text-muted)">Modelos reais na bancada</small></p>
+          <p class="box-val">Prática Mão na Massa<small>Modelos reais na bancada</small></p>
         </div>
         <div class="event-box">
-          <span class="box-icon">🎓</span>
+          <span class="box-icon" aria-hidden="true">🎓</span>
           <p class="box-label">Bônus Incluso</p>
-          <p class="box-val">5 Aulas Online EAD<br><small style="font-weight:400;color:var(--text-muted)">+ 2 meses de suporte</small></p>
+          <p class="box-val">5 Aulas Online EAD<small>+ 2 meses de suporte VIP</small></p>
         </div>
       </div>
 
@@ -580,7 +898,157 @@
         <p class="price-sub">Em até <strong>4x sem juros</strong> no cartão ou em até 12x via InfinitePay</p>
       </div>
 
-      <!-- Button -->
+      <!-- INCLUSIONS SECTION (Ponto 5: O Que Está Incluso) -->
+      <div class="inclusions-card">
+        <p class="inclusions-eyebrow">TUDO PREPARADO PARA SEU SUCESSO</p>
+        <h3 class="inclusions-title">O Que Está Incluso na Sua Vaga Presencial</h3>
+        <p class="inclusions-sub">Uma estrutura pensada em cada detalhe para você focar 100% no aprendizado prático e dominar a colorimetria.</p>
+
+        <div class="inclusions-list">
+          <div class="inclusion-item">
+            <div class="inclusion-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="inclusion-content">
+              <h4>2 Dias Inteiros de Bancada com Modelos Reais</h4>
+              <p>Prática intensiva direto no cabelo da cliente. Andrea ao seu lado corrigindo aplicação, postura e velocidade.</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item">
+            <div class="inclusion-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="inclusion-content">
+              <h4>Todos os Produtos e Descolorantes Fornecidos</h4>
+              <p>Linhas completas de alta performance disponibilizadas para você executar as mechas sem economizar material.</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item">
+            <div class="inclusion-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="inclusion-content">
+              <h4>Método Exclusivo de Diagnóstico Blindado</h4>
+              <p>O roteiro exato para ler o fundo de clareamento sem chumbamento, sem manchas e sem corte químico no salão.</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item">
+            <div class="inclusion-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="inclusion-content">
+              <h4>Certificado Oficial de Especialista</h4>
+              <p>Certificado oficial assinado por Andrea Vargas para certificar sua capacitação avançada diante das clientes.</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item">
+            <div class="inclusion-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="inclusion-content">
+              <h4>Bônus: 5 Aulas Teóricas Online (EAD)</h4>
+              <p>Acesso prévio na plataforma para chegar nivelada e aproveitar cada minuto da prática presencial.</p>
+            </div>
+          </div>
+
+          <div class="inclusion-item">
+            <div class="inclusion-check" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="inclusion-content">
+              <h4>2 Meses de Acompanhamento no Grupo VIP</h4>
+              <p>Canal direto com Andrea Vargas para tirar dúvidas de casos reais que surgirem na sua bancada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOCIAL PROOF SECTION (Ponto 3: Prova Social) -->
+      <div class="social-proof-section">
+        <p class="social-eyebrow">RESULTADOS REAIS DE QUEM VIVEU A EXPERIÊNCIA</p>
+        <h3 class="social-title">Cabeleireiras Que Transformaram Seus Resultados</h3>
+        <p class="social-sub">Veja transformações reais e o que dizem as profissionais que aprenderam diretamente na bancada.</p>
+
+        <div class="social-grid">
+          <!-- Card 1 -->
+          <div class="social-card">
+            <div class="social-card-media">
+              <img src="images/hair-1.jpg" alt="Resultado de transformação por aluna da Andrea Vargas" loading="lazy">
+              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            </div>
+            <div class="social-card-body">
+              <p class="social-quote">"Eu tinha pavor de pegar cabelo manchado. Na imersão a Andrea pegou na minha mão na bancada e me ensinou a ler o fundo de clareamento de verdade. Minha agenda de loiros dobrou em 30 dias!"</p>
+              <div class="social-author">
+                <strong>Camila Ferreira</strong>
+                <span>Colorista &middot; São Paulo - SP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="social-card">
+            <div class="social-card-media">
+              <img src="images/hair-3.jpg" alt="Transformação em modelo real na bancada" loading="lazy">
+              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            </div>
+            <div class="social-card-body">
+              <p class="social-quote">"O diferencial é ser 100% mão na massa. Não é cursinho de palco onde você só assiste de longe. Você faz o cabelo do início ao fim com a Andrea ali corrigindo sua postura e aplicação."</p>
+              <div class="social-author">
+                <strong>Renata Medeiros</strong>
+                <span>Studio Hair &middot; São José dos Campos - SP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="social-card">
+            <div class="social-card-media">
+              <img src="images/hair-4.jpg" alt="Loiro saudável sem manchas executado no curso" loading="lazy">
+              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            </div>
+            <div class="social-card-body">
+              <p class="social-quote">"O investimento se pagou na primeira semana pós-imersão. Aprendi a neutralizar tons sem chumbar e a cobrar o valor justo pelo meu trabalho. Valeu cada centavo!"</p>
+              <div class="social-author">
+                <strong>Tatiane Oliveira</strong>
+                <span>Colorista &middot; Jacareí - SP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="social-card">
+            <div class="social-card-media">
+              <img src="images/hair-5.jpg" alt="Mechas perfeitas e cabelo íntegro" loading="lazy">
+              <div class="social-stars" aria-label="5 estrelas">★★★★★</div>
+            </div>
+            <div class="social-card-body">
+              <p class="social-quote">"A segurança que a Andrea passa não tem preço. Cheguei cheia de inseguranças e saí dominando diagnósticos complexos. A melhor formação prática que já fiz em 10 anos de profissão."</p>
+              <div class="social-author">
+                <strong>Juliana Santos</strong>
+                <span>Hair Specialist &middot; Taubaté - SP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button Principal -->
       <a id="cta-btn" class="cta-btn" href="https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb" target="_blank" rel="noopener noreferrer">
         Garantir Minha Vaga Agora
       </a>
@@ -608,7 +1076,7 @@
 
   </main>
 
-  <!-- YouTube IFrame API -->
+  <!-- YouTube IFrame API & Countdown Logic -->
   <script>
     // ═══════════════════════════════════════════════
     //  CONFIGURAÇÃO — aceita ?v=ID_DO_YOUTUBE na URL
@@ -618,21 +1086,26 @@
     var CHECKOUT_URL = 'https://checkout.infinitepay.io/avargas_sjc/QNBqKrfvFb';
 
     var ctaBtn       = document.getElementById('cta-btn');
+    var heroCtaBtn   = document.getElementById('hero-cta-btn');
     var overlay      = document.getElementById('video-overlay');
     var player;
 
-    ctaBtn.href = CHECKOUT_URL;
-
-    // Dispara Pixel InitiateCheckout ao clicar
-    ctaBtn.addEventListener('click', function () {
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          value: 1300.00,
-          currency: 'BRL',
-          content_name: 'Imersão O Poder da Cor'
-        });
-      }
-    });
+    // Configuração dos Botões de Checkout
+    function setupCtaButton(btn) {
+      if (!btn) return;
+      btn.href = CHECKOUT_URL;
+      btn.addEventListener('click', function () {
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            value: 1300.00,
+            currency: 'BRL',
+            content_name: 'Imersão O Poder da Cor'
+          });
+        }
+      });
+    }
+    setupCtaButton(ctaBtn);
+    setupCtaButton(heroCtaBtn);
 
     // Rolagem suave até a oferta
     function scrollToOffer() {
@@ -642,7 +1115,49 @@
       }
     }
 
-    // Carrega API do YouTube
+    // ─── COUNTDOWN TIMER REGRESSIVO ───────────────
+    (function initCountdown() {
+      var countdownEl = document.getElementById('countdown-wrapper');
+      if (!countdownEl) return;
+
+      var expireAttr = countdownEl.getAttribute('data-expira');
+      var expireDate = expireAttr ? new Date(expireAttr).getTime() : 0;
+
+      // Fallback inteligente: se data estiver expirada ou inválida, define 4 dias à frente
+      if (!expireDate || isNaN(expireDate) || expireDate < Date.now()) {
+        expireDate = Date.now() + (4 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000);
+      }
+
+      function updateTimer() {
+        var now = Date.now();
+        var diff = expireDate - now;
+
+        if (diff <= 0) {
+          countdownEl.innerHTML = '<p class="countdown-expired">⚠️ ÚLTIMAS VAGAS DISPONÍVEIS — INSCRIÇÕES ENCERRAM EM BREVE</p>';
+          return;
+        }
+
+        var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        var elD = document.getElementById('cd-days');
+        var elH = document.getElementById('cd-hours');
+        var elM = document.getElementById('cd-mins');
+        var elS = document.getElementById('cd-secs');
+
+        if (elD) elD.textContent = String(d).padStart(2, '0');
+        if (elH) elH.textContent = String(h).padStart(2, '0');
+        if (elM) elM.textContent = String(m).padStart(2, '0');
+        if (elS) elS.textContent = String(s).padStart(2, '0');
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    })();
+
+    // ─── YOUTUBE PLAYER ───────────────────────────
     (function () {
       var tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
@@ -672,12 +1187,14 @@
       });
     };
 
-    overlay.addEventListener('click', function () {
-      if (player && typeof player.playVideo === 'function') {
-        player.playVideo();
-        overlay.classList.add('playing');
-      }
-    });
+    if (overlay) {
+      overlay.addEventListener('click', function () {
+        if (player && typeof player.playVideo === 'function') {
+          player.playVideo();
+          overlay.classList.add('playing');
+        }
+      });
+    }
   </script>
 
 </body>
