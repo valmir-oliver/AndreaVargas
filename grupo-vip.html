@@ -76,7 +76,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 16px 14px;
       position: relative;
       overflow-x: hidden;
     }
@@ -97,13 +97,13 @@
 
     .container {
       width: 100%;
-      max-width: 460px;
+      max-width: 440px;
       background: var(--card-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(197, 160, 89, 0.3);
-      border-radius: 28px;
-      padding: 32px 24px;
+      border-radius: 24px;
+      padding: 22px 18px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
       position: relative;
       z-index: 1;
@@ -115,16 +115,16 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 999px;
       background: #191c24;
       border: 1px solid rgba(230, 200, 135, 0.4);
       color: var(--gold-primary);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
@@ -136,21 +136,21 @@
 
     /* Author & Title */
     .subtitle {
-      font-size: 11px;
+      font-size: 10.5px;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       color: var(--text-muted);
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .title {
       font-family: var(--font-serif);
-      font-size: 26px;
+      font-size: 23px;
       font-weight: 700;
-      line-height: 1.25;
+      line-height: 1.2;
       color: #ffffff;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .title span {
@@ -158,32 +158,32 @@
       font-style: italic;
       font-weight: 400;
       color: var(--gold-primary);
-      font-size: 20px;
-      margin-top: 4px;
+      font-size: 17px;
+      margin-top: 2px;
     }
 
     /* Info Grid */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
     .info-card {
       background: #161820;
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 12px 8px;
+      border-radius: 14px;
+      padding: 10px 8px;
     }
 
     .info-label {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
       letter-spacing: 0.06em;
       color: var(--gold-primary);
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -191,25 +191,26 @@
     }
 
     .info-value {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #ffffff;
       line-height: 1.2;
     }
 
     .info-sub {
-      font-size: 10px;
+      font-size: 9.5px;
       color: #8b92a2;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     /* Highlights list */
     .highlights {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       text-align: left;
-      margin-bottom: 26px;
+      margin-top: 18px;
+      margin-bottom: 18px;
     }
 
     .highlight-item {
@@ -243,17 +244,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
       width: 100%;
       background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
       color: #ffffff;
       text-decoration: none;
-      padding: 18px 20px;
-      border-radius: 18px;
+      padding: 14px 18px;
+      border-radius: 16px;
       font-weight: 800;
-      font-size: 16px;
+      font-size: 15px;
       letter-spacing: 0.02em;
-      box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4), 0 8px 16px rgba(0, 0, 0, 0.3);
       cursor: pointer;
       border: none;
       overflow: hidden;
@@ -350,9 +351,9 @@
     /* Avatar Photo */
     .avatar-wrapper {
       position: relative;
-      width: 92px;
-      height: 92px;
-      margin: 0 auto 16px;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 12px;
     }
 
     .avatar-img {
@@ -416,6 +417,21 @@
       </div>
     </div>
 
+    <!-- CTA Button to WhatsApp Group (Acima da dobra para visibilidade imediata) -->
+    <a href="https://chat.whatsapp.com/Lm3U5yc7veTJlsECO8NSxp?s=cl&p=i&mlu=4&ilr=4" class="btn-whatsapp" id="btn-entrar-grupo" target="_blank" rel="noopener noreferrer">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.585 1.961.934 3.023.934h.001c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.745 0-3.385-.45-4.818-1.236l-5.182 1.358 1.385-5.06c-.856-1.488-1.385-3.218-1.385-5.062 0-5.514 4.486-10 10-10s10 4.486 10 10z"/></svg>
+      <div class="btn-text-wrapper">
+        <span class="btn-sub">Toque para entrar agora</span>
+        <span class="btn-main">ENTRAR NO GRUPO VIP</span>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <!-- Scarcity Warning -->
+    <div class="scarcity">
+      <span>🔥 VAGAS LIMITADAS — Restam Poucas Vagas!</span>
+    </div>
+
     <!-- Key Event Highlights -->
     <div class="highlights">
       <div class="highlight-item">
@@ -437,21 +453,6 @@
         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         <div><strong>Parceria Natun Cosméticos:</strong> benefícios e condições especiais em produtos profissionais.</div>
       </div>
-    </div>
-
-    <!-- CTA Button to WhatsApp Group -->
-    <a href="https://chat.whatsapp.com/Lm3U5yc7veTJlsECO8NSxp?s=cl&p=i&mlu=4&ilr=4" class="btn-whatsapp" id="btn-entrar-grupo" target="_blank" rel="noopener noreferrer">
-      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.585 1.961.934 3.023.934h.001c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.745 0-3.385-.45-4.818-1.236l-5.182 1.358 1.385-5.06c-.856-1.488-1.385-3.218-1.385-5.062 0-5.514 4.486-10 10-10s10 4.486 10 10z"/></svg>
-      <div class="btn-text-wrapper">
-        <span class="btn-sub">Toque para entrar agora</span>
-        <span class="btn-main">ENTRAR NO GRUPO VIP</span>
-      </div>
-      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </a>
-
-    <!-- Scarcity Warning -->
-    <div class="scarcity">
-      <span>🔥 VAGAS LIMITADAS — Restam Poucas Vagas!</span>
     </div>
 
     <!-- Security & Trust Footer -->
