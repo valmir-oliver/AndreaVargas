@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Grupo VIP | O Poder da Cor — Mão na Massa com Andrea Vargas</title>
+  <meta name="description" content="Grupo Oficial de Pré-Inscrição e Informações da 2ª Edição da Imersão Presencial O Poder da Cor em São José dos Campos com Andrea Vargas.">
+
+  <!-- Open Graph / WhatsApp Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Grupo VIP: O Poder da Cor — Mão na Massa (2ª Edição)">
+  <meta property="og:description" content="18 e 19 de Outubro em São José dos Campos. Toque para entrar no grupo oficial do WhatsApp!">
+  <meta property="og:image" content="https://andreavargas.hair/images/andrea-perfil.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ==========================================
+       META PIXEL SCRIPT (Substitua SEU_PIXEL_ID_AQUI)
+       ========================================== -->
+  <script>
+    const META_PIXEL_ID = "SEU_PIXEL_ID_AQUI"; // Cole aqui o seu ID de Pixel do Meta quando criar
+
+    if (META_PIXEL_ID && META_PIXEL_ID !== "SEU_PIXEL_ID_AQUI") {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+      fbq('track', 'ViewContent', {
+        content_name: 'Pagina Ponte Grupo VIP - Mao na Massa 2a Edicao',
+        content_category: 'Imersao Presencial'
+      });
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-main: #0a0b0e;
+      --card-bg: rgba(18, 20, 26, 0.92);
+      --gold-primary: #e6c887;
+      --gold-accent: #c5a059;
+      --text-main: #f4ede4;
+      --text-muted: #a39e93;
+      --emerald-light: #10b981;
+      --emerald-dark: #059669;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-display: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Gold Glow */
+    .ambient-glow {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      max-width: 100vw;
+      height: 380px;
+      background: radial-gradient(circle, rgba(197, 160, 89, 0.18) 0%, rgba(197, 160, 89, 0.05) 50%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #191c24;
+      border: 1px solid rgba(230, 200, 135, 0.4);
+      color: var(--gold-primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-icon {
+      width: 12px;
+      height: 12px;
+      fill: var(--gold-primary);
+    }
+
+    /* Author & Title */
+    .subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .title span {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold-primary);
+      font-size: 20px;
+      margin-top: 4px;
+    }
+
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .info-card {
+      background: #161820;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 12px 8px;
+    }
+
+    .info-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .info-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .info-sub {
+      font-size: 10px;
+      color: #8b92a2;
+      margin-top: 2px;
+    }
+
+    /* Highlights list */
+    .highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      margin-bottom: 26px;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #15171f;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #e2e8f0;
+    }
+
+    .highlight-item strong {
+      color: #ffffff;
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--gold-accent);
+      margin-top: 1px;
+    }
+
+    /* CTA WhatsApp Button */
+    .btn-whatsapp {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 18px 20px;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      border: none;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: pulse-green 2.5s infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% {
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.4), 0 10px 20px rgba(0,0,0,0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.65), 0 12px 25px rgba(0,0,0,0.4);
+        transform: scale(1.02);
+      }
+    }
+
+    .btn-whatsapp:active {
+      transform: scale(0.98);
+    }
+
+    .btn-text-wrapper {
+      text-align: left;
+    }
+
+    .btn-sub {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #a7f3d0;
+    }
+
+    .btn-main {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .arrow-icon {
+      margin-left: auto;
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Scarcity Banner */
+    .scarcity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #221415;
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      color: #fda4af;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Footer / Trust */
+    .trust {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+      color: #8b92a2;
+      line-height: 1.5;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #e2e8f0;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* Avatar Photo */
+    .avatar-wrapper {
+      position: relative;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 16px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(230, 200, 135, 0.25);
+      display: block;
+    }
+
+    .page-footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #5d6373;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+
+  <main class="container">
+    <!-- Exclusivity Badge -->
+    <div class="badge">
+      <svg class="badge-icon" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>
+      <span>2ª Edição Exclusiva — SJC</span>
+    </div>
+
+    <!-- Educator Photo -->
+    <div class="avatar-wrapper">
+      <img src="/images/andrea-blazer.jpg" alt="Andrea Vargas" class="avatar-img" onerror="this.src='/images/andrea-perfil.jpg'">
+    </div>
+
+    <!-- Title & Brand -->
+    <p class="subtitle">Andrea Vargas | Haute Coiffure</p>
+    <h1 class="title">
+      O PODER DA COR
+      <span>— MÃO NA MASSA —</span>
+    </h1>
+
+    <!-- Event Info Grid -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-label">
+          <span>📅 Datas</span>
+        </div>
+        <div class="info-value">18 e 19 Out</div>
+        <div class="info-sub">Dom e Seg • Presencial</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">
+          <span>📍 Local</span>
+        </div>
+        <div class="info-value">São José dos Campos</div>
+        <div class="info-sub">Imersão Prática em SJC</div>
+      </div>
+    </div>
+
+    <!-- Key Event Highlights -->
+    <div class="highlights">
+      <div class="highlight-item">
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <div><strong>2 Dias de Imersão Prática:</strong> diagnóstico e colorimetria executados em <em>modelos reais</em>.</div>
+      </div>
+
+      <div class="highlight-item">
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <div><strong>5 Aulas Online + 3 Encontros ao Vivo:</strong> nivelamento e dúvidas antes do presencial.</div>
+      </div>
+
+      <div class="highlight-item">
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <div><strong>2 Meses de Suporte no WhatsApp:</strong> acompanhamento direto para os casos do seu salão.</div>
+      </div>
+
+      <div class="highlight-item">
+        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <div><strong>Parceria Natun Cosméticos:</strong> benefícios e condições especiais em produtos profissionais.</div>
+      </div>
+    </div>
+
+    <!-- CTA Button to WhatsApp Group -->
+    <a href="https://chat.whatsapp.com/Lm3U5yc7veTJlsECO8NSxp?s=cl&p=i&mlu=4&ilr=4" class="btn-whatsapp" id="btn-entrar-grupo" target="_blank" rel="noopener noreferrer">
+      <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.585 1.961.934 3.023.934h.001c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.745 0-3.385-.45-4.818-1.236l-5.182 1.358 1.385-5.06c-.856-1.488-1.385-3.218-1.385-5.062 0-5.514 4.486-10 10-10s10 4.486 10 10z"/></svg>
+      <div class="btn-text-wrapper">
+        <span class="btn-sub">Toque para entrar agora</span>
+        <span class="btn-main">ENTRAR NO GRUPO VIP</span>
+      </div>
+      <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <!-- Scarcity Warning -->
+    <div class="scarcity">
+      <span>🔥 VAGAS LIMITADAS — Restam Poucas Vagas!</span>
+    </div>
+
+    <!-- Security & Trust Footer -->
+    <div class="trust">
+      <div class="trust-badge">
+        <span>🔒 Grupo Oficial e Verificado no WhatsApp</span>
+      </div>
+      <p>Receba em primeira mão o cronograma detalhado, valores facilitados e garanta prioridade na inscrição antes do encerramento das vagas.</p>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>© Andrea Vargas Haute Coiffure • São José dos Campos - SP</p>
+  </footer>
+
+  <!-- Script de Rastreamento de Clique -->
+  <script>
+    document.getElementById('btn-entrar-grupo').addEventListener('click', function() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Clique Entrar Grupo VIP WhatsApp',
+          content_category: 'Imersao Presencial Mao na Massa 2a Edicao',
+          value: 1300.00,
+          currency: 'BRL'
+        });
+      }
+    });
+  </script>
+</body>
+</html>
